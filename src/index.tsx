@@ -1,11 +1,9 @@
-import {StrictMode} from 'react';
+import React, {StrictMode} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {RouterProvider} from "react-router-dom";
 import router from "./routes/Routes";
-import {Provider} from "react-redux";
-import {store} from "./app/store";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -13,9 +11,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <StrictMode>
-        <Provider store={store}>
-            <RouterProvider router={router}/>
-        </Provider>
+
+        <RouterProvider router={router}/>
+
     </StrictMode>
 );
 

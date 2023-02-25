@@ -1,35 +1,52 @@
-import {createHashRouter,} from "react-router-dom";
+import {createHashRouter} from "react-router-dom";
 import {App} from "../App";
 import {Test} from "../features/Test";
+
+const ErrorPage = () => {
+    return <div>ErrorPage</div>
+}
+
+const Login = () => {
+    return <div>Login</div>
+}
+
+const RecoveryPassword = () => {
+    return <div>RecoveryPassword</div>
+}
+
+const Registration = () => {
+    return <div>Registration</div>
+}
+
+const Profile = () => {
+    return <div>Profile</div>
+}
 
 const router = createHashRouter([
     {
         path: "/",
         element: <App/>,
-    },
-    {
-        path: "/login",
-        element: <h1>Login</h1>,
-    },
-    {
-        path: "/registration",
-        element: <h1>Registration</h1>,
+        errorElement: <ErrorPage/>,
     },
     {
         path: "/profile",
-        element: <h1>Profile</h1>,
+        element: <Profile/>,
     },
     {
-        path: "/404",
-        element: <h1>404</h1>,
+        path: "/login",
+        element: <Login/>,
     },
     {
-        path: "/recovery-password",
-        element: <h1>Recovery-password</h1>,
+        path: "/registration",
+        element: <Registration/>,
     },
     {
         path: "/test",
         element: <Test/>,
+    },
+    {
+        path: "/recovery-password",
+        element: <RecoveryPassword/>,
     },
 ]);
 
