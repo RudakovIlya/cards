@@ -5,7 +5,7 @@ import Slider from '@mui/material/Slider'
 import TextField from '@mui/material/TextField'
 import { createHashRouter, Outlet, useRouteError } from 'react-router-dom'
 
-import { App } from 'App'
+import { App } from 'app/App'
 import { paths } from 'common/constants'
 
 const ErrorPage = () => {
