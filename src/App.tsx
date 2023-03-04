@@ -12,6 +12,7 @@ export const App = () => {
       <Link to={paths.LOGIN}>login&nbsp;</Link>
       <Link to={paths.RECOVERY_PASSWORD}>recovery-password&nbsp;</Link>
       <Link to={paths.REGISTRATION}>REGISTRATION&nbsp;</Link>
+      <h2>HOHOHOH</h2>
       <div>
         <Outlet />
       </div>
