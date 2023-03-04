@@ -7,6 +7,7 @@ import { createHashRouter, Outlet, useRouteError } from 'react-router-dom'
 
 import { App } from 'app/App'
 import { paths } from 'common/constants'
+import { Cards } from 'features/cards/Cards'
 
 const ErrorPage = () => {
   const error: any = useRouteError()
@@ -67,6 +68,10 @@ const router = createHashRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        index: true,
+        element: <Cards />,
+      },
       {
         path: paths.PROFILE,
         element: <Profile />,
