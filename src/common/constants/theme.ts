@@ -103,5 +103,12 @@ export const theme = createTheme({
         },
       },
     },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          maxWidth: 1100,
+        },
+      },
+    },
   },
 })
