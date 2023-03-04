@@ -1,20 +1,23 @@
-import React, {StrictMode} from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import {RouterProvider} from "react-router-dom";
-import router from "./routes/Routes";
+import React, { StrictMode } from 'react'
 
-const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
-);
+import { ThemeProvider } from '@mui/material'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import { RouterProvider } from 'react-router-dom'
+
+import router from './common/routes/Routes'
+import reportWebVitals from './reportWebVitals'
+
+import { theme } from 'common/constants/theme'
+
+const root = createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
-    <StrictMode>
+  <StrictMode>
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </StrictMode>
+)
 
-        <RouterProvider router={router}/>
-
-    </StrictMode>
-);
-
-reportWebVitals();
+reportWebVitals()
