@@ -42,7 +42,7 @@ export const authMeSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(authMe.fulfilled, state => {
+      .addCase(authMe.fulfilled, (state, action) => {
         state.isLoggedIn = true
       })
       .addCase(login.fulfilled, state => {

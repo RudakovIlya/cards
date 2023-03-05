@@ -1,24 +1,18 @@
-import { useEffect } from 'react'
-
 import Container from '@mui/material/Container'
 import { Outlet } from 'react-router-dom'
 
+import { useApp } from 'app/use-app'
 import { Header } from 'common/components/header/Header'
-import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
-import { authMe } from 'features/auth/auth-slice'
 
 export const App = () => {
-  const dispatch = useAppDispatch()
-  const isInit = useAppSelector(state => state.app.isInit)
-
-  useEffect(() => {
-    dispatch(authMe())
-  }, [])
+  const isInit = useApp()
 
   return isInit ? (
     <>
       <Header />
-      <Container>{<Outlet />}</Container>
+      <Container>
+        <Outlet />
+      </Container>
     </>
   ) : (
     <>{'Loading.....'}</>
