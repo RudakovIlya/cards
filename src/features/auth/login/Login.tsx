@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import { Form } from 'common/components/forms/Form'
 import { paths } from 'common/constants'
 import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
-import { login } from 'features/auth/auth-slice'
+import { authMe, login } from 'features/auth/auth-slice'
 
 const schema = yup.object().shape({
   email: yup.string().email('Email must be a valid!').required('Required'),
@@ -33,6 +33,8 @@ export const Login = () => {
   }
 
   if (isLoggedIn) {
+    dispatch(authMe())
+
     return <Navigate to={paths.USER_PROFILE} />
   }
 

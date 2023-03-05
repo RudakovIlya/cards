@@ -8,6 +8,7 @@ import edit_photo from 'assets/img/edit_photo.svg'
 import edit_user_name from 'assets/img/edit_user_name.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
 import test_ava from 'assets/img/test_ava.png'
+import { useAppSelector } from 'common/hooks/hooks'
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
@@ -16,6 +17,8 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 }))
 
 export const UserProfile = () => {
+  const userProfileData = useAppSelector(state => state.profile.profile)
+
   return (
     <Paper
       elevation={3}
@@ -42,10 +45,10 @@ export const UserProfile = () => {
         />
       </Badge>
       <div>
-        <span>Ivan</span>
+        <span>{userProfileData.name}</span>
         <img src={edit_user_name} alt="edit" />
       </div>
-      <div>E-mail</div>
+      <div>{userProfileData.email}</div>
       <Button size={'small'} variant={'radius'}>
         <img src={profile_logout} alt="edit" />
         Log out
