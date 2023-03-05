@@ -1,4 +1,6 @@
-import { Avatar, Badge, styled } from '@mui/material'
+import { styled } from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 
