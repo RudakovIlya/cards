@@ -8,6 +8,10 @@ export const store = configureStore({
     app: appReducer,
     auth: authReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(),
   devTools: true,
 })
 
