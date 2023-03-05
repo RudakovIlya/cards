@@ -68,6 +68,10 @@ export const router = createHashRouter([
             path: paths.PROFILE,
             element: <Cards />,
           },
+          {
+            path: paths.USER_PROFILE,
+            element: <UserProfile />,
+          },
         ],
       },
 
@@ -92,10 +96,6 @@ export const router = createHashRouter([
           {
             path: paths.FORGOT_PASSWORD,
             element: <RecoveryPassword />,
-          },
-          {
-            path: paths.USER_PROFILE,
-            element: <UserProfile />,
           },
         ],
       },
