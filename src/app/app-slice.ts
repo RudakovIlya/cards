@@ -1,10 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+type AppInitialType = {
+  isInit: boolean
+}
+
+const initialState: AppInitialType = {
+  isInit: false,
+}
 
 const appSlice = createSlice({
   name: 'app',
-  initialState: {},
-  reducers: {},
-  extraReducers: () => {},
+  initialState,
+  reducers: {
+    initialization: (state, action: PayloadAction<{ isInit: boolean }>) => {
+      state.isInit = action.payload.isInit
+    },
+  },
+  extraReducers: builder => {},
 })
 
-export const { reducer: appReducer } = appSlice
+export const { reducer: appReducer, actions: appActions } = appSlice

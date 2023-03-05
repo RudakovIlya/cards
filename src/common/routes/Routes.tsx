@@ -7,6 +7,7 @@ import { createHashRouter, useRouteError } from 'react-router-dom'
 
 import { App } from 'app/App'
 import { paths } from 'common/constants'
+import { AuthRedirect } from 'common/hoc/AuthRedirect'
 import { Auth } from 'features/auth/Auth'
 import { Login } from 'features/auth/login/Login'
 import { Cards } from 'features/cards/Cards'
@@ -54,13 +55,20 @@ export const router = createHashRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <Cards />,
+        path: '/',
+        element: <AuthRedirect />,
+        children: [
+          {
+            path: paths.PROFILE,
+            element: <Profile />,
+          },
+          {
+            path: paths.PROFILE,
+            element: <Cards />,
+          },
+        ],
       },
-      {
-        path: paths.PROFILE,
-        element: <Profile />,
-      },
+
       {
         path: paths.AUTH,
         element: <Auth />,
