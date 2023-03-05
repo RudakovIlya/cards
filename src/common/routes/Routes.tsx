@@ -3,10 +3,12 @@ import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Slider from '@mui/material/Slider'
 import TextField from '@mui/material/TextField'
-import { createHashRouter, Outlet, useRouteError } from 'react-router-dom'
+import { createHashRouter, useRouteError } from 'react-router-dom'
 
 import { App } from 'app/App'
 import { paths } from 'common/constants'
+import { Auth } from 'features/auth/Auth'
+import { Login } from 'features/auth/login/Login'
 import { Cards } from 'features/cards/Cards'
 
 const ErrorPage = () => {
@@ -23,29 +25,12 @@ const ErrorPage = () => {
   )
 }
 
-const Auth = () => {
-  console.log('Auth')
-
-  return (
-    <div>
-      <h2>Auth</h2>
-      <div>
-        <Outlet />
-      </div>
-    </div>
-  )
-}
-
 const RecoveryPassword = () => {
   return <div>RecoveryPassword</div>
 }
 
 const Registration = () => {
   return <div>Registration</div>
-}
-
-const Login = () => {
-  return <div>Login</div>
 }
 
 const Profile = () => {
@@ -62,7 +47,7 @@ const Profile = () => {
   )
 }
 
-const router = createHashRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <App />,
@@ -103,5 +88,3 @@ const router = createHashRouter([
     ],
   },
 ])
-
-export default router
