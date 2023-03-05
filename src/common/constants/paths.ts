@@ -1,4 +1,5 @@
 export enum paths {
+  CARDS = 'cards',
   PROFILE = 'profile',
   AUTH = 'auth',
   LOGIN = '/auth/login',
