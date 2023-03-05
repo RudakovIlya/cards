@@ -2,20 +2,35 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
 import { authAPI } from 'features/auth/auth-api'
+import { ResponseProfileType } from 'features/auth/types'
 
-export const authMe = createAsyncThunk('auth/me', async (_, { dispatch }) => {
-  try {
-    const response = await authAPI.me()
+export const authMe = createAsyncThunk<ResponseProfileType, void>(
+  'auth',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await authAPI.me()
 
-    return response.data
-  } catch (e) {
-    console.log(e)
-  } finally {
-    dispatch(appActions.initialization({ isInit: true }))
+      return response.data
+    } catch (e: any) {
+      return rejectWithValue(e?.message)
+    } finally {
+      dispatch(appActions.initialization({ isInit: true }))
+    }
   }
-})
+)
 
-export const login = 'auth/regis'
+export const login = createAsyncThunk<ResponseProfileType, any>(
+  'auth/login',
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const response = await authAPI.login(data)
+
+      return response.data
+    } catch (e) {
+      return rejectWithValue('Error')
+    }
+  }
+)
 
 const initialState = {
   isLoggedIn: false,
@@ -26,9 +41,13 @@ export const authMeSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(authMe.fulfilled, state => {
-      state.isLoggedIn = true
-    })
+    builder
+      .addCase(authMe.fulfilled, state => {
+        state.isLoggedIn = true
+      })
+      .addCase(login.fulfilled, state => {
+        state.isLoggedIn = true
+      })
   },
 })
 

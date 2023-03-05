@@ -15,10 +15,12 @@ export const App = () => {
     dispatch(authMe())
   }, [])
 
-  return (
+  return isInit ? (
     <>
       <Header />
-      <Container>{isInit ? <Outlet /> : 'Loading.....'}</Container>
+      <Container>{<Outlet />}</Container>
     </>
+  ) : (
+    <>{'Loading.....'}</>
   )
 }

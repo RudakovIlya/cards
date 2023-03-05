@@ -1,4 +1,4 @@
-import { FC, memo, PropsWithChildren } from 'react'
+import { FC, FormEvent, memo, PropsWithChildren } from 'react'
 
 import { Box, FormControl, FormGroup, Typography } from '@mui/material'
 import Button from '@mui/material/Button'
@@ -13,7 +13,7 @@ interface IForm {
   description?: string
   title?: string
   titleButton?: string
-  onSubmit?: () => void
+  onSubmit?: (event: FormEvent<HTMLFormElement>) => void
 }
 
 export const Form: FC<IForm & PropsWithChildren> = memo(

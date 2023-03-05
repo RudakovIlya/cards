@@ -2,6 +2,9 @@ import { instance } from 'common/api-instance/api-instance'
 
 export const authAPI = {
   me() {
-    return instance.post('auth/me', {})
+    return instance.post('/auth/me')
+  },
+  login(data: any) {
+    return instance.post('/auth/login', data)
   },
 }

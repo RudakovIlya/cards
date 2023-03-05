@@ -1,9 +1,10 @@
 import { Outlet, Navigate } from 'react-router-dom'
 
 import { paths } from 'common/constants'
+import { useAppSelector } from 'common/hooks/hooks'
 
 export const AuthRedirect = () => {
-  const isLoggedIn = true
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
   if (!isLoggedIn) {
     return <Navigate to={paths.LOGIN} />
