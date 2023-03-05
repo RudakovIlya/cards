@@ -5,6 +5,8 @@ import Slider from '@mui/material/Slider'
 import TextField from '@mui/material/TextField'
 import { createHashRouter, useRouteError } from 'react-router-dom'
 
+import { UserProfile } from '../../features/profile/UserProfile'
+
 import { App } from 'app/App'
 import { paths } from 'common/constants'
 import { AuthRedirect } from 'common/hoc/AuthRedirect'
@@ -90,6 +92,10 @@ export const router = createHashRouter([
           {
             path: paths.FORGOT_PASSWORD,
             element: <RecoveryPassword />,
+          },
+          {
+            path: paths.USER_PROFILE,
+            element: <UserProfile />,
           },
         ],
       },
