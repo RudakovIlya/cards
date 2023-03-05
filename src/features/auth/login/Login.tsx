@@ -33,7 +33,7 @@ export const Login = () => {
   }
 
   if (isLoggedIn) {
-    return <Navigate to={paths.PROFILE} />
+    return <Navigate to={paths.USER_PROFILE} />
   }
 
   return (

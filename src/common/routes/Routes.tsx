@@ -1,11 +1,4 @@
-import { Checkbox } from '@mui/material'
-import Button from '@mui/material/Button'
-import Container from '@mui/material/Container'
-import Slider from '@mui/material/Slider'
-import TextField from '@mui/material/TextField'
 import { createHashRouter, useRouteError } from 'react-router-dom'
-
-import { UserProfile } from '../../features/profile/UserProfile'
 
 import { App } from 'app/App'
 import { paths } from 'common/constants'
@@ -13,6 +6,7 @@ import { AuthRedirect } from 'common/hoc/AuthRedirect'
 import { Auth } from 'features/auth/Auth'
 import { Login } from 'features/auth/login/Login'
 import { Cards } from 'features/cards/Cards'
+import { UserProfile } from 'features/profile/UserProfile'
 
 const ErrorPage = () => {
   const error: any = useRouteError()
@@ -36,20 +30,6 @@ const Registration = () => {
   return <div>Registration</div>
 }
 
-const Profile = () => {
-  return (
-    <Container>
-      <Button variant={'radius'}>Button</Button>
-      <Button>Button</Button>
-      <div>
-        <TextField variant={'standard'} label={'Standard'} />
-      </div>
-      <Checkbox />
-      <Slider />
-    </Container>
-  )
-}
-
 export const router = createHashRouter([
   {
     path: '/',
@@ -61,11 +41,7 @@ export const router = createHashRouter([
         element: <AuthRedirect />,
         children: [
           {
-            path: paths.PROFILE,
-            element: <Profile />,
-          },
-          {
-            path: paths.PROFILE,
+            path: paths.FORGOT_PASSWORD,
             element: <Cards />,
           },
           {
