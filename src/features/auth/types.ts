@@ -12,3 +12,16 @@ export type ResponseProfileType = {
   token: string
   tokenDeathTime: number
 }
+
+export type RegistrationResponseType = {
+  email: string
+  rememberMe: boolean
+  isAdmin: boolean
+  name: string
+  verified: boolean
+  publicCardPacksCount: number
+  _id: string
+  created: string
+  updated: string
+  __v: number
+}

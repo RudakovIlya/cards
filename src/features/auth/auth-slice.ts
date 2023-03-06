@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
 import { authAPI } from 'features/auth/auth-api'
-import { ResponseProfileType } from 'features/auth/types'
+import { RegistrationResponseType, ResponseProfileType } from 'features/auth/types'
 
 export const authMe = createAsyncThunk<ResponseProfileType, void>(
   'auth',
@@ -32,8 +32,22 @@ export const login = createAsyncThunk<ResponseProfileType, any>(
   }
 )
 
+export const registerMe = createAsyncThunk<RegistrationResponseType, any>(
+  'auth/register',
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const response = await authAPI.register(data)
+
+      return response.data
+    } catch (e) {
+      return rejectWithValue('Error')
+    }
+  }
+)
+
 const initialState = {
   isLoggedIn: false,
+  isRegistered: false,
 }
 
 export const authMeSlice = createSlice({

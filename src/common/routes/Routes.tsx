@@ -5,6 +5,8 @@ import { paths } from 'common/constants'
 import { AuthRedirect } from 'common/hoc/AuthRedirect'
 import { Auth } from 'features/auth/Auth'
 import { Login } from 'features/auth/login/Login'
+import { Registration } from 'features/auth/registration/Registration'
+
 import { Cards } from 'features/cards/Cards'
 import { UserProfile } from 'features/profile/UserProfile'
 
@@ -26,9 +28,9 @@ const RecoveryPassword = () => {
   return <div>RecoveryPassword</div>
 }
 
-const Registration = () => {
-  return <div>Registration</div>
-}
+// const Registration = () => {
+//   return <div>Registration</div>
+// }
 
 export const router = createHashRouter([
   {

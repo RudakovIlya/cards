@@ -7,4 +7,7 @@ export const authAPI = {
   login(data: any) {
     return instance.post('/auth/login', data)
   },
+  register(data: any) {
+    return instance.post('/auth/register', data)
+  },
 }
