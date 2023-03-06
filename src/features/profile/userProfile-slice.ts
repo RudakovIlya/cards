@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { authAPI } from 'features/auth/auth-api'
 import { authMe, login } from 'features/auth/auth-slice'
 import { ResponseProfileType } from 'features/auth/types'
 import { userProfileAPI } from 'features/profile/userProfile-api'

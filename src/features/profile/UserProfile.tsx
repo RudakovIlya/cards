@@ -43,10 +43,21 @@ export const UserProfile = () => {
       >
         <ProfileAvatar imageSize={{ width: '96px', height: '96px' }} />
       </Badge>
-      <UserName name={userProfileData.name} avatar={userProfileData.avatar} />
+      <div style={{ height: '20px', marginBottom: '10px' }}>
+        <UserName name={userProfileData.name} avatar={userProfileData.avatar} />
+      </div>
       <div>{userProfileData.email}</div>
-      <Button size={'small'} variant={'radius'} onClick={LogoutHandler}>
-        <img src={profile_logout} alt="edit" />
+      <Button
+        sx={{
+          color: '#000',
+          backgroundColor: '#FFF',
+          boxShadow: '0px 4px 18px rgb(0 0 0 / 35%), inset 0px 1px 0px rgb(255 255 255 / 30%)',
+        }}
+        variant={'radius'}
+        size={'medium'}
+        onClick={LogoutHandler}
+      >
+        <img style={{ marginRight: '5px' }} src={profile_logout} alt="edit" />
         Log out
       </Button>
     </Paper>
