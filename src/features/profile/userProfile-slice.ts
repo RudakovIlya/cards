@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { authMe } from 'features/auth/auth-slice'
+import { authMe, login } from 'features/auth/auth-slice'
 import { ResponseProfileType } from 'features/auth/types'
 
 type ProfileStateType = {
@@ -16,9 +16,13 @@ export const userProfileSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(authMe.fulfilled, (state, action) => {
-      state.profile = action.payload
-    })
+    builder
+      .addCase(authMe.fulfilled, (state, action) => {
+        state.profile = action.payload
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.profile = action.payload
+      })
   },
 })
 
