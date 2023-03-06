@@ -8,7 +8,8 @@ import edit_photo from 'assets/img/edit_photo.svg'
 import edit_user_name from 'assets/img/edit_user_name.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
 import test_ava from 'assets/img/test_ava.png'
-import { useAppSelector } from 'common/hooks/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
+import { logOut } from 'features/auth/auth-slice'
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
@@ -18,6 +19,10 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 
 export const UserProfile = () => {
   const userProfileData = useAppSelector(state => state.profile.profile)
+  const dispatch = useAppDispatch()
+  const LogoutHandler = () => {
+    dispatch(logOut())
+  }
 
   return (
     <Paper
@@ -49,7 +54,7 @@ export const UserProfile = () => {
         <img src={edit_user_name} alt="edit" />
       </div>
       <div>{userProfileData.email}</div>
-      <Button size={'small'} variant={'radius'}>
+      <Button size={'small'} variant={'radius'} onClick={LogoutHandler}>
         <img src={profile_logout} alt="edit" />
         Log out
       </Button>

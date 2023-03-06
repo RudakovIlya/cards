@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { _ } from 'react-hook-form/dist/__typetest__/__fixtures__'
 
 import { appActions } from 'app/app-slice'
 import { authAPI } from 'features/auth/auth-api'
@@ -32,6 +33,19 @@ export const login = createAsyncThunk<ResponseProfileType, any>(
   }
 )
 
+export const logOut = createAsyncThunk<ResponseProfileType, void>(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await authAPI.logout()
+
+      return response.data
+    } catch (e) {
+      return rejectWithValue('Logout error')
+    }
+  }
+)
+
 const initialState = {
   isLoggedIn: false,
 }
@@ -47,6 +61,9 @@ export const authMeSlice = createSlice({
       })
       .addCase(login.fulfilled, state => {
         state.isLoggedIn = true
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.isLoggedIn = false
       })
   },
 })
