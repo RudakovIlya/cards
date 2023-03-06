@@ -2,13 +2,13 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import { appReducer } from 'app/app-slice'
 import { authReducer } from 'features/auth/auth-slice'
-import { userProfileReducer } from 'features/profile/userProfile-slice'
+import { userReducer } from 'features/profile/user-slice'
 
 export const store = configureStore({
   reducer: {
     app: appReducer,
     auth: authReducer,
-    profile: userProfileReducer,
+    profile: userReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

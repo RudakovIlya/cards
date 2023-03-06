@@ -13,15 +13,12 @@ export type ResponseProfileType = {
   tokenDeathTime: number
 }
 
-export type RegistrationResponseType = {
+export interface ILoginDataType {
   email: string
-  rememberMe: boolean
-  isAdmin: boolean
-  name: string
-  verified: boolean
-  publicCardPacksCount: number
-  _id: string
-  created: string
-  updated: string
-  __v: number
+  password: string
+  rememberMe?: boolean
+}
+
+export type IRegisterDataType = Omit<ILoginDataType, 'rememberMe'> & {
+  confirmPassword?: string
 }

@@ -11,7 +11,7 @@ const initialState = {
   profile: {},
 } as ProfileStateType
 
-export const userProfileSlice = createSlice({
+export const userSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {},
@@ -26,4 +26,4 @@ export const userProfileSlice = createSlice({
   },
 })
 
-export const { reducer: userProfileReducer } = userProfileSlice
+export const { reducer: userReducer } = userSlice

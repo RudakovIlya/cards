@@ -1,43 +1,15 @@
-import { yupResolver } from '@hookform/resolvers/yup'
 import TextField from '@mui/material/TextField'
-import { useForm } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
-import * as yup from 'yup'
 
 import { Form } from 'common/components/forms/Form'
 import { paths } from 'common/constants'
-import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
-import { registerMe } from 'features/auth/auth-slice'
-
-const regSchema = yup.object().shape({
-  email: yup.string().email('Email must be a valid!').required('Required'),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(7, 'Password length should be at least 4 characters'),
-  confirmPassword: yup
-    .string()
-    .required('Confirm Password is required')
-    .oneOf([yup.ref('password')], 'Passwords do not match'),
-  // rememberMe: yup.boolean().optional(),
-})
+import { useAuth } from 'features/auth/use-auth'
+import { useScheme } from 'features/auth/use-scheme'
 
 export const Registration = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<{ email: string; password: string; confirmPassword: string }>({
-    resolver: yupResolver(regSchema),
-  })
+  const { register, handleSubmit } = useScheme(['email', 'password', 'confPassword'])
 
-  const isRegistered = useAppSelector(state => state.auth.isRegistered)
-  const dispatch = useAppDispatch()
-  const onSubmit = (data: any) => {
-    dispatch(registerMe(data))
-    reset()
-  }
+  const { isRegistered, onRegister } = useAuth()
 
   if (isRegistered) {
     return <Navigate to={paths.LOGIN} />
@@ -45,7 +17,7 @@ export const Registration = () => {
 
   return (
     <Form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onRegister)}
       title={'Registration'}
       titleButton={'Register'}
       description={'Already have an account?'}
@@ -59,7 +31,7 @@ export const Registration = () => {
         type={'password'}
       />
       <TextField
-        {...register('confirmPassword')}
+        {...register('confPassword')}
         variant={'standard'}
         label={'Confirm password'}
         type={'password'}
