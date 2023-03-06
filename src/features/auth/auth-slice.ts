@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
 import { authAPI } from 'features/auth/auth-api'
-import { ResponseProfileType } from 'features/auth/types'
+import { RegistrationResponseType, ResponseProfileType } from 'features/auth/types'
 
 export const authMe = createAsyncThunk<ResponseProfileType, void>(
   'auth',
