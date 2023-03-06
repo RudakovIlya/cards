@@ -13,3 +13,13 @@ export type ResponseProfileType = {
   tokenDeathTime: number
   avatar?: string
 }
+
+export interface ILoginDataType {
+  email: string
+  password: string
+  rememberMe?: boolean
+}
+
+export type IRegisterDataType = Omit<ILoginDataType, 'rememberMe'> & {
+  confirmPassword?: string
+}

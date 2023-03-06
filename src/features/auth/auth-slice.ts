@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
 import { authAPI } from 'features/auth/auth-api'
-import { ResponseProfileType } from 'features/auth/types'
+import { ILoginDataType, ResponseProfileType } from 'features/auth/types'
 
 export const authMe = createAsyncThunk<ResponseProfileType, void>(
   'auth',
@@ -19,11 +19,24 @@ export const authMe = createAsyncThunk<ResponseProfileType, void>(
   }
 )
 
-export const login = createAsyncThunk<ResponseProfileType, any>(
+export const login = createAsyncThunk<ResponseProfileType, ILoginDataType>(
   'auth/login',
-  async (data: any, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
       const response = await authAPI.login(data)
+
+      return response.data
+    } catch (e) {
+      return rejectWithValue('Error')
+    }
+  }
+)
+
+export const registerMe = createAsyncThunk<ResponseProfileType, any>(
+  'auth/register',
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const response = await authAPI.register(data)
 
       return response.data
     } catch (e) {
@@ -47,15 +60,20 @@ export const logOut = createAsyncThunk<ResponseProfileType, void>(
 
 const initialState = {
   isLoggedIn: false,
+  isRegistered: false,
 }
 
 export const authMeSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    register: (state, action: PayloadAction<{ isRegistered: boolean }>) => {
+      state.isRegistered = action.payload.isRegistered
+    },
+  },
   extraReducers: builder => {
     builder
-      .addCase(authMe.fulfilled, (state, action) => {
+      .addCase(authMe.fulfilled, state => {
         state.isLoggedIn = true
       })
       .addCase(login.fulfilled, state => {
@@ -64,7 +82,11 @@ export const authMeSlice = createSlice({
       .addCase(logOut.fulfilled, state => {
         state.isLoggedIn = false
       })
+      .addCase(registerMe.fulfilled, state => {
+        console.log('fulfilled')
+        state.isRegistered = true
+      })
   },
 })
 
-export const { reducer: authReducer } = authMeSlice
+export const { reducer: authReducer, actions: authActions } = authMeSlice

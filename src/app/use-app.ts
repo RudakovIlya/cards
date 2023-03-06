@@ -9,7 +9,7 @@ export const useApp = () => {
 
   useEffect(() => {
     dispatch(authMe())
-  }, [])
+  }, [dispatch])
 
   return isInit
 }

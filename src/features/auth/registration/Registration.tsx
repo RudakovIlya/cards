@@ -1,5 +1,3 @@
-import Checkbox from '@mui/material/Checkbox'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import TextField from '@mui/material/TextField'
 import { Navigate } from 'react-router-dom'
 
@@ -8,21 +6,22 @@ import { paths } from 'common/constants'
 import { useAuth } from 'features/auth/use-auth'
 import { useScheme } from 'features/auth/use-scheme'
 
-export const Login = () => {
-  const { register, handleSubmit } = useScheme(['email', 'password'])
-  const { isLoggedIn, onLogin } = useAuth()
+export const Registration = () => {
+  const { register, handleSubmit } = useScheme(['email', 'password', 'confPassword'])
 
-  if (isLoggedIn) {
-    return <Navigate to={paths.USER_PROFILE} />
+  const { isRegistered, onRegister } = useAuth()
+
+  if (isRegistered) {
+    return <Navigate to={paths.LOGIN} />
   }
 
   return (
     <Form
-      onSubmit={handleSubmit(onLogin)}
-      title={'Sign in'}
-      titleButton={'Sign Up'}
+      onSubmit={handleSubmit(onRegister)}
+      title={'Registration'}
+      titleButton={'Register'}
       description={'Already have an account?'}
-      link={{ title: 'Sign Up', to: paths.REGISTRATION }}
+      link={{ title: 'Log in', to: paths.LOGIN }}
     >
       <TextField {...register('email')} variant={'standard'} label={'Email'} type={'email'} />
       <TextField
@@ -31,7 +30,12 @@ export const Login = () => {
         label={'Password'}
         type={'password'}
       />
-      <FormControlLabel control={<Checkbox {...register('rememberMe')} />} label="Remember me" />
+      <TextField
+        {...register('confPassword')}
+        variant={'standard'}
+        label={'Confirm password'}
+        type={'password'}
+      />
     </Form>
   )
 }

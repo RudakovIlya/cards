@@ -1,9 +1,13 @@
 import { FC, FormEvent, memo, PropsWithChildren } from 'react'
 
-import { Box, FormControl, FormGroup, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import FormControl from '@mui/material/FormControl'
+import FormGroup from '@mui/material/FormGroup'
 import Paper from '@mui/material/Paper'
-import { Link } from 'react-router-dom'
+import Typography from '@mui/material/Typography'
+
+import { CustomLink } from 'common/components/link/CustomLink'
 
 interface IForm {
   link?: {
@@ -13,7 +17,7 @@ interface IForm {
   description?: string
   title?: string
   titleButton?: string
-  onSubmit?: (event: FormEvent<HTMLFormElement>) => void
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void
 }
 
 export const Form: FC<IForm & PropsWithChildren> = memo(
@@ -38,11 +42,7 @@ export const Form: FC<IForm & PropsWithChildren> = memo(
             <Typography sx={{ textAlign: 'center', marginBottom: '20px' }}>
               {description}
             </Typography>
-            {link && (
-              <Link style={{ textAlign: 'center' }} to={link.to}>
-                {link.title}
-              </Link>
-            )}
+            {link && <CustomLink to={link.to}>{link.title}</CustomLink>}
           </FormControl>
         </form>
       </Paper>
