@@ -10,4 +10,7 @@ export const authAPI = {
   register(data: any) {
     return instance.post('/auth/register', data)
   },
+  logout() {
+    return instance.delete('/auth/me')
+  },
 }

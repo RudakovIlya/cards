@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
 import { authAPI } from 'features/auth/auth-api'
-import { RegistrationResponseType, ResponseProfileType } from 'features/auth/types'
+import { ResponseProfileType } from 'features/auth/types'
 
 export const authMe = createAsyncThunk<ResponseProfileType, void>(
   'auth',
@@ -45,6 +45,19 @@ export const registerMe = createAsyncThunk<RegistrationResponseType, any>(
   }
 )
 
+export const logOut = createAsyncThunk<ResponseProfileType, void>(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await authAPI.logout()
+
+      return response.data
+    } catch (e) {
+      return rejectWithValue('Logout error')
+    }
+  }
+)
+
 const initialState = {
   isLoggedIn: false,
   isRegistered: false,
@@ -61,6 +74,9 @@ export const authMeSlice = createSlice({
       })
       .addCase(login.fulfilled, state => {
         state.isLoggedIn = true
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.isLoggedIn = false
       })
   },
 })
