@@ -1,15 +1,14 @@
-import { styled } from '@mui/material'
-import Avatar from '@mui/material/Avatar'
+import { Avatar, styled } from '@mui/material'
 import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 
 import edit_photo from 'assets/img/edit_photo.svg'
-import edit_user_name from 'assets/img/edit_user_name.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
-import test_ava from 'assets/img/test_ava.png'
 import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
 import { logOut } from 'features/auth/auth-slice'
+import { ProfileAvatar } from 'features/profile/userProfile/ProfileAvatar'
+import { UserName } from 'features/profile/userProfile/UserName'
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
@@ -40,19 +39,11 @@ export const UserProfile = () => {
       <Badge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        badgeContent={<SmallAvatar alt="Remy Sharp" src={edit_photo} />}
+        badgeContent={<SmallAvatar alt="Name" src={edit_photo} />}
       >
-        <Avatar
-          alt="UserName"
-          style={{ width: '96px', height: '96px' }}
-          src={test_ava}
-          sizes="small"
-        />
+        <ProfileAvatar imageSize={{ width: '96px', height: '96px' }} />
       </Badge>
-      <div>
-        <span>{userProfileData.name}</span>
-        <img src={edit_user_name} alt="edit" />
-      </div>
+      <UserName name={userProfileData.name} avatar={userProfileData.avatar} />
       <div>{userProfileData.email}</div>
       <Button size={'small'} variant={'radius'} onClick={LogoutHandler}>
         <img src={profile_logout} alt="edit" />

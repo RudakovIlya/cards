@@ -11,4 +11,5 @@ export type ResponseProfileType = {
   __v: number
   token: string
   tokenDeathTime: number
+  avatar?: string
 }
