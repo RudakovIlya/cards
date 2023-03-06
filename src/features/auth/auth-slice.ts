@@ -78,6 +78,9 @@ export const authMeSlice = createSlice({
       .addCase(logOut.fulfilled, state => {
         state.isLoggedIn = false
       })
+      .addCase(registerMe.fulfilled, state => {
+        state.isRegistered = true
+      })
   },
 })
 

@@ -14,11 +14,10 @@ const regSchema = yup.object().shape({
   password: yup
     .string()
     .required('Password is required')
-    .min(4, 'Password length should be at least 4 characters'),
+    .min(7, 'Password length should be at least 4 characters'),
   confirmPassword: yup
     .string()
     .required('Confirm Password is required')
-    .min(4, 'Password length should be at least 4 characters')
     .oneOf([yup.ref('password')], 'Passwords do not match'),
   // rememberMe: yup.boolean().optional(),
 })
