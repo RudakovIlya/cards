@@ -54,11 +54,3 @@ export const userProfileSlice = createSlice({
 })
 
 export const { reducer: userProfileReducer } = userProfileSlice
-
-/*
-{
-  updatedUser: { ...весь юзер с изменёнными данными}
-
-  error?: string
-}
-*/
