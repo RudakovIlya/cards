@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { _ } from 'react-hook-form/dist/__typetest__/__fixtures__'
 
 import { appActions } from 'app/app-slice'
 import { authAPI } from 'features/auth/auth-api'
