@@ -2,7 +2,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
 import { authAPI } from 'features/auth/auth-api'
-import { ILoginDataType, ResponseProfileType } from 'features/auth/types'
+import {
+  ILoginDataType,
+  ResponseForgotEmail,
+  ResponseProfileType,
+  TForgotEmail,
+} from 'features/auth/types'
 
 export const authMe = createAsyncThunk<ResponseProfileType, void>(
   'auth',
@@ -58,9 +63,23 @@ export const logOut = createAsyncThunk<ResponseProfileType, void>(
   }
 )
 
+export const forgot = createAsyncThunk<ResponseForgotEmail & { isMailSent: boolean }, TForgotEmail>(
+  'auth/forgot',
+  async (data: TForgotEmail, { rejectWithValue }) => {
+    try {
+      const response = await authAPI.forgot(data)
+
+      return { ...response.data, isMailSent: true }
+    } catch (e) {
+      return rejectWithValue('forgot error')
+    }
+  }
+)
+
 const initialState = {
   isLoggedIn: false,
   isRegistered: false,
+  isMailSent: false,
 }
 
 export const authMeSlice = createSlice({
@@ -83,8 +102,10 @@ export const authMeSlice = createSlice({
         state.isLoggedIn = false
       })
       .addCase(registerMe.fulfilled, state => {
-        console.log('fulfilled')
         state.isRegistered = true
+      })
+      .addCase(forgot.fulfilled, (state, action) => {
+        state.isMailSent = action.payload.isMailSent
       })
   },
 })

@@ -3,7 +3,7 @@ import * as yup from 'yup'
 export const createValidationSchema = (arr: string[]) => {
   const validationObject = arr.reduce((accum: any, item) => {
     if (item === 'email') {
-      accum[item] = yup.string().email('Email is required!').required('Field is required!')
+      accum[item] = yup.string().email('Email is not valid!').required('Field is required!')
 
       return accum
     }

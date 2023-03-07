@@ -4,6 +4,8 @@ import { App } from 'app/App'
 import { paths } from 'common/constants'
 import { AuthRedirect } from 'common/hoc/AuthRedirect'
 import { Auth } from 'features/auth/Auth'
+import { CheckEmail } from 'features/auth/forgot-password/CheckEmail'
+import { ForgotPassword } from 'features/auth/forgot-password/ForgotPassword'
 import { Login } from 'features/auth/login/Login'
 import { Registration } from 'features/auth/registration/Registration'
 import { Cards } from 'features/cards/Cards'
@@ -38,7 +40,7 @@ export const router = createHashRouter([
         element: <AuthRedirect />,
         children: [
           {
-            path: paths.FORGOT_PASSWORD,
+            path: paths.CARDS,
             element: <Cards />,
           },
           {
@@ -68,7 +70,11 @@ export const router = createHashRouter([
           },
           {
             path: paths.FORGOT_PASSWORD,
-            element: <RecoveryPassword />,
+            element: <ForgotPassword />,
+          },
+          {
+            path: paths.CHECK_EMAIL,
+            element: <CheckEmail />,
           },
         ],
       },
