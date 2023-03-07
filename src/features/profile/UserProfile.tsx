@@ -2,9 +2,11 @@ import { Avatar, styled } from '@mui/material'
 import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
+import { Navigate } from 'react-router-dom'
 
 import edit_photo from 'assets/img/edit_photo.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
+import { paths } from 'common/constants'
 import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
 import { logOut } from 'features/auth/auth-slice'
 import { ProfileAvatar } from 'features/profile/userProfile/ProfileAvatar'
@@ -18,9 +20,14 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 
 export const UserProfile = () => {
   const userProfileData = useAppSelector(state => state.profile.profile)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const dispatch = useAppDispatch()
   const LogoutHandler = () => {
     dispatch(logOut())
+  }
+
+  if (!isLoggedIn) {
+    return <Navigate to={paths.LOGIN} />
   }
 
   return (
