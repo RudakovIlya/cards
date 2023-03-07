@@ -1,15 +1,14 @@
-import { styled } from '@mui/material'
-import Avatar from '@mui/material/Avatar'
+import { Avatar, styled } from '@mui/material'
 import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 
 import edit_photo from 'assets/img/edit_photo.svg'
-import edit_user_name from 'assets/img/edit_user_name.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
-import test_ava from 'assets/img/test_ava.png'
 import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
 import { logOut } from 'features/auth/auth-slice'
+import { ProfileAvatar } from 'features/profile/userProfile/ProfileAvatar'
+import { UserName } from 'features/profile/userProfile/UserName'
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
@@ -40,22 +39,25 @@ export const UserProfile = () => {
       <Badge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        badgeContent={<SmallAvatar alt="Remy Sharp" src={edit_photo} />}
+        badgeContent={<SmallAvatar alt="Name" src={edit_photo} />}
       >
-        <Avatar
-          alt="UserName"
-          style={{ width: '96px', height: '96px' }}
-          src={test_ava}
-          sizes="small"
-        />
+        <ProfileAvatar imageSize={{ width: '96px', height: '96px' }} />
       </Badge>
-      <div>
-        <span>{userProfileData.name}</span>
-        <img src={edit_user_name} alt="edit" />
+      <div style={{ height: '20px', marginBottom: '10px' }}>
+        <UserName name={userProfileData.name} avatar={userProfileData.avatar} />
       </div>
       <div>{userProfileData.email}</div>
-      <Button size={'small'} variant={'radius'} onClick={LogoutHandler}>
-        <img src={profile_logout} alt="edit" />
+      <Button
+        sx={{
+          color: '#000',
+          backgroundColor: '#FFF',
+          boxShadow: '0px 4px 18px rgb(0 0 0 / 35%), inset 0px 1px 0px rgb(255 255 255 / 30%)',
+        }}
+        variant={'radius'}
+        size={'medium'}
+        onClick={LogoutHandler}
+      >
+        <img style={{ marginRight: '5px' }} src={profile_logout} alt="edit" />
         Log out
       </Button>
     </Paper>
