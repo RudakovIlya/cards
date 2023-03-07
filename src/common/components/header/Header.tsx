@@ -5,9 +5,13 @@ import Toolbar from '@mui/material/Toolbar'
 import { Link } from 'react-router-dom'
 
 import logo from 'assets/img/incub-logo.svg'
+import { AccountMenu } from 'common/components/header/account-menu/AccountMenu'
 import { paths } from 'common/constants'
+import { useAppSelector } from 'common/hooks/hooks'
 
 export const Header = () => {
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+
   return (
     <AppBar color={'transparent'} position="static">
       <Container>
@@ -15,9 +19,13 @@ export const Header = () => {
           <Link to={paths.CARDS} style={{ flex: 1 }}>
             <img src={logo} alt="incubator-logo" />
           </Link>
-          <Button size={'small'} variant={'radius'}>
-            Sign in
-          </Button>
+          {!isLoggedIn ? (
+            <Button size={'small'} variant={'radius'}>
+              Sign in
+            </Button>
+          ) : (
+            <AccountMenu />
+          )}
         </Toolbar>
       </Container>
     </AppBar>

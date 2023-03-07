@@ -19,6 +19,7 @@ export const UserName = (props: UserNamePropsType) => {
 
   const editModeOffHandler = () => {
     setEditMode(false)
+    if (name === props.name) return
     dispatch(changeUserData({ name, avatar: props.avatar }))
     setName('')
   }
@@ -29,6 +30,7 @@ export const UserName = (props: UserNamePropsType) => {
 
   const editModeOnHandler = () => {
     setEditMode(true)
+    setName(props.name)
   }
 
   const onChangeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
