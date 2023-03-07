@@ -23,3 +23,14 @@ export interface ILoginDataType {
 export type IRegisterDataType = Omit<ILoginDataType, 'rememberMe'> & {
   confirmPassword?: string
 }
+
+export type TForgotEmail = {
+  email: string
+  from: string
+  message: string
+}
+
+export type ResponseForgotEmail = {
+  info: string
+  error: string
+}

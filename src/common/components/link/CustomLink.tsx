@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 type CustomLinkPropsType = {
   color?: string
+  align?: string
 }
 
 export const CustomLink = styled(Link)<CustomLinkPropsType>`
@@ -10,5 +11,5 @@ export const CustomLink = styled(Link)<CustomLinkPropsType>`
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.5;
-  text-align: center;
+  text-align: ${({ align }) => align || 'center'};
 `
