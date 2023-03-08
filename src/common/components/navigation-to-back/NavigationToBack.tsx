@@ -1,7 +1,7 @@
 import arrow_to_left from 'assets/img/arrow_to_left.svg'
 
 export const NavigationToBack = () => {
-  const ToBackHandler = () => {}
+  const toBackHandler = () => {}
 
   return (
     <div
@@ -12,7 +12,7 @@ export const NavigationToBack = () => {
         justifyContent: 'center',
         marginBottom: '15px',
       }}
-      onClick={ToBackHandler}
+      onClick={toBackHandler}
     >
       <img src={arrow_to_left} alt="arrow" style={{ marginRight: '10px' }} /> Back to Packs List
     </div>

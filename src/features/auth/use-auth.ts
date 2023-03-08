@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { developers } from 'common/constants'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { authActions, forgot, login, registerMe } from 'features/auth/auth-slice'
+import { authActions, forgot, login, logOut, registerMe } from 'features/auth/auth-slice'
 import { ILoginDataType } from 'features/auth/types'
 
 export const useAuth = () => {
@@ -24,6 +24,10 @@ export const useAuth = () => {
     dispatch(forgot({ ...data, ...developers }))
   }
 
+  const logoutHandler = () => {
+    dispatch(logOut())
+  }
+
   return {
     isLoggedIn,
     isMailSent,
@@ -31,5 +35,6 @@ export const useAuth = () => {
     onLogin,
     onRegister,
     onEmailSent,
+    logoutHandler,
   }
 }

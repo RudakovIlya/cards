@@ -5,9 +5,9 @@ import Toolbar from '@mui/material/Toolbar'
 import { Link } from 'react-router-dom'
 
 import logo from 'assets/img/incub-logo.svg'
-import { AccountMenu } from 'common/components/header/account-menu/AccountMenu'
+import { AccountMenu } from 'common/components/account-menu/AccountMenu'
 import { paths } from 'common/constants'
-import { useAppSelector } from 'common/hooks/hooks'
+import { useAppSelector } from 'common/hooks'
 
 export const Header = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
