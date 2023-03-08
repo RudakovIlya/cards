@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -29,7 +29,7 @@ export const UserName = (props: UserNamePropsType) => {
     }
   }
 
-  const onKeyDownHandler = (e: any) => {
+  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLImageElement>) => {
     if (error) {
       setError(null)
     }
