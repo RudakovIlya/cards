@@ -2,16 +2,13 @@ import { Avatar, styled } from '@mui/material'
 import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
-import { Navigate } from 'react-router-dom'
 
 import edit_photo from 'assets/img/edit_photo.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
+import { NavigationToBack, ProfileAvatar, UserName } from 'common/components'
 import { paths } from 'common/constants'
-import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
-import { NavigationToBack } from 'common/routes/navigation-to-back/NavigationToBack'
-import { logOut } from 'features/auth/auth-slice'
-import { ProfileAvatar } from 'features/profile/userProfile/profile-avatar/ProfileAvatar'
-import { UserName } from 'features/profile/userProfile/user-name/UserName'
+import { useAppSelector, useRedirect } from 'common/hooks'
+import { useAuth } from 'features/auth/use-auth'
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
@@ -21,15 +18,9 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 
 export const UserProfile = () => {
   const userProfileData = useAppSelector(state => state.profile.profile)
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  const dispatch = useAppDispatch()
-  const LogoutHandler = () => {
-    dispatch(logOut())
-  }
+  const { logoutHandler, isLoggedIn } = useAuth()
 
-  if (!isLoggedIn) {
-    return <Navigate to={paths.LOGIN} />
-  }
+  useRedirect(paths.LOGIN, !isLoggedIn)
 
   return (
     <div>
@@ -67,7 +58,7 @@ export const UserProfile = () => {
           }}
           variant={'radius'}
           size={'medium'}
-          onClick={LogoutHandler}
+          onClick={logoutHandler}
         >
           <img style={{ marginRight: '5px' }} src={profile_logout} alt="edit" />
           Log out

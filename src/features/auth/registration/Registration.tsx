@@ -1,13 +1,12 @@
 import { useState } from 'react'
 
 import TextField from '@mui/material/TextField'
-import { Navigate } from 'react-router-dom'
 
 import eye2 from 'assets/img/eye-closed.svg'
 import eye from 'assets/img/eye.svg'
 import { Form } from 'common/components'
 import { paths } from 'common/constants'
-import { useScheme } from 'common/hooks'
+import { useRedirect, useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
 
 export const Registration = () => {
@@ -21,9 +20,7 @@ export const Registration = () => {
     setPasswordVisible(!passwordVisible)
   }
 
-  if (isRegistered) {
-    return <Navigate to={paths.LOGIN} />
-  }
+  useRedirect(paths.LOGIN, isRegistered)
 
   return (
     <Form

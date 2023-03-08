@@ -9,14 +9,14 @@ import Tooltip from '@mui/material/Tooltip'
 import { Navigate } from 'react-router-dom'
 
 import profile_logout from 'assets/img/profile_logout.svg'
+import { ProfileAvatar } from 'common/components/profile-avatar/ProfileAvatar'
 import { paths } from 'common/constants'
-import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
-import { logOut } from 'features/auth/auth-slice'
-import { ProfileAvatar } from 'features/profile/userProfile/profile-avatar/ProfileAvatar'
+import { useAppSelector } from 'common/hooks/hooks'
+import { useAuth } from 'features/auth/use-auth'
 
 export const AccountMenu = () => {
   const userProfileData = useAppSelector(state => state.profile.profile)
-  const dispatch = useAppDispatch()
+  const { logoutHandler } = useAuth()
   const menuItemStyle = { display: 'flex', alignItems: 'center', justifyContent: 'center' }
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -26,10 +26,6 @@ export const AccountMenu = () => {
   }
   const handleClose = () => {
     setAnchorEl(null)
-  }
-
-  const LogoutHandler = () => {
-    dispatch(logOut())
   }
 
   const RedirectToProfileHandler = () => {
@@ -94,7 +90,7 @@ export const AccountMenu = () => {
           <ProfileAvatar imageSize={{ width: '25px', height: '25px' }} /> Profile
         </MenuItem>
         <Divider />
-        <MenuItem onClick={LogoutHandler} sx={menuItemStyle}>
+        <MenuItem onClick={logoutHandler} sx={menuItemStyle}>
           <img style={{ marginRight: '5px' }} src={profile_logout} alt="edit" />
           Logout
         </MenuItem>

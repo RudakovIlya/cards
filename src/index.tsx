@@ -9,7 +9,7 @@ import { RouterProvider } from 'react-router-dom'
 import reportWebVitals from './reportWebVitals'
 
 import { store } from 'app/store'
-import { theme } from 'common/constants/theme'
+import { theme } from 'common/constants'
 import { router } from 'common/routes/Routes'
 
 const root = createRoot(document.getElementById('root') as HTMLElement)
