@@ -27,7 +27,7 @@ export const Login = () => {
       onSubmit={handleSubmit(onLogin)}
       title={'Sign in'}
       titleButton={'Sign in'}
-      description={'Already have an account?'}
+      description={`Don't have an account?`}
       link={{ title: 'Sign Up', to: paths.REGISTRATION }}
     >
       <TextField {...register('email')} variant={'standard'} label={'Email'} type={'email'} />
