@@ -1,5 +1,11 @@
 import { instance } from 'common/api-instance/api-instance'
-import { ILoginDataType, ResponseProfileType, TForgotEmail } from 'features/auth/types'
+import {
+  ILoginDataType,
+  IResponseRegisterType,
+  ResponseInfoType,
+  ResponseProfileType,
+  TForgotEmail,
+} from 'features/auth/types'
 
 export const authAPI = {
   me() {
@@ -9,12 +15,12 @@ export const authAPI = {
     return instance.post<ResponseProfileType>('/auth/login', data)
   },
   register(data: any) {
-    return instance.post('/auth/register', data)
+    return instance.post<IResponseRegisterType>('/auth/register', data)
   },
   logout() {
-    return instance.delete('/auth/me')
+    return instance.delete<ResponseInfoType>('/auth/me')
   },
   forgot(data: TForgotEmail) {
-    return instance.post('/auth/forgot', data)
+    return instance.post<ResponseInfoType>('/auth/forgot', data)
   },
 }

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 import logo from 'assets/img/incub-logo.svg'
 import { AccountMenu } from 'common/components/account-menu/AccountMenu'
+import { ContentPreloader } from 'common/components/content-preloader/ContentPreloader'
+import { DescriptionSnackbar } from 'common/components/snackbar/Snackbar'
 import { paths } from 'common/constants'
 import { useAppSelector } from 'common/hooks'
 
@@ -28,6 +30,8 @@ export const Header = () => {
           )}
         </Toolbar>
       </Container>
+      <DescriptionSnackbar />
+      <ContentPreloader />
     </AppBar>
   )
 }
