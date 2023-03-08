@@ -15,16 +15,24 @@ type UserNamePropsType = {
 export const UserName = (props: UserNamePropsType) => {
   const [editMode, setEditMode] = useState(false)
   const [name, setName] = useState('')
+  const [error, setError] = useState<string | null>(null)
   const dispatch = useAppDispatch()
 
   const editModeOffHandler = () => {
-    setEditMode(false)
-    if (name === props.name) return
-    dispatch(changeUserData({ name, avatar: props.avatar }))
-    setName('')
+    if (name.trim() !== '') {
+      setEditMode(false)
+      if (name === props.name) return
+      dispatch(changeUserData({ name, avatar: props.avatar }))
+      setName('')
+    } else {
+      setError('Nickname is required')
+    }
   }
 
   const onKeyDownHandler = (e: any) => {
+    if (error) {
+      setError(null)
+    }
     if (e.key === 'Enter') editModeOffHandler()
   }
 
@@ -43,6 +51,8 @@ export const UserName = (props: UserNamePropsType) => {
       onKeyDown={onKeyDownHandler}
       onChange={onChangeTitleHandler}
       autoFocus
+      error={!!error}
+      helperText={!!error && 'Nickname is required'}
       variant={'standard'}
       label={'Nickname'}
       style={{ width: '300px' }}

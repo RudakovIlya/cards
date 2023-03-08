@@ -12,7 +12,7 @@ import profile_logout from 'assets/img/profile_logout.svg'
 import { paths } from 'common/constants'
 import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
 import { logOut } from 'features/auth/auth-slice'
-import { ProfileAvatar } from 'features/profile/userProfile/ProfileAvatar'
+import { ProfileAvatar } from 'features/profile/userProfile/profile-avatar/ProfileAvatar'
 
 export const AccountMenu = () => {
   const userProfileData = useAppSelector(state => state.profile.profile)
