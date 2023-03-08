@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper'
 
 import edit_photo from 'assets/img/edit_photo.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
-import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { logOut } from 'features/auth/auth-slice'
 import { ProfileAvatar } from 'features/profile/userProfile/ProfileAvatar'
 import { UserName } from 'features/profile/userProfile/UserName'

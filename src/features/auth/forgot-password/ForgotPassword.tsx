@@ -2,11 +2,10 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { Navigate } from 'react-router-dom'
 
-import { Form } from 'common/components/forms/Form'
-import { ValidError } from 'common/components/valid-error/ValidError'
+import { Form, ValidError } from 'common/components'
 import { paths } from 'common/constants'
+import { useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
-import { useScheme } from 'features/auth/use-scheme'
 
 export const ForgotPassword = () => {
   const {

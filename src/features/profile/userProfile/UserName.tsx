@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 
 import edit_user_name from 'assets/img/edit_user_name.svg'
-import { useAppDispatch } from 'common/hooks/hooks'
+import { useAppDispatch, useScheme } from 'common/hooks'
 import { changeUserData } from 'features/profile/userProfile-slice'
 
 type UserNamePropsType = {
@@ -16,7 +16,11 @@ export const UserName = (props: UserNamePropsType) => {
   const [editMode, setEditMode] = useState(false)
   const [name, setName] = useState('')
   const dispatch = useAppDispatch()
-
+  const {
+    register,
+    handleSubmit,
+    errorsMessages: { nameError },
+  } = useScheme(['name'])
   const editModeOffHandler = () => {
     setEditMode(false)
     dispatch(changeUserData({ name, avatar: props.avatar }))

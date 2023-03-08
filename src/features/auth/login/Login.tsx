@@ -1,14 +1,11 @@
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import TextField from '@mui/material/TextField'
-import { Navigate } from 'react-router-dom'
 
-import { Form } from 'common/components/forms/Form'
-import { CustomLink } from 'common/components/link/CustomLink'
-import { ValidError } from 'common/components/valid-error/ValidError'
+import { CustomLink, Form, ValidError } from 'common/components'
 import { paths } from 'common/constants'
+import { useRedirect, useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
-import { useScheme } from 'features/auth/use-scheme'
 
 export const Login = () => {
   const {
@@ -16,11 +13,10 @@ export const Login = () => {
     handleSubmit,
     errorsMessages: { emailError, passwordError },
   } = useScheme(['email', 'password'])
+
   const { isLoggedIn, onLogin } = useAuth()
 
-  if (isLoggedIn) {
-    return <Navigate to={paths.USER_PROFILE} />
-  }
+  useRedirect(paths.USER_PROFILE, isLoggedIn)
 
   return (
     <Form
