@@ -6,7 +6,7 @@ import FormGroup from '@mui/material/FormGroup'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
-import { CustomLink } from 'common/components/link/CustomLink'
+import { CustomLink } from 'common/components'
 
 interface IForm {
   link?: {
