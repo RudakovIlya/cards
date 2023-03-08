@@ -6,6 +6,7 @@ import { Navigate } from 'react-router-dom'
 
 import edit_photo from 'assets/img/edit_photo.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/constants'
 import { useAppDispatch, useAppSelector } from 'common/hooks/hooks'
 import { NavigationToBack } from 'common/routes/navigation-to-back/NavigationToBack'

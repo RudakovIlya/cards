@@ -25,9 +25,11 @@ export const useScheme = (keys: string[]) => {
   const emailError = errors.email && errors.email.message
   const passwordError = errors.password && errors.password.message
   const confPasswordError = errors.confPassword && errors.confPassword.message
+  const nameError = errors.name && errors.name.message
 
   return {
     errorsMessages: {
+      nameError,
       emailError,
       passwordError,
       confPasswordError,

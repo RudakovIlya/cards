@@ -3,13 +3,12 @@ import { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { Navigate } from 'react-router-dom'
 
-import eye2 from '../../../assets/img/eye-closed.svg'
-import eye from '../../../assets/img/eye.svg'
-
-import { Form } from 'common/components/forms/Form'
+import eye2 from 'assets/img/eye-closed.svg'
+import eye from 'assets/img/eye.svg'
+import { Form } from 'common/components'
 import { paths } from 'common/constants'
+import { useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
-import { useScheme } from 'features/auth/use-scheme'
 
 export const Registration = () => {
   const { register, handleSubmit } = useScheme(['email', 'password', 'confPassword'])
