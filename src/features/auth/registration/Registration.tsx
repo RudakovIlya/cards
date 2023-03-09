@@ -1,24 +1,18 @@
-import { useState } from 'react'
-
 import TextField from '@mui/material/TextField'
 
-import { PasswordInput } from './PasswordInput'
-
-import { Form } from 'common/components'
+import { Form, PasswordInput } from 'common/components'
 import { paths } from 'common/constants'
 import { useRedirect, useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
 
 export const Registration = () => {
-  const { register, handleSubmit } = useScheme(['email', 'password', 'confPassword'])
+  const {
+    register,
+    handleSubmit,
+    errorsMessages: { passwordError, confPasswordError },
+  } = useScheme(['email', 'password', 'confPassword'])
 
   const { isRegistered, onRegister } = useAuth()
-
-  const [passwordVisible, setPasswordVisible] = useState(false)
-
-  const showPassword = () => {
-    setPasswordVisible(!passwordVisible)
-  }
 
   useRedirect(paths.LOGIN, isRegistered)
 
@@ -32,16 +26,16 @@ export const Registration = () => {
     >
       <TextField {...register('email')} variant={'standard'} label={'Email'} type={'email'} />
       <PasswordInput
+        register={register}
         name={'password'}
         label={'Password'}
-        passwordVisible={passwordVisible}
-        showPassword={showPassword}
+        errorMessage={passwordError}
       />
       <PasswordInput
+        register={register}
         name={'confPassword'}
         label={'Confirm password'}
-        passwordVisible={passwordVisible}
-        showPassword={showPassword}
+        errorMessage={confPasswordError}
       />
     </Form>
   )

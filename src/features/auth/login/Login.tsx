@@ -3,7 +3,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import TextField from '@mui/material/TextField'
 import { Link } from 'react-router-dom'
 
-import { LinkWrapper, Form, ValidError } from 'common/components'
+import { LinkWrapper, Form, ValidError, PasswordInput } from 'common/components'
 import { paths } from 'common/constants'
 import { useRedirect, useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
@@ -29,13 +29,7 @@ export const Login = () => {
     >
       <TextField {...register('email')} variant={'standard'} label={'Email'} type={'email'} />
       {emailError && <ValidError sx={{ maxWidth: '347px' }}>{emailError}</ValidError>}
-      <TextField
-        {...register('password')}
-        autoComplete={'on'}
-        variant={'standard'}
-        label={'Password'}
-        type={'password'}
-      />
+      <PasswordInput register={register} label={'Password'} name={'password'} />
       {passwordError && <ValidError sx={{ maxWidth: '347px' }}>{passwordError}</ValidError>}
       <FormControlLabel
         sx={{ alignSelf: 'flex-start' }}

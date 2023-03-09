@@ -1,7 +1,6 @@
-import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import { Form, ValidError } from 'common/components'
+import { Form, PasswordInput, ValidError } from 'common/components'
 import { paths } from 'common/constants'
 import { useRedirect, useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
@@ -23,14 +22,7 @@ export const NewPassword = () => {
       onSubmit={handleSubmit(onNewPasswordSent)}
     >
       <>
-        <TextField
-          {...register('password')}
-          autoComplete={'on'}
-          type={'password'}
-          name={'password'}
-          variant={'standard'}
-          label={'Password'}
-        />
+        <PasswordInput register={register} label={'Password'} name={'password'} />
         {passwordError && <ValidError sx={{ maxWidth: '347px' }}>{passwordError}</ValidError>}
       </>
       <Typography sx={{ maxWidth: '347px', opacity: 0.5 }} component={'span'}>
