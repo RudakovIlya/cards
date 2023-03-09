@@ -4,7 +4,7 @@ export enum paths {
   AUTH = 'auth',
   LOGIN = '/auth/login',
   REGISTRATION = '/auth/registration',
-  RECOVERY_PASSWORD = '/auth/recovery-password',
+  SET_NEW_PASSWORD = '/auth/set-new-password/:token',
   FORGOT_PASSWORD = '/auth/forgot-password',
   CHECK_EMAIL = '/auth/check-email',
 }

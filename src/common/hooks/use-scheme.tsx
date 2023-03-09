@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import { useForm } from 'react-hook-form'
 
-import { createValidationSchema } from 'common/utils/create-valid-schema'
+import { createValidationSchema } from 'common/utils'
 
 export interface IFormValidate {
   email: string

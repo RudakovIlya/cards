@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { fulfilled, rejected, pending, infoFulfilled } from 'app/constants'
+import { fulfilled, infoFulfilled, pending, rejected } from 'app/constants'
 
 type AppInitialType = {
   isInit: boolean

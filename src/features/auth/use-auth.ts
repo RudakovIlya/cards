@@ -1,13 +1,18 @@
 import { useEffect } from 'react'
 
+import { useParams } from 'react-router-dom'
+
 import { developers } from 'common/constants'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { authActions, forgot, login, logOut, registerMe } from 'features/auth/auth-slice'
+import { authActions, forgot, login, logOut, registerMe, setNewPassword } from 'features/auth'
 import { ILoginDataType } from 'features/auth/types'
 
 export const useAuth = () => {
-  const { isLoggedIn, isRegistered, isMailSent } = useAppSelector(state => state.auth)
+  const { isLoggedIn, isRegistered, isMailSent, isPasswordSent } = useAppSelector(
+    state => state.auth
+  )
   const dispatch = useAppDispatch()
+  const { token } = useParams<{ token: string }>()
 
   useEffect(() => {
     dispatch(authActions.register({ isRegistered: false }))
@@ -24,11 +29,16 @@ export const useAuth = () => {
     dispatch(forgot({ ...data, ...developers }))
   }
 
+  const onNewPasswordSent = (data: any) => {
+    dispatch(setNewPassword({ ...data, resetPasswordToken: token }))
+  }
+
   const logoutHandler = () => {
     dispatch(logOut())
   }
 
   return {
+    isPasswordSent,
     isLoggedIn,
     isMailSent,
     isRegistered,
@@ -36,5 +46,6 @@ export const useAuth = () => {
     onRegister,
     onEmailSent,
     logoutHandler,
+    onNewPasswordSent,
   }
 }

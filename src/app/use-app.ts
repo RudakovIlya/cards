@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { authMe } from 'features/auth/auth-slice'
+import { authMe } from 'features/auth'
 
 export const useApp = () => {
   const dispatch = useAppDispatch()

@@ -23,4 +23,7 @@ export const authAPI = {
   forgot(data: TForgotEmail) {
     return instance.post<ResponseInfoType>('/auth/forgot', data)
   },
+  setNewPassword(data: { password: string; resetPasswordToken: string }) {
+    return instance.post<ResponseInfoType>('/auth/set-new-password', data)
+  },
 }

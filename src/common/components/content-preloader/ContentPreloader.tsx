@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box'
 
-import { MainPreloader } from 'common/components/index'
-import { Portal } from 'common/components/portal/Portal'
+import { MainPreloader, Portal } from 'common/components'
 import { useAppSelector } from 'common/hooks'
 
 export const ContentPreloader = () => {

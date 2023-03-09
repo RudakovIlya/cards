@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
-import { errorUtils } from 'common/utils/error-utils'
+import { errorUtils } from 'common/utils'
 import { authAPI } from 'features/auth/auth-api'
 import {
   ILoginDataType,
@@ -103,10 +103,29 @@ export const forgot = createAsyncThunk<
   }
 })
 
+export const setNewPassword = createAsyncThunk<
+  ResponseInfoType,
+  { password: string; resetPasswordToken: string },
+  {
+    rejectValue: string
+  }
+>('auth/set-new-password', async (data, { rejectWithValue }) => {
+  try {
+    const response = await authAPI.setNewPassword(data)
+
+    return response.data
+  } catch (e) {
+    const error = errorUtils(e)
+
+    return rejectWithValue(error)
+  }
+})
+
 const initialState = {
   isLoggedIn: false,
   isRegistered: false,
   isMailSent: false,
+  isPasswordSent: false,
 }
 
 export const authMeSlice = createSlice({
@@ -133,6 +152,9 @@ export const authMeSlice = createSlice({
       })
       .addCase(forgot.fulfilled, (state, action) => {
         state.isMailSent = action.payload.isMailSent
+      })
+      .addCase(setNewPassword.fulfilled, state => {
+        state.isPasswordSent = true
       })
   },
 })
