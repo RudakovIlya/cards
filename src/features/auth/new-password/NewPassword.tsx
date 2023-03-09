@@ -25,6 +25,7 @@ export const NewPassword = () => {
       <>
         <TextField
           {...register('password')}
+          autoComplete={'on'}
           type={'password'}
           name={'password'}
           variant={'standard'}

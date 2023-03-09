@@ -34,6 +34,7 @@ export const Registration = () => {
       <div className="passwordWrapper">
         <TextField
           {...register('password')}
+          autoComplete={'on'}
           variant={'standard'}
           label={'Password'}
           type={passwordVisible ? 'text' : 'password'}
@@ -47,6 +48,7 @@ export const Registration = () => {
       </div>
       <TextField
         {...register('confPassword')}
+        autoComplete={'on'}
         variant={'standard'}
         label={'Confirm password'}
         type={'password'}

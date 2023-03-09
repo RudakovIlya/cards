@@ -31,6 +31,7 @@ export const Login = () => {
       {emailError && <ValidError sx={{ maxWidth: '347px' }}>{emailError}</ValidError>}
       <TextField
         {...register('password')}
+        autoComplete={'on'}
         variant={'standard'}
         label={'Password'}
         type={'password'}
