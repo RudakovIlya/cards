@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography'
 
-import { Form, PasswordInput, ValidError } from 'common/components'
+import { Form, PasswordInput } from 'common/components'
 import { paths } from 'common/constants'
 import { useRedirect, useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
@@ -22,8 +22,12 @@ export const NewPassword = () => {
       onSubmit={handleSubmit(onNewPasswordSent)}
     >
       <>
-        <PasswordInput register={register} label={'Password'} name={'password'} />
-        {passwordError && <ValidError sx={{ maxWidth: '347px' }}>{passwordError}</ValidError>}
+        <PasswordInput
+          register={register}
+          label={'Password'}
+          name={'password'}
+          errorMessage={passwordError}
+        />
       </>
       <Typography sx={{ maxWidth: '347px', opacity: 0.5 }} component={'span'}>
         Create new password and we will send you further instructions to email
