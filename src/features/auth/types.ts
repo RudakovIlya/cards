@@ -24,13 +24,17 @@ export type IRegisterDataType = Omit<ILoginDataType, 'rememberMe'> & {
   confirmPassword?: string
 }
 
+export type IResponseRegisterType = {
+  addedUser: ResponseProfileType
+}
+
 export type TForgotEmail = {
   email: string
   from: string
   message: string
 }
 
-export type ResponseForgotEmail = {
+export type ResponseInfoType = {
   info: string
   error: string
 }

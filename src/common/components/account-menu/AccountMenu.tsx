@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { MouseEvent, useState } from 'react'
 
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
@@ -9,9 +9,9 @@ import Tooltip from '@mui/material/Tooltip'
 import { Navigate } from 'react-router-dom'
 
 import profile_logout from 'assets/img/profile_logout.svg'
-import { ProfileAvatar } from 'common/components/profile-avatar/ProfileAvatar'
+import { ProfileAvatar } from 'common/components'
 import { paths } from 'common/constants'
-import { useAppSelector } from 'common/hooks/hooks'
+import { useAppSelector } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
 
 export const AccountMenu = () => {
@@ -21,7 +21,7 @@ export const AccountMenu = () => {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {

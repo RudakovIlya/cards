@@ -5,8 +5,9 @@ import FormControl from '@mui/material/FormControl'
 import FormGroup from '@mui/material/FormGroup'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
+import { Link } from 'react-router-dom'
 
-import { CustomLink } from 'common/components'
+import { LinkWrapper } from 'common/components'
 
 interface IForm {
   link?: {
@@ -52,7 +53,11 @@ export const Form: FC<IForm & PropsWithChildren> = memo(
                 {description}
               </Typography>
             )}
-            {link && <CustomLink to={link.to}>{link.title}</CustomLink>}
+            {link && (
+              <LinkWrapper>
+                <Link to={link.to}>{link.title}</Link>
+              </LinkWrapper>
+            )}
           </FormControl>
         </Component>
       </Paper>

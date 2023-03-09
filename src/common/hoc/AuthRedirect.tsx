@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid'
-import { Outlet, Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 
 import { paths } from 'common/constants'
-import { useAppSelector } from 'common/hooks/hooks'
+import { useAppSelector } from 'common/hooks'
 
 export const AuthRedirect = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)

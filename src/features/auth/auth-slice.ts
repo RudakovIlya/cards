@@ -1,85 +1,131 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
+import { errorUtils } from 'common/utils'
 import { authAPI } from 'features/auth/auth-api'
 import {
   ILoginDataType,
-  ResponseForgotEmail,
+  IResponseRegisterType,
+  ResponseInfoType,
   ResponseProfileType,
   TForgotEmail,
 } from 'features/auth/types'
 
-export const authMe = createAsyncThunk<ResponseProfileType, void>(
-  'auth',
-  async (_, { dispatch, rejectWithValue }) => {
-    try {
-      const response = await authAPI.me()
-
-      return response.data
-    } catch (e: any) {
-      return rejectWithValue(e?.message)
-    } finally {
-      dispatch(appActions.initialization({ isInit: true }))
-    }
+export const authMe = createAsyncThunk<
+  ResponseProfileType,
+  void,
+  {
+    rejectValue: string
   }
-)
+>('auth', async (_, { dispatch, rejectWithValue }) => {
+  try {
+    const response = await authAPI.me()
 
-export const login = createAsyncThunk<ResponseProfileType, ILoginDataType>(
-  'auth/login',
-  async (data, { rejectWithValue }) => {
-    try {
-      const response = await authAPI.login(data)
+    return response.data
+  } catch (e) {
+    const error = errorUtils(e)
 
-      return response.data
-    } catch (e) {
-      return rejectWithValue('Error')
-    }
+    return rejectWithValue(error)
+  } finally {
+    dispatch(appActions.initialization({ isInit: true }))
   }
-)
+})
 
-export const registerMe = createAsyncThunk<ResponseProfileType, any>(
-  'auth/register',
-  async (data: any, { rejectWithValue }) => {
-    try {
-      const response = await authAPI.register(data)
-
-      return response.data
-    } catch (e) {
-      return rejectWithValue('Error')
-    }
+export const login = createAsyncThunk<
+  ResponseProfileType & { info: string },
+  ILoginDataType,
+  {
+    rejectValue: string
   }
-)
+>('auth/login', async (data, { rejectWithValue }) => {
+  try {
+    const response = await authAPI.login(data)
 
-export const logOut = createAsyncThunk<ResponseProfileType, void>(
-  'auth/logout',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await authAPI.logout()
+    return { ...response.data, info: 'Authorization was successful!' }
+  } catch (e) {
+    const error = errorUtils(e)
 
-      return response.data
-    } catch (e) {
-      return rejectWithValue('Logout error')
-    }
+    return rejectWithValue(error)
   }
-)
+})
 
-export const forgot = createAsyncThunk<ResponseForgotEmail & { isMailSent: boolean }, TForgotEmail>(
-  'auth/forgot',
-  async (data: TForgotEmail, { rejectWithValue }) => {
-    try {
-      const response = await authAPI.forgot(data)
-
-      return { ...response.data, isMailSent: true }
-    } catch (e) {
-      return rejectWithValue('forgot error')
-    }
+export const registerMe = createAsyncThunk<
+  IResponseRegisterType & { info: string },
+  any,
+  {
+    rejectValue: string
   }
-)
+>('auth/register', async (data: any, { rejectWithValue }) => {
+  try {
+    const response = await authAPI.register(data)
+
+    return { ...response.data, info: 'You have successfully registered' }
+  } catch (e) {
+    const error = errorUtils(e)
+
+    return rejectWithValue(error)
+  }
+})
+
+export const logOut = createAsyncThunk<
+  ResponseInfoType,
+  void,
+  {
+    rejectValue: string
+  }
+>('auth/logout', async (_, { rejectWithValue }) => {
+  try {
+    const response = await authAPI.logout()
+
+    return response.data
+  } catch (e) {
+    const error = errorUtils(e)
+
+    return rejectWithValue(error)
+  }
+})
+
+export const forgot = createAsyncThunk<
+  ResponseInfoType & { isMailSent: boolean },
+  TForgotEmail,
+  {
+    rejectValue: string
+  }
+>('auth/forgot', async (data: TForgotEmail, { rejectWithValue }) => {
+  try {
+    const response = await authAPI.forgot(data)
+
+    return { ...response.data, isMailSent: true }
+  } catch (e) {
+    const error = errorUtils(e)
+
+    return rejectWithValue(error)
+  }
+})
+
+export const setNewPassword = createAsyncThunk<
+  ResponseInfoType,
+  { password: string; resetPasswordToken: string },
+  {
+    rejectValue: string
+  }
+>('auth/set-new-password', async (data, { rejectWithValue }) => {
+  try {
+    const response = await authAPI.setNewPassword(data)
+
+    return response.data
+  } catch (e) {
+    const error = errorUtils(e)
+
+    return rejectWithValue(error)
+  }
+})
 
 const initialState = {
   isLoggedIn: false,
   isRegistered: false,
   isMailSent: false,
+  isPasswordSent: false,
 }
 
 export const authMeSlice = createSlice({
@@ -106,6 +152,9 @@ export const authMeSlice = createSlice({
       })
       .addCase(forgot.fulfilled, (state, action) => {
         state.isMailSent = action.payload.isMailSent
+      })
+      .addCase(setNewPassword.fulfilled, state => {
+        state.isPasswordSent = true
       })
   },
 })

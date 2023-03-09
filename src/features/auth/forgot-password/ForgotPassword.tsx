@@ -1,10 +1,9 @@
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { Navigate } from 'react-router-dom'
 
 import { Form, ValidError } from 'common/components'
 import { paths } from 'common/constants'
-import { useScheme } from 'common/hooks'
+import { useRedirect, useScheme } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
 
 export const ForgotPassword = () => {
@@ -16,9 +15,7 @@ export const ForgotPassword = () => {
 
   const { isMailSent, onEmailSent } = useAuth()
 
-  if (isMailSent) {
-    return <Navigate to={paths.CHECK_EMAIL} />
-  }
+  useRedirect(paths.CHECK_EMAIL, isMailSent)
 
   return (
     <Form

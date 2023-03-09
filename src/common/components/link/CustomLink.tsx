@@ -1,15 +1,20 @@
-import styled from '@emotion/styled'
-import { Link } from 'react-router-dom'
+import { styled } from '@mui/material/styles'
 
 type CustomLinkPropsType = {
-  color?: string
+  colorText?: string
   align?: string
+  justifySelf?: string
 }
 
-export const CustomLink = styled(Link)<CustomLinkPropsType>`
-  color: ${({ color }) => color || '#366eff'};
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.5;
-  text-align: ${({ align }) => align || 'center'};
+export const LinkWrapper = styled('span')<CustomLinkPropsType>`
+  display: flex;
+  justify-content: ${({ justifySelf }) => justifySelf || 'center'};
+  width: 100%;
+  a {
+    color: ${({ colorText }) => colorText || '#366eff'};
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: ${({ align }) => align || 'center'};
+  }
 `
