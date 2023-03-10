@@ -15,29 +15,16 @@ type UserNamePropsType = {
 export const UserName = (props: UserNamePropsType) => {
   const [editMode, setEditMode] = useState(false)
   const [name, setName] = useState('')
-  const [error, setError] = useState<string | null>(null)
   const dispatch = useAppDispatch()
-  const {
-    register,
-    handleSubmit,
-    errorsMessages: { nameError },
-  } = useScheme(['name'])
+  const { register } = useScheme(['name'])
+
   const editModeOffHandler = () => {
     if (name.trim() !== '') {
       setEditMode(false)
       if (name === props.name) return
       dispatch(changeUserData({ name, avatar: props.avatar }))
       setName('')
-    } else {
-      setError('Nickname is required')
     }
-  }
-
-  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLImageElement>) => {
-    if (error) {
-      setError(null)
-    }
-    if (e.key === 'Enter') editModeOffHandler()
   }
 
   const editModeOnHandler = () => {
@@ -51,12 +38,10 @@ export const UserName = (props: UserNamePropsType) => {
 
   return editMode ? (
     <TextField
+      {...register('name')}
       value={name}
-      onKeyDown={onKeyDownHandler}
       onChange={onChangeTitleHandler}
       autoFocus
-      error={!!error}
-      helperText={!!error && 'Nickname is required'}
       variant={'standard'}
       label={'Nickname'}
       style={{ width: '300px' }}

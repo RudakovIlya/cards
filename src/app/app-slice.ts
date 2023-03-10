@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { fulfilled, infoFulfilled, pending, rejected } from 'app/constants'
+import { fulfilled, infoFulfilled, pending, rejected, initApp } from 'app/constants'
 
 type AppInitialType = {
   isInit: boolean
@@ -40,6 +40,9 @@ const appSlice = createSlice({
       })
       .addMatcher(infoFulfilled, (state, action) => {
         state.infoMessage = action.payload.info.toLowerCase()
+      })
+      .addMatcher(initApp, state => {
+        state.status = 'idle'
       })
       .addMatcher(rejected, (state, action) => {
         state.error = action.payload
