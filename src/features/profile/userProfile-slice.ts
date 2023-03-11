@@ -8,7 +8,7 @@ type ProfileStateType = {
   profile: ResponseProfileType
 }
 
-type UpdatedProfileType = {
+export type UpdatedProfileType = {
   updatedUser: ResponseProfileType
   error?: string
 }

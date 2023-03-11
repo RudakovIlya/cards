@@ -42,13 +42,14 @@ export const UserName = (props: UserNamePropsType) => {
       value={name}
       onChange={onChangeTitleHandler}
       autoFocus
+      onBlur={editModeOffHandler}
       variant={'standard'}
       label={'Nickname'}
       style={{ width: '300px' }}
       InputProps={{
         endAdornment: (
           <Button
-            onClick={editModeOffHandler}
+            onMouseDown={editModeOffHandler}
             style={{ marginBottom: '5px' }}
             size={'small'}
             variant={'contained'}
