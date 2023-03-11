@@ -1,7 +1,7 @@
 import { instance } from 'common/api-instance/api-instance'
 import { UpdatedProfileType } from 'features/profile/userProfile-slice'
 
-type UserDataType = {
+export type UserDataType = {
   name?: string
   avatar?: string
 }
