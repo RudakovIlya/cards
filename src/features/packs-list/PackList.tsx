@@ -1,3 +1,10 @@
+import { PackTable } from 'features/packs-list/pack-table/PackTable'
+
 export const PackList = () => {
-  return <div>PackList</div>
+  return (
+    <div>
+      PackList
+      <PackTable />
+    </div>
+  )
 }
