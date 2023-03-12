@@ -4,12 +4,12 @@ import { appActions } from 'app/app-slice'
 import { errorUtils } from 'common/utils'
 import { authAPI } from 'features/auth/auth-api'
 import {
+  ForgotEmail,
   LoginDataType,
   RegisterDataType,
-  ResponseRegisterType,
   ResponseInfoType,
   ResponseProfileType,
-  ForgotEmail,
+  ResponseRegisterType,
 } from 'features/auth/types'
 
 export const authMe = createAsyncThunk<

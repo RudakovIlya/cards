@@ -8,11 +8,15 @@ const initialState = {
   profile: {},
 } as ProfileStateType
 
-export const changeUserData = createAsyncThunk<UpdatedProfileType, UserDataType>(
-  'profile/changeUserData',
-  async (data, { rejectWithValue }) => {
-    try {
-      const response = await userProfileAPI.changeUserData(data)
+export const changeUserData = createAsyncThunk<
+  UpdatedProfileType,
+  UserDataType,
+  {
+    rejectValue: string
+  }
+>('profile/changeUserData', async (data, { rejectWithValue }) => {
+  try {
+    const response = await userProfileAPI.changeUserData(data)
 
     return response.data
   } catch (e) {

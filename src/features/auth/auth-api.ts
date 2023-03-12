@@ -1,11 +1,11 @@
 import { instance } from 'common/api-instance/api-instance'
 import {
+  ForgotEmail,
   LoginDataType,
   RegisterDataType,
-  ResponseRegisterType,
   ResponseInfoType,
   ResponseProfileType,
-  ForgotEmail,
+  ResponseRegisterType,
 } from 'features/auth/types'
 
 export const authAPI = {
