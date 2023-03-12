@@ -4,11 +4,12 @@ import { appActions } from 'app/app-slice'
 import { errorUtils } from 'common/utils'
 import { authAPI } from 'features/auth/auth-api'
 import {
-  ILoginDataType,
-  IResponseRegisterType,
+  LoginDataType,
+  RegisterDataType,
+  ResponseRegisterType,
   ResponseInfoType,
   ResponseProfileType,
-  TForgotEmail,
+  ForgotEmail,
 } from 'features/auth/types'
 
 export const authMe = createAsyncThunk<
@@ -33,7 +34,7 @@ export const authMe = createAsyncThunk<
 
 export const login = createAsyncThunk<
   ResponseProfileType & { info: string },
-  ILoginDataType,
+  LoginDataType,
   {
     rejectValue: string
   }
@@ -50,12 +51,12 @@ export const login = createAsyncThunk<
 })
 
 export const registerMe = createAsyncThunk<
-  IResponseRegisterType & { info: string },
-  any,
+  ResponseRegisterType & { info: string },
+  RegisterDataType,
   {
     rejectValue: string
   }
->('auth/register', async (data: any, { rejectWithValue }) => {
+>('auth/register', async (data, { rejectWithValue }) => {
   try {
     const response = await authAPI.register(data)
 
@@ -87,11 +88,11 @@ export const logOut = createAsyncThunk<
 
 export const forgot = createAsyncThunk<
   ResponseInfoType & { isMailSent: boolean },
-  TForgotEmail,
+  ForgotEmail,
   {
     rejectValue: string
   }
->('auth/forgot', async (data: TForgotEmail, { rejectWithValue }) => {
+>('auth/forgot', async (data: ForgotEmail, { rejectWithValue }) => {
   try {
     const response = await authAPI.forgot(data)
 

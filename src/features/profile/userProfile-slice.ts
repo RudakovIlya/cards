@@ -1,30 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { authMe, login } from 'features/auth'
-import { ResponseProfileType } from 'features/auth/types'
+import { ProfileStateType, UpdatedProfileType, UserDataType } from 'features/profile/types'
 import { userProfileAPI } from 'features/profile/userProfile-api'
-
-type ProfileStateType = {
-  profile: ResponseProfileType
-}
-
-type UpdatedProfileType = {
-  updatedUser: ResponseProfileType
-  error?: string
-}
-
-type ProfileDataType = {
-  title?: string
-  avatar?: string
-}
 
 const initialState = {
   profile: {},
 } as ProfileStateType
 
-export const changeUserData = createAsyncThunk<UpdatedProfileType, any>(
+export const changeUserData = createAsyncThunk<UpdatedProfileType, UserDataType>(
   'profile/changeUserData',
-  async (data: ProfileDataType, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
       const response = await userProfileAPI.changeUserData(data)
 

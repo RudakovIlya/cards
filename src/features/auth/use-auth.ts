@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { developers } from 'common/constants'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { authActions, forgot, login, logOut, registerMe, setNewPassword } from 'features/auth'
-import { ILoginDataType } from 'features/auth/types'
+import { LoginDataType, RegisterDataType } from 'features/auth/types'
 
 export const useAuth = () => {
   const { isLoggedIn, isRegistered, isMailSent, isPasswordSent } = useAppSelector(
@@ -18,10 +18,10 @@ export const useAuth = () => {
     dispatch(authActions.register({ isRegistered: false }))
   }, [])
 
-  const onLogin = (data: ILoginDataType) => {
+  const onLogin = (data: LoginDataType) => {
     dispatch(login(data))
   }
-  const onRegister = (data: ILoginDataType) => {
+  const onRegister = (data: RegisterDataType) => {
     dispatch(registerMe(data))
   }
 
@@ -33,7 +33,7 @@ export const useAuth = () => {
     dispatch(setNewPassword({ ...data, resetPasswordToken: token }))
   }
 
-  const logoutHandler = () => {
+  const onLogout = () => {
     dispatch(logOut())
   }
 
@@ -45,7 +45,7 @@ export const useAuth = () => {
     onLogin,
     onRegister,
     onEmailSent,
-    logoutHandler,
+    logoutHandler: onLogout,
     onNewPasswordSent,
   }
 }

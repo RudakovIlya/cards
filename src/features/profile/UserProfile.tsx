@@ -7,8 +7,9 @@ import edit_photo from 'assets/img/edit_photo.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
 import { NavigationToBack, ProfileAvatar, UserName } from 'common/components'
 import { paths } from 'common/constants'
-import { useAppSelector, useRedirect } from 'common/hooks'
+import { useRedirect } from 'common/hooks'
 import { useAuth } from 'features/auth/use-auth'
+import { useProfile } from 'features/profile/use-profile'
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
@@ -17,7 +18,7 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 }))
 
 export const UserProfile = () => {
-  const userProfileData = useAppSelector(state => state.profile.profile)
+  const userProfileData = useProfile()
   const { logoutHandler, isLoggedIn } = useAuth()
 
   useRedirect(paths.LOGIN, !isLoggedIn)

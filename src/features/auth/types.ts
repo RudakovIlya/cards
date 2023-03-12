@@ -14,21 +14,19 @@ export type ResponseProfileType = {
   avatar?: string
 }
 
-export interface ILoginDataType {
+export type LoginDataType = {
   email: string
   password: string
   rememberMe?: boolean
 }
 
-export type IRegisterDataType = Omit<ILoginDataType, 'rememberMe'> & {
-  confirmPassword?: string
-}
+export type RegisterDataType = Omit<LoginDataType, 'rememberMe'>
 
-export type IResponseRegisterType = {
+export type ResponseRegisterType = {
   addedUser: ResponseProfileType
 }
 
-export type TForgotEmail = {
+export type ForgotEmail = {
   email: string
   from: string
   message: string
