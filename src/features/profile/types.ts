@@ -1,4 +1,4 @@
-import { ResponseProfileType } from 'features/auth/types'
+import { ResponseProfileType } from 'features/auth'
 
 export type UserDataType = {
   name?: string

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { authMe, login } from 'features/auth'
-import { ProfileStateType, UpdatedProfileType, UserDataType } from 'features/profile/types'
+import { ProfileStateType, UpdatedProfileType, UserDataType } from 'features/profile'
 import { userProfileAPI } from 'features/profile/userProfile-api'
 
 const initialState = {

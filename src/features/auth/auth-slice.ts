@@ -1,8 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
-import { errorUtils } from 'common/utils'
-import { authAPI } from 'features/auth/auth-api'
+import { errorUtils } from 'common'
 import {
   ForgotEmail,
   LoginDataType,
@@ -10,7 +9,8 @@ import {
   ResponseInfoType,
   ResponseProfileType,
   ResponseRegisterType,
-} from 'features/auth/types'
+} from 'features/auth'
+import { authAPI } from 'features/auth/auth-api'
 
 export const authMe = createAsyncThunk<
   ResponseProfileType,
@@ -123,7 +123,7 @@ export const setNewPassword = createAsyncThunk<
 })
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: null as boolean | null,
   isRegistered: false,
   isMailSent: false,
   isPasswordSent: false,
@@ -132,11 +132,7 @@ const initialState = {
 export const authMeSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    register: (state, action: PayloadAction<{ isRegistered: boolean }>) => {
-      state.isRegistered = action.payload.isRegistered
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(authMe.fulfilled, state => {
@@ -144,6 +140,7 @@ export const authMeSlice = createSlice({
       })
       .addCase(login.fulfilled, state => {
         state.isLoggedIn = true
+        state.isRegistered = false
       })
       .addCase(logOut.fulfilled, state => {
         state.isLoggedIn = false
@@ -156,6 +153,9 @@ export const authMeSlice = createSlice({
       })
       .addCase(setNewPassword.fulfilled, state => {
         state.isPasswordSent = true
+      })
+      .addCase(authMe.rejected, state => {
+        state.isLoggedIn = false
       })
   },
 })

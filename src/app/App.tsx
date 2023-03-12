@@ -1,20 +1,10 @@
-import Container from '@mui/material/Container'
-import { Outlet } from 'react-router-dom'
-
 import { useApp } from 'app/use-app'
-import { Header, MainPreloader } from 'common/components'
+import { Layout, MainPreloader } from 'common'
+import { useAuth } from 'features/auth'
 
 export const App = () => {
   const isInit = useApp()
+  const { isLoggedIn } = useAuth()
 
-  return isInit ? (
-    <>
-      <Header />
-      <Container>
-        <Outlet />
-      </Container>
-    </>
-  ) : (
-    <MainPreloader />
-  )
+  return isInit && isLoggedIn !== null ? <Layout /> : <MainPreloader />
 }

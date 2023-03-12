@@ -3,10 +3,8 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import TextField from '@mui/material/TextField'
 import { Link } from 'react-router-dom'
 
-import { Form, LinkWrapper, PasswordInput, ValidError } from 'common/components'
-import { paths } from 'common/constants'
-import { useRedirect, useScheme } from 'common/hooks'
-import { useAuth } from 'features/auth/use-auth'
+import { Form, LinkWrapper, PasswordInput, ValidError, paths, useRedirect, useScheme } from 'common'
+import { useAuth } from 'features/auth'
 
 export const Login = () => {
   const {
@@ -17,7 +15,7 @@ export const Login = () => {
 
   const { isLoggedIn, onLogin } = useAuth()
 
-  useRedirect(paths.USER_PROFILE, isLoggedIn)
+  useRedirect(paths.PACK_LIST, isLoggedIn)
 
   return (
     <Form

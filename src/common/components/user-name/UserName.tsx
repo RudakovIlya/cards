@@ -1,18 +1,18 @@
-import React, { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 
 import edit_user_name from 'assets/img/edit_user_name.svg'
-import { useAppDispatch } from 'common/hooks'
-import { changeUserData } from 'features/profile/userProfile-slice'
+import { useAppDispatch } from 'common'
+import { changeUserData } from 'features/profile'
 
 type UserNamePropsType = {
   name: string
   avatar: string | undefined
 }
 
-export const UserName = (props: UserNamePropsType) => {
+export const UserName: FC<UserNamePropsType> = ({ name: userName, avatar }) => {
   const [editMode, setEditMode] = useState(false)
   const [name, setName] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -21,8 +21,8 @@ export const UserName = (props: UserNamePropsType) => {
   const editModeOffHandler = () => {
     if (name.trim() !== '') {
       setEditMode(false)
-      if (name === props.name) return
-      dispatch(changeUserData({ name, avatar: props.avatar }))
+      if (name === userName) return
+      dispatch(changeUserData({ name, avatar: avatar }))
       setName('')
     } else {
       setError('Nickname is required')
@@ -31,7 +31,7 @@ export const UserName = (props: UserNamePropsType) => {
 
   const editModeOnHandler = () => {
     setEditMode(true)
-    setName(props.name)
+    setName(userName)
   }
 
   const onChangeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +65,7 @@ export const UserName = (props: UserNamePropsType) => {
     />
   ) : (
     <div>
-      <span onDoubleClick={editModeOnHandler}>{props.name}</span>
+      <span onDoubleClick={editModeOnHandler}>{userName}</span>
       <span style={{ marginLeft: '10px', cursor: 'pointer' }} onClick={editModeOnHandler}>
         <img src={edit_user_name} alt="edit" />
       </span>

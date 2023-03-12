@@ -6,7 +6,7 @@ import {
   ResponseInfoType,
   ResponseProfileType,
   ResponseRegisterType,
-} from 'features/auth/types'
+} from 'features/auth'
 
 export const authAPI = {
   me() {

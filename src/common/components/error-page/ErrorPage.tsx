@@ -3,8 +3,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
-import { ErrorImage } from 'common/components'
-import { paths } from 'common/constants'
+import { ErrorImage, paths } from 'common'
 
 export const ErrorPage = () => {
   const navigate = useNavigate()

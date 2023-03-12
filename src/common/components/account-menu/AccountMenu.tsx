@@ -6,19 +6,17 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Tooltip from '@mui/material/Tooltip'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import profile_logout from 'assets/img/profile_logout.svg'
-import { ProfileAvatar } from 'common/components'
-import { paths } from 'common/constants'
-import { useAppSelector } from 'common/hooks'
-import { useAuth } from 'features/auth/use-auth'
+import { ProfileAvatar, paths, useAppSelector } from 'common'
+import { useAuth } from 'features/auth'
 
 export const AccountMenu = () => {
   const userProfileData = useAppSelector(state => state.profile.profile)
   const { logoutHandler } = useAuth()
   const menuItemStyle = { display: 'flex', alignItems: 'center', justifyContent: 'center' }
-
+  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -28,8 +26,8 @@ export const AccountMenu = () => {
     setAnchorEl(null)
   }
 
-  const RedirectToProfileHandler = () => {
-    return <Navigate to={paths.USER_PROFILE} />
+  const redirectToProfileHandler = () => {
+    navigate(paths.USER_PROFILE)
   }
 
   return (
@@ -86,7 +84,7 @@ export const AccountMenu = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={RedirectToProfileHandler} sx={menuItemStyle}>
+        <MenuItem onClick={redirectToProfileHandler} sx={menuItemStyle}>
           <ProfileAvatar imageSize={{ width: '25px', height: '25px' }} /> Profile
         </MenuItem>
         <Divider />

@@ -1,11 +1,15 @@
-import { useEffect } from 'react'
-
 import { useParams } from 'react-router-dom'
 
-import { developers } from 'common/constants'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { authActions, forgot, login, logOut, registerMe, setNewPassword } from 'features/auth'
-import { LoginDataType, RegisterDataType } from 'features/auth/types'
+import { developers, useAppDispatch, useAppSelector } from 'common'
+import {
+  forgot,
+  login,
+  logOut,
+  registerMe,
+  setNewPassword,
+  LoginDataType,
+  RegisterDataType,
+} from 'features/auth'
 
 export const useAuth = () => {
   const { isLoggedIn, isRegistered, isMailSent, isPasswordSent } = useAppSelector(
@@ -13,10 +17,6 @@ export const useAuth = () => {
   )
   const dispatch = useAppDispatch()
   const { token } = useParams<{ token: string }>()
-
-  useEffect(() => {
-    dispatch(authActions.register({ isRegistered: false }))
-  }, [])
 
   const onLogin = (data: LoginDataType) => {
     dispatch(login(data))

@@ -1,31 +1,29 @@
 import { createHashRouter } from 'react-router-dom'
 
 import { App } from 'app/App'
-import { ErrorPage } from 'common/components'
-import { paths } from 'common/constants'
-import { AuthRedirect } from 'common/hoc/AuthRedirect'
-import { Auth } from 'features/auth/Auth'
-import { CheckEmail } from 'features/auth/forgot-password/CheckEmail'
-import { ForgotPassword } from 'features/auth/forgot-password/ForgotPassword'
-import { Login } from 'features/auth/login/Login'
-import { NewPassword } from 'features/auth/new-password/NewPassword'
-import { Registration } from 'features/auth/registration/Registration'
-import { Cards } from 'features/pack/Cards'
-import { UserProfile } from 'features/profile/UserProfile'
+import { AuthRedirect, ErrorPage, paths } from 'common'
+import { Auth, CheckEmail, ForgotPassword, Login, NewPassword, Registration } from 'features/auth'
+import { Pack } from 'features/pack'
+import { PackList } from 'features/packs-list'
+import { UserProfile } from 'features/profile'
 
 export const router = createHashRouter([
   {
-    path: '/',
+    path: paths.PACK_LIST,
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
+        path: paths.PACK_LIST,
         element: <AuthRedirect />,
         children: [
           {
-            path: paths.CARDS,
-            element: <Cards />,
+            index: true,
+            element: <PackList />,
+          },
+          {
+            path: paths.PACK,
+            element: <Pack />,
           },
           {
             path: paths.USER_PROFILE,
@@ -33,11 +31,9 @@ export const router = createHashRouter([
           },
         ],
       },
-
       {
         path: paths.AUTH,
         element: <Auth />,
-
         children: [
           {
             path: paths.REGISTRATION,

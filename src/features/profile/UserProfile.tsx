@@ -1,14 +1,13 @@
-import { Avatar, styled } from '@mui/material'
+import Avatar from '@mui/material/Avatar'
 import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
+import { styled } from '@mui/material/styles'
 
 import edit_photo from 'assets/img/edit_photo.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
-import { NavigationToBack, ProfileAvatar, UserName } from 'common/components'
-import { paths } from 'common/constants'
-import { useRedirect } from 'common/hooks'
-import { useAuth } from 'features/auth/use-auth'
+import { NavigationToBack, paths, ProfileAvatar, useRedirect, UserName } from 'common'
+import { useAuth } from 'features/auth'
 import { useProfile } from 'features/profile/use-profile'
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({

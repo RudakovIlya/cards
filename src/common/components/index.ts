@@ -5,6 +5,7 @@ import { ErrorImage } from './error-page-svg/ErrorIcon'
 import { Eye } from './eye/Eye'
 import { Form } from './forms/Form'
 import { Header } from './header/Header'
+import { Layout } from './layout/Layout'
 import { LinkWrapper } from './link/CustomLink'
 import { MainPreloader } from './main-preloader/MainPreloader'
 import { NavigationToBack } from './navigation-to-back/NavigationToBack'
@@ -23,7 +24,6 @@ export {
   Header,
   AccountMenu,
   NavigationToBack,
-  UserName,
   ProfileAvatar,
   DescriptionSnackbar,
   ContentPreloader,
@@ -32,4 +32,6 @@ export {
   Portal,
   PasswordInput,
   Eye,
+  Layout,
+  UserName,
 }

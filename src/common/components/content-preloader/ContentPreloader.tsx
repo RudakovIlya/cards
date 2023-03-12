@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box'
 
-import { MainPreloader, Portal } from 'common/components'
-import { useAppSelector } from 'common/hooks'
+import { MainPreloader, Portal, useAppSelector } from 'common'
 
 export const ContentPreloader = () => {
   const status = useAppSelector(state => state.app.status)

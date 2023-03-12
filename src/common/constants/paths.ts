@@ -1,5 +1,6 @@
 export const paths = {
-  CARDS: 'pack',
+  PACK_LIST: '/',
+  PACK: 'pack/:packId',
   USER_PROFILE: '/user-profile',
   AUTH: 'auth',
   LOGIN: '/auth/login',

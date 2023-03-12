@@ -2,8 +2,7 @@ import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
 import email from 'assets/img/email-svg.svg'
-import { Form } from 'common/components'
-import { paths } from 'common/constants'
+import { Form, paths } from 'common'
 
 export const CheckEmail = () => {
   const navigate = useNavigate()

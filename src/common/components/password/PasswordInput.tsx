@@ -3,7 +3,7 @@ import { FC, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { UseFormRegister } from 'react-hook-form'
 
-import { Eye, ValidError } from 'common/components'
+import { Eye, ValidError } from 'common'
 import { IFormValidate } from 'common/hooks/use-scheme'
 
 type PasswordInputPropsType = {

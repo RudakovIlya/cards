@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import { Link } from 'react-router-dom'
 
-import { LinkWrapper } from 'common/components'
+import { LinkWrapper } from 'common'
 
 interface IForm {
   link?: {
