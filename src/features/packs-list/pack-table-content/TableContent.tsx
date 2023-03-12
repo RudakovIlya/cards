@@ -2,8 +2,8 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import pack_table_teacher from 'assets/img/pack-table-teacher.svg'
 import { EditAndDeleteButton } from 'common/components/pack-table-buttons/EditAndDeleteButton'
+import { TeachButton } from 'common/components/pack-table-buttons/TeachButton'
 import { useProfile } from 'features/profile'
 
 export const TableContent = () => {
@@ -101,7 +101,7 @@ export const TableContent = () => {
           <TableCell align="left">{row.updated.slice(0, 10)}</TableCell>
           <TableCell align="left">{row.user_name}</TableCell>
           <TableCell align="left">
-            <img src={pack_table_teacher} alt="teacher"></img>
+            <TeachButton />
             {userProfileData._id !== row.user_id ? <EditAndDeleteButton /> : ''}
           </TableCell>
         </TableRow>

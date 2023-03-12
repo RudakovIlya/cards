@@ -86,7 +86,7 @@ export const TableHeader = () => {
 
   return (
     <TableHead>
-      <TableRow>
+      <TableRow sx={{ backgroundColor: '#EFEFEF' }}>
         <TableCell align={'left'}>Name</TableCell>
         <TableCell align={'left'}>Cards</TableCell>
         <TableCell align={'left'}>Last Updated</TableCell>
