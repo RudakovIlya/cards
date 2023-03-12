@@ -1,10 +1,5 @@
 import { instance } from 'common/api-instance/api-instance'
-import { UpdatedProfileType } from 'features/profile/userProfile-slice'
-
-export type UserDataType = {
-  name?: string
-  avatar?: string
-}
+import { UpdatedProfileType, UserDataType } from 'features/profile/types'
 
 export const userProfileAPI = {
   changeUserData(payload: UserDataType) {

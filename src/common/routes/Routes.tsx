@@ -10,7 +10,7 @@ import { ForgotPassword } from 'features/auth/forgot-password/ForgotPassword'
 import { Login } from 'features/auth/login/Login'
 import { NewPassword } from 'features/auth/new-password/NewPassword'
 import { Registration } from 'features/auth/registration/Registration'
-import { Cards } from 'features/cards/Cards'
+import { Cards } from 'features/pack/Cards'
 import { UserProfile } from 'features/profile/UserProfile'
 
 export const router = createHashRouter([
