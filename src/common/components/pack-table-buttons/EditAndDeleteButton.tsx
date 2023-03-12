@@ -8,13 +8,13 @@ export const EditAndDeleteButton = () => {
   return (
     <span>
       <img
-        style={{ paddingLeft: '10px' }}
+        style={{ paddingLeft: '15px', cursor: 'pointer' }}
         src={pack_table_edit}
         alt="edit"
         onClick={onClickEditHandler}
       />
       <img
-        style={{ paddingLeft: '10px' }}
+        style={{ paddingLeft: '15px', cursor: 'pointer' }}
         src={pack_table_delete}
         alt="delete"
         onClick={onClickDeleteHandler}

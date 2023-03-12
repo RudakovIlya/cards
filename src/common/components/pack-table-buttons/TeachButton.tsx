@@ -6,7 +6,7 @@ export const TeachButton = () => {
   return (
     <span>
       <img
-        style={{ paddingLeft: '10px' }}
+        style={{ paddingLeft: '10px', cursor: 'pointer' }}
         src={pack_table_teacher}
         alt="edit"
         onClick={onClickTeachHandler}
