@@ -4,11 +4,11 @@ import { developers, useAppDispatch, useAppSelector } from 'common'
 import {
   forgot,
   login,
+  LoginDataType,
   logOut,
+  RegisterDataType,
   registerMe,
   setNewPassword,
-  LoginDataType,
-  RegisterDataType,
 } from 'features/auth'
 
 export const useAuth = () => {

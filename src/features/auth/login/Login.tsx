@@ -1,9 +1,9 @@
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import TextField from '@mui/material/TextField'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-import { Form, LinkWrapper, PasswordInput, ValidError, paths, useRedirect, useScheme } from 'common'
+import { Form, LinkWrapper, PasswordInput, paths, useRedirect, useScheme, ValidError } from 'common'
 import { useAuth } from 'features/auth'
 
 export const Login = () => {
@@ -15,7 +15,11 @@ export const Login = () => {
 
   const { isLoggedIn, onLogin } = useAuth()
 
-  useRedirect(paths.PACK_LIST, isLoggedIn)
+  const location = useLocation()
+
+  const fromPage = location.state?.from?.pathname || paths.PACK_LIST
+
+  useRedirect(fromPage, isLoggedIn)
 
   return (
     <Form
