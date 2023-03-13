@@ -1,7 +1,11 @@
+import { useNavigate } from 'react-router-dom'
+
 import arrow_to_left from 'assets/img/arrow_to_left.svg'
+import { paths } from 'common/constants'
 
 export const NavigationToBack = () => {
-  const toBackHandler = () => {}
+  const navigate = useNavigate()
+  const toBackHandler = () => navigate(paths.PACK_LIST)
 
   return (
     <div
