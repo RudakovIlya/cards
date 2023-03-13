@@ -1,8 +1,8 @@
 export type QueryParams = {
   packName: string
-  min: string
+  min: number
   max: number
-  sortPacks: 0 | 1
+  sortPacks: `0update` | `1update`
   page: number
   pageCount: number
   user_id: string

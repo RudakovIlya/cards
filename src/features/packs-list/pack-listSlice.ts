@@ -11,7 +11,7 @@ export const getPackList = createAsyncThunk<
   }
 >('pack-list/get-pack-list', async (data = {}, { rejectWithValue }) => {
   try {
-    const response = await packListAPI.getPackList(data)
+    const response = await packListAPI.getPackList()
 
     return response.data
   } catch (e) {

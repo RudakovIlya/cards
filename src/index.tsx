@@ -1,5 +1,3 @@
-import { StrictMode } from 'react'
-
 import { ThemeProvider } from '@mui/material'
 import { createRoot } from 'react-dom/client'
 import './index.css'
@@ -15,13 +13,13 @@ import { router } from 'common/routes'
 const root = createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
-  <StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </Provider>
-  </StrictMode>
+  // <StrictMode>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </Provider>
+  // </StrictMode>
 )
 
 reportWebVitals()

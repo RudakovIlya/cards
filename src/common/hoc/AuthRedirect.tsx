@@ -1,4 +1,3 @@
-import Grid from '@mui/material/Grid'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
 import { paths } from 'common'
@@ -10,9 +9,5 @@ export const AuthRedirect = () => {
 
   if (!isLoggedIn) return <Navigate to={paths.LOGIN} state={{ from: location }} />
 
-  return (
-    <Grid sx={{ paddingTop: 8 }} container justifyContent={'center'} alignItems={'center'}>
-      <Outlet />
-    </Grid>
-  )
+  return <Outlet />
 }
