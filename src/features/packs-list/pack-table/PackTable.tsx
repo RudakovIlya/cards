@@ -3,8 +3,8 @@ import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
 
-import { TableContent } from 'features/packs-list/pack-table-content/TableContent'
-import { TableHeader } from 'features/packs-list/pack-table-header/TableHeader'
+import { TableContent } from 'features/packs-list/pack-table/pack-table-content/TableContent'
+import { TableHeader } from 'features/packs-list/pack-table/pack-table-header/TableHeader'
 
 export const PackTable = () => {
   const onClickHandler = () => {}
