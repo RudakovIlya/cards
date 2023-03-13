@@ -23,6 +23,7 @@ export type PackType = {
 
 export type PackResponse = {
   cards: PackType[]
+  packName: string
   cardsTotalCount: number
   maxGrade: number
   minGrade: number
