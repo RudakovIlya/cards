@@ -26,3 +26,20 @@ export type PackListResponse = {
   page: number
   pageCount: number
 }
+
+export type AddPackType = {
+  name?: string
+  deckCover?: string
+  private?: boolean
+}
+export type AddPackRequestType = {
+  cardsPack: AddPackType
+}
+
+export type UpdatePackRequestType = {
+  cardsPack: {
+    _id: string
+    name?: string
+    deckCover?: string
+  }
+}
