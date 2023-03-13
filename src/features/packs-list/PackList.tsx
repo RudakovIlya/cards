@@ -1,9 +1,11 @@
-import { usePackList } from 'features/packs-list'
+import { SubHeader } from 'common'
+import { FilterPanels } from 'features/packs-list/FilterPanels/FilterPanels'
 
 export const PackList = () => {
-  const packList = usePackList()
-
-  console.log(packList)
-
-  return <div>PackList</div>
+  return (
+    <>
+      <SubHeader title={'Pack list'} titleButton={'Add new pack'} />
+      <FilterPanels />
+    </>
+  )
 }

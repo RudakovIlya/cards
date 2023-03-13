@@ -1,6 +1,7 @@
 import Avatar from '@mui/material/Avatar'
 import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 
@@ -8,7 +9,7 @@ import edit_photo from 'assets/img/edit_photo.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
 import { NavigationToBack, paths, ProfileAvatar, useRedirect, UserName } from 'common'
 import { useAuth } from 'features/auth'
-import { useProfile } from 'features/profile/use-profile'
+import { useProfile } from 'features/profile'
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
@@ -23,7 +24,13 @@ export const UserProfile = () => {
   useRedirect(paths.LOGIN, !isLoggedIn)
 
   return (
-    <div>
+    <Grid
+      sx={{ paddingTop: 8 }}
+      direction={'column'}
+      container
+      justifyContent={'center'}
+      alignItems={'center'}
+    >
       <div>
         <NavigationToBack />
       </div>
@@ -64,6 +71,6 @@ export const UserProfile = () => {
           Log out
         </Button>
       </Paper>
-    </div>
+    </Grid>
   )
 }

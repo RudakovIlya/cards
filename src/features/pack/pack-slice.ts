@@ -13,6 +13,8 @@ export const getPack = createAsyncThunk<
   try {
     const response = await packAPI.getPack(data)
 
+    console.log(response.data)
+
     return response.data
   } catch (e) {
     const error = errorUtils(e)
