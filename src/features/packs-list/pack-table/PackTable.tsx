@@ -11,19 +11,12 @@ export const PackTable = () => {
 
   return (
     <div>
-      <div style={{ textAlign: 'right', marginBottom: '30px' }}>
-        <Button onClick={onClickHandler} size={'medium'} variant={'radius'}>
-          Add new pack
-        </Button>
-      </div>
-      <div>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 1000 }} aria-label="simple table">
-            <TableHeader />
-            <TableContent />
-          </Table>
-        </TableContainer>
-      </div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 1000 }} aria-label="simple table">
+          <TableHeader />
+          <TableContent />
+        </Table>
+      </TableContainer>
     </div>
   )
 }
