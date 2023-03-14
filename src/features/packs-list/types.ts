@@ -2,7 +2,7 @@ export type QueryParams = {
   packName: string
   min: number
   max: number
-  sortPacks: `0update` | `1update`
+  sortPacks: string
   page: number
   pageCount: number
   user_id: string
@@ -12,7 +12,10 @@ export type QueryParams = {
 export type PackType = {
   _id: string
   user_id: string
+  user_name: string
+  private: boolean
   name: string
+  deckCover: string
   cardsCount: number
   created: string
   updated: string
@@ -32,6 +35,7 @@ export type AddPackType = {
   deckCover?: string
   private?: boolean
 }
+
 export type AddPackRequestType = {
   cardsPack: AddPackType
 }

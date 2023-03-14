@@ -1,24 +1,23 @@
-import { useState } from 'react'
-
 import { SxProps } from '@mui/material'
 
+import { useAppSelector } from 'common/hooks'
+
 export const useSwitch = () => {
-  const [active, setActive] = useState(false)
+  const userId = useAppSelector(state => state.packList.queryParams.user_id)
 
   const onClickChangeColor = (foo?: () => void) => {
     return () => {
-      setActive(!active)
       foo && foo()
     }
   }
 
   const allActive: SxProps = {
-    backgroundColor: active ? '#fff' : '#366EFF',
-    color: active ? '#366EFF' : '#fff',
+    backgroundColor: userId ? '#fff' : '#366EFF',
+    color: userId ? '#366EFF' : '#fff',
   }
   const myActive: SxProps = {
-    backgroundColor: !active ? '#fff' : '#366EFF',
-    color: !active ? '#366EFF' : '#fff',
+    backgroundColor: !userId ? '#fff' : '#366EFF',
+    color: !userId ? '#366EFF' : '#fff',
   }
 
   return { onClickChangeColor, allActive, myActive }

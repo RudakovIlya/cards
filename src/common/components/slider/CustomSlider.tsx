@@ -1,16 +1,43 @@
-import { FC } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 
 import Grid from '@mui/material/Grid'
 import Slider, { SliderProps } from '@mui/material/Slider'
+import Typography from '@mui/material/Typography'
 
-export const CustomSlider: FC<SliderProps & { min?: number; max?: number }> = props => {
-  const { min, max } = props
+export const CustomSlider: FC<SliderProps & { values: number[]; minMax: number[] }> = memo(
+  ({ values, minMax, ...props }) => {
+    const [value, setValue] = useState<number[]>(values)
 
-  return (
-    <Grid item flex={'0 0 200px'}>
-      <span id={'hw11-value'}>{min}</span>
-      <Slider id={'hw11-single-slider'} {...props} value={[min, max] as number[]} />
-      <span id={'hw11-value'}>{max}</span>
-    </Grid>
-  )
-}
+    const handleChange = (event: any, newValue: number | number[]) => {
+      setValue(newValue as number[])
+    }
+
+    useEffect(() => {
+      if (minMax[0] === value[0] && minMax[1] === value[1]) return
+      setValue(values)
+    }, [values])
+
+    useEffect(() => {
+      setValue(values)
+    }, [values[0], values[1]])
+
+    return (
+      <Grid item flex={'0 0 200px'}>
+        <Typography margin={'0 0 8px 0'} fontSize={15} fontWeight={500}>
+          Number of cards
+        </Typography>
+        <div>
+          <span>min: {value[0]}</span>
+          <Slider
+            value={value}
+            onChange={handleChange}
+            min={values[0]}
+            max={values[1]}
+            {...props}
+          />
+          <span>max: {value[1]}</span>
+        </div>
+      </Grid>
+    )
+  }
+)

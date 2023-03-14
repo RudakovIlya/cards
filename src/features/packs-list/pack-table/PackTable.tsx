@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableContainer from '@mui/material/TableContainer'
@@ -7,8 +6,6 @@ import { TableContent } from 'features/packs-list/pack-table-content/TableConten
 import { TableHeader } from 'features/packs-list/pack-table-header/TableHeader'
 
 export const PackTable = () => {
-  const onClickHandler = () => {}
-
   return (
     <div>
       <TableContainer component={Paper}>

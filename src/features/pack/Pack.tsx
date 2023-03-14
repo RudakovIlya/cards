@@ -2,13 +2,13 @@ import { Filters, InputSearch, SubHeader } from 'common'
 import { usePack } from 'features/pack'
 
 export const Pack = () => {
-  const { pack } = usePack('640df56ac88f1f12b0d5446f')
+  const { pack } = usePack('640dfb5114f6180608606bb2')
 
   return (
     <>
       <SubHeader title={pack.packName} titleButton={'Learn to pack'} />
       <Filters>
-        <InputSearch fullWidth />
+        <InputSearch onChangeValue={() => {}} searchValue={''} />
       </Filters>
     </>
   )
