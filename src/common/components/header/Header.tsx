@@ -16,9 +16,11 @@ export const Header = () => {
     <AppBar color={'transparent'} position="static">
       <Container>
         <Toolbar>
-          <Link to={paths.PACK_LIST} style={{ flex: 1 }}>
-            <img src={logo} alt="incubator-logo" />
-          </Link>
+          <span style={{ flex: 1 }}>
+            <Link to={paths.PACK_LIST}>
+              <img src={logo} alt="incubator-logo" />
+            </Link>
+          </span>
           {!isLoggedIn ? (
             <Button onClick={onClick} size={'small'} variant={'radius'}>
               Sign in

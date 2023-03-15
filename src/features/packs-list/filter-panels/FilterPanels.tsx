@@ -1,4 +1,5 @@
 import { ButtonsGroup, CustomSlider, Filters, InputSearch, ResetButton } from 'common'
+import { Pagination } from 'common/components/pagination/Pagination'
 import { useFilters } from 'features/packs-list/use-filters'
 
 export const FilterPanels = () => {
@@ -13,6 +14,11 @@ export const FilterPanels = () => {
     maxCardsCount,
     min,
     max,
+    page,
+    pageCount,
+    onPaginationChange,
+    onChangePageCount,
+    cardPacksTotalCount,
   } = useFilters()
 
   return (
@@ -25,6 +31,13 @@ export const FilterPanels = () => {
         values={[minCardsCount, maxCardsCount]}
       />
       <ResetButton onClick={onReset} />
+      <Pagination
+        onChange={onPaginationChange}
+        page={page}
+        rows={pageCount}
+        onChangePageCount={onChangePageCount}
+        count={cardPacksTotalCount}
+      />
     </Filters>
   )
 }

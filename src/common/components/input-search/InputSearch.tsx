@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
 
 import SearchIcon from '@mui/icons-material/Search'
 import Grid from '@mui/material/Grid'
@@ -17,16 +17,12 @@ export const InputSearch: FC<InputSearchType> = ({ onChangeValue, searchValue })
   const [value, setValue] = useState<string>(searchValue)
   const debouncedValue = useDebounce<string>(value, 500)
 
-  const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value)
-    },
-    [searchValue]
-  )
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value)
+  }
 
   useEffect(() => {
     if (value === searchValue) return
-
     setValue(searchValue)
   }, [searchValue])
 
