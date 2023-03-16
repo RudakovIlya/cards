@@ -33,6 +33,7 @@ export const CustomSlider: FC<SliderProps & { values: number[]; minMax: number[]
             onChange={handleChange}
             min={values[0]}
             max={values[1]}
+            disabled={!values[1]}
             {...props}
           />
           <span>max: {value[1]}</span>

@@ -7,14 +7,15 @@ import { useProfile } from 'features/profile'
 
 export const useFilters = () => {
   const dispatch = useAppDispatch()
+
+  const { _id: userId } = useProfile()
+
   const { minCardsCount, maxCardsCount, cardPacksTotalCount } = useAppSelector(
     state => state.packList.packList
   )
   const { packName, user_id, max, min, sortPacks, page, pageCount } = useAppSelector(
     state => state.packList.queryParams
   )
-
-  const { _id: userId } = useProfile()
 
   const onSearchChange = useCallback((search: string) => {
     dispatch(packListActions.setQueryParams({ packName: search }))
@@ -24,9 +25,11 @@ export const useFilters = () => {
     dispatch(packListActions.resetQueryParams())
   }, [])
 
+  console.log(minCardsCount, maxCardsCount)
   const getMyPacks = useCallback(() => {
     dispatch(
-      packListActions.setQueryParams({ min: minCardsCount, max: maxCardsCount, user_id: userId })
+      // packListActions.setQueryParams({ user_id: userId })
+      packListActions.setQueryParams({ min: 0, max: 0, user_id: userId })
     )
   }, [])
 
@@ -36,18 +39,17 @@ export const useFilters = () => {
 
   const onChangeSliderValue = useCallback((event: any, numbers: number[] | number) => {
     if (Array.isArray(numbers)) {
-      console.log(numbers)
       dispatch(packListActions.setQueryParams({ min: numbers[0], max: numbers[1] }))
     }
   }, [])
 
-  const onPaginationChange = (page: number) => {
+  const onPaginationChange = useCallback((page: number) => {
     dispatch(packListActions.setQueryParams({ page }))
-  }
+  }, [])
 
-  const onChangePageCount = (pageCount: number) => {
+  const onChangePageCount = useCallback((pageCount: number) => {
     dispatch(packListActions.setQueryParams({ pageCount }))
-  }
+  }, [])
 
   useEffect(() => {
     dispatch(getPackList())

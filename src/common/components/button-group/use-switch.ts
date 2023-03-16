@@ -20,5 +20,5 @@ export const useSwitch = () => {
     color: !userId ? '#366EFF' : '#fff',
   }
 
-  return { onClickChangeColor, allActive, myActive }
+  return { onClickChangeColor, allActive, myActive, disabled: userId }
 }

@@ -5,7 +5,7 @@ import { getPack } from '../pack'
 import { AddPackRequestType, UpdatePackRequestType } from './types'
 
 import { RootState } from 'app/store'
-import { errorUtils } from 'common'
+import { errorUtils, getUrlParams } from 'common'
 import { packListAPI, PackListResponse, QueryParams } from 'features/packs-list'
 
 type InitialStateType = {
@@ -36,9 +36,11 @@ export const getPackList = createAsyncThunk<
   }
 >('pack-list/get-pack-list', async (_, { rejectWithValue, getState, dispatch }) => {
   try {
+    const parameters = getUrlParams()
     const params = getState().packList.queryParams
-    const response = await packListAPI.getPackList(params)
-    const { page, pageCount } = response.data
+
+    const response = await packListAPI.getPackList({ ...params, ...parameters })
+    const { page, pageCount, minCardsCount, maxCardsCount } = response.data
 
     dispatch(
       packListActions.setQueryParams({
