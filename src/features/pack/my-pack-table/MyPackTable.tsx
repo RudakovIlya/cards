@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import Box from '@mui/material/Box'
-import { idID } from '@mui/material/locale'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -24,11 +23,10 @@ import { useProfile } from 'features/profile'
 type Order = 'asc' | 'desc'
 
 type Data = {
-  name: string
-  cardsCount: string
+  question: string
+  answer: string
   updated: string
-  user_name: string
-  empty: string
+  grade: string
 }
 
 type HeadCell = {
@@ -37,11 +35,10 @@ type HeadCell = {
 }
 
 const headCells: readonly HeadCell[] = [
-  { id: 'name', label: 'Name' },
-  { id: 'cardsCount', label: 'Cards' },
+  { id: 'question', label: 'Question' },
+  { id: 'answer', label: 'Answer' },
   { id: 'updated', label: 'Last updated' },
-  { id: 'user_name', label: 'Created by' },
-  { id: 'empty', label: 'Actions' },
+  { id: 'grade', label: 'Grade' },
 ]
 
 interface EnhancedTableProps {
@@ -92,7 +89,7 @@ export const MyPackTable = () => {
   const packList = usePackList()
   const navigate = useNavigate()
   const [order, setOrder] = React.useState<Order>('asc')
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('name')
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('question')
   const dispatch = useAppDispatch()
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc'
@@ -101,24 +98,24 @@ export const MyPackTable = () => {
     setOrderBy(property)
   }
 
-  const onClickNavigateToCardsHandler = (id: string) => {
-    return () => navigate(`/pack/${id}`)
-  }
-
-  const onClickLearnHandler = () => {}
-
-  const onClickEditPackHandler = (id: string) => {
-    return () =>
-      dispatch(
-        updatePack({
-          cardsPack: { name: `New Name(Жоские) ${Math.random()}`, _id: id, deckCover: '' },
-        })
-      )
-  }
-
-  const onClickDeletePackHandler = (id: string) => {
-    return () => dispatch(deletePack(id))
-  }
+  // const onClickNavigateToCardsHandler = (id: string) => {
+  //   return () => navigate(`/pack/${id}`)
+  // }
+  //
+  // const onClickLearnHandler = () => {}
+  //
+  // const onClickEditPackHandler = (id: string) => {
+  //   return () =>
+  //     dispatch(
+  //       updatePack({
+  //         cardsPack: { name: `New Name(Жоские) ${Math.random()}`, _id: id, deckCover: '' },
+  //       })
+  //     )
+  // }
+  //
+  // const onClickDeletePackHandler = (id: string) => {
+  //   return () => dispatch(deletePack(id))
+  // }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -144,7 +141,7 @@ export const MyPackTable = () => {
                     {p.cardsCount}
                   </TableCell>
                   <TableCell onClick={() => {}} align="left">
-                    {p.updated?.slice(0, 10)}
+                    {p.updated.slice(0, 10)}
                   </TableCell>
                   <TableCell align="left">{p.user_name}</TableCell>
                   <TableCell align="left">
