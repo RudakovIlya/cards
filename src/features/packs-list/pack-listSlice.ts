@@ -28,85 +28,82 @@ const initialState: InitialStateType = {
     block: false,
     page: 1,
     pageCount: 7,
-    sortPacks: '1name',
+    sortPacks: '0updated',
   },
 }
 
-export const getPackList = createAsyncThunk<
-  PackListResponse,
-  void,
-  {
-    rejectValue: string
-    state: RootState
-  }
->('pack-list/get-pack-list', async (_, { rejectWithValue, getState, dispatch }) => {
-  try {
-    const parameters = getUrlParams()
-    const params = getState().packList.queryParams
+type ThunkAPIType = {
+  rejectValue: string
+  state: RootState
+}
 
-    const response = await packListAPI.getPackList({ ...params, ...parameters })
-    const { page, pageCount, minCardsCount, maxCardsCount } = response.data
+export const getPackList = createAsyncThunk<PackListResponse, void, ThunkAPIType>(
+  'pack-list/get-pack-list',
+  async (_, { rejectWithValue, getState, dispatch }) => {
+    try {
+      const parameters = getUrlParams()
+      const params = getState().packList.queryParams
 
-    dispatch(
-      packListActions.setQueryParams({
-        ...params,
-        min: params.min,
-        max: params.max,
-        page,
-        pageCount,
-      })
-    )
+      const response = await packListAPI.getPackList({ ...params, ...parameters })
+      const { page, pageCount, minCardsCount, maxCardsCount } = response.data
 
-    return response.data
-  } catch (e) {
-    const error = errorUtils(e)
+      dispatch(
+        packListActions.setQueryParams({
+          ...params,
+          min: params.min,
+          max: params.max,
+          page,
+          pageCount,
+        })
+      )
 
-    return rejectWithValue(error)
-  }
-})
+      return response.data
+    } catch (e) {
+      const error = errorUtils(e)
 
-export const addPack = createAsyncThunk<any, AddPackRequestType>(
-  'pack-list/add-pack',
-  async data => {
-    const response = await packListAPI.addPack(data)
-
-    return response.data
+      return rejectWithValue(error)
+    }
   }
 )
-export const updatePack = createAsyncThunk<
-  any,
-  UpdatePackRequestType,
-  {
-    state: RootState
+
+export const addPack = createAsyncThunk<void, AddPackRequestType, ThunkAPIType>(
+  'pack-list/add-pack',
+  async (data, { dispatch }) => {
+    await packListAPI.addPack(data)
+
+    dispatch(getPackList())
   }
->('pack-list/update-pack', async (data, { getState }) => {
-  const currentPack = getState().packList.packList.cardPacks.find(
-    pack => pack._id === data.cardsPack._id
-  )
+)
 
-  console.log(currentPack)
-  const response = await packListAPI.updatePack(data)
+export const updatePack = createAsyncThunk<void, UpdatePackRequestType, ThunkAPIType>(
+  'pack-list/update-pack',
+  async (data, { rejectWithValue, dispatch }) => {
+    try {
+      await packListAPI.updatePack(data)
 
-  return response.data
-})
+      dispatch(getPackList())
+    } catch (e) {
+      const error = errorUtils(e)
 
-export const deletePack = createAsyncThunk<
-  any,
-  string,
-  {
-    rejectValue: string
+      return rejectWithValue(error)
+    }
   }
->('pack-list/delete-pack', async (id, { rejectWithValue }) => {
-  try {
-    const response = await packListAPI.deletePack(id)
+)
 
-    return { data: response.data, id }
-  } catch (e) {
-    const error = errorUtils(e)
+export const deletePack = createAsyncThunk<void, string, ThunkAPIType>(
+  'pack-list/delete-pack',
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      await packListAPI.deletePack(id)
 
-    return rejectWithValue(error)
+      dispatch(getPackList())
+    } catch (e) {
+      const error = errorUtils(e)
+
+      return rejectWithValue(error)
+    }
   }
-})
+)
 
 export const packListSlice = createSlice({
   name: 'pack-list',
@@ -120,15 +117,9 @@ export const packListSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder
-      .addCase(getPackList.fulfilled, (state, action) => {
-        state.packList = action.payload
-      })
-      .addCase(deletePack.fulfilled, (state, action) => {
-        const packIndex = state.packList.cardPacks.findIndex(pack => pack._id === action.payload.id)
-
-        state.packList.cardPacks.splice(packIndex, 1)
-      })
+    builder.addCase(getPackList.fulfilled, (state, action) => {
+      state.packList = action.payload
+    })
   },
 })
 

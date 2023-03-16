@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
+import { useNavigate } from 'react-router-dom'
 
 import pack_table_delete from 'assets/img/pack-table-delete.svg'
 import pack_table_edit from 'assets/img/pack-table-edit.svg'
@@ -88,7 +89,7 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
 export const PackTable = () => {
   const userProfileData = useProfile()
   const packList = usePackList()
-
+  const navigate = useNavigate()
   const [order, setOrder] = React.useState<Order>('asc')
   const [orderBy, setOrderBy] = React.useState<keyof Data>('name')
   const dispatch = useAppDispatch()
@@ -98,12 +99,20 @@ export const PackTable = () => {
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
   }
-  const onClickNavigateToCardsHandler = () => {}
+
+  const onClickNavigateToCardsHandler = (id: string) => {
+    return () => navigate(`/pack/${id}`)
+  }
+
   const onClickLearnHandler = () => {}
 
   const onClickEditPackHandler = (id: string) => {
     return () =>
-      dispatch(updatePack({ cardsPack: { name: 'New Name(Жоские)', _id: id, deckCover: '' } }))
+      dispatch(
+        updatePack({
+          cardsPack: { name: `New Name(Жоские) ${Math.random()}`, _id: id, deckCover: '' },
+        })
+      )
   }
 
   const onClickDeletePackHandler = (id: string) => {
@@ -127,18 +136,16 @@ export const PackTable = () => {
                   <TableCell component="th" scope="row">
                     <div style={{ display: 'flex', height: '35px' }}>
                       {p.deckCover && <img alt="img" src={p.deckCover} />}
-                      <div>{p.name}</div>
+                      <button onClick={onClickNavigateToCardsHandler(p._id)}>{p.name}</button>
                     </div>
                   </TableCell>
-                  <TableCell onClick={() => onClickNavigateToCardsHandler()} align="left">
+                  <TableCell onClick={() => {}} align="left">
                     {p.cardsCount}
                   </TableCell>
-                  <TableCell onClick={() => onClickNavigateToCardsHandler()} align="left">
+                  <TableCell onClick={() => {}} align="left">
                     {p.updated.slice(0, 10)}
                   </TableCell>
-                  <TableCell onClick={() => onClickNavigateToCardsHandler()} align="left">
-                    {p.user_name}
-                  </TableCell>
+                  <TableCell align="left">{p.user_name}</TableCell>
                   <TableCell align="left">
                     <>
                       <span>

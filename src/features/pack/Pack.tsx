@@ -1,8 +1,12 @@
+import { useParams } from 'react-router-dom'
+
 import { Filters, InputSearch, SubHeader } from 'common'
 import { usePack } from 'features/pack'
 
 export const Pack = () => {
-  const { pack } = usePack('640dfb5114f6180608606bb2')
+  const { packId } = useParams<{ packId: string }>()
+
+  const { pack } = usePack(packId as string)
 
   return (
     <>

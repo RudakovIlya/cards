@@ -1,4 +1,10 @@
-import { AddPackRequestType, AddPackType, UpdatePackRequestType } from './types'
+import {
+  AddPackRequestType,
+  AddPackType,
+  DeleteResponseType,
+  UpdatePackRequestType,
+  UpdateResponseType,
+} from './types'
 
 import { instance } from 'common/api-instance/api-instance'
 import { PackListResponse, QueryParams } from 'features/packs-list'
@@ -15,9 +21,9 @@ export const packListAPI = {
     return instance.post<AddPackType>('cards/pack', data)
   },
   deletePack(id: string) {
-    return instance.delete(`/cards/pack?id=${id}`)
+    return instance.delete<DeleteResponseType>(`/cards/pack?id=${id}`)
   },
   updatePack(data: UpdatePackRequestType) {
-    return instance.put('cards/pack', data)
+    return instance.put<UpdateResponseType>('cards/pack', data)
   },
 }

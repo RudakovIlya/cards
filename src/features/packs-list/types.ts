@@ -40,10 +40,20 @@ export type AddPackRequestType = {
   cardsPack: AddPackType
 }
 
+export type UpdatePackType = {
+  _id: string
+  name?: string
+  deckCover?: string
+}
+
 export type UpdatePackRequestType = {
-  cardsPack: {
-    _id: string
-    name?: string
-    deckCover?: string
-  }
+  cardsPack: UpdatePackType
+}
+
+export type DeleteResponseType = {
+  deletedCardsPack: PackType
+}
+
+export type UpdateResponseType = {
+  updatedCardsPack: PackType
 }

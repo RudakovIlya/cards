@@ -7,7 +7,15 @@ import { PackTable } from 'features/packs-list/pack-table/PackTable'
 export const PackList = () => {
   const dispatch = useAppDispatch()
   const addNewPack = () => {
-    dispatch(addPack({ cardsPack: { name: 'New Pack (Жоские)', deckCover: '', private: false } }))
+    dispatch(
+      addPack({
+        cardsPack: {
+          name: 'New Pack (Жоские) ' + (Math.random() + 10),
+          deckCover: '',
+          private: false,
+        },
+      })
+    )
   }
 
   return (
