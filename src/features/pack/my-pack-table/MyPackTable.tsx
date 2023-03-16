@@ -87,7 +87,7 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
   )
 }
 
-export const PackTable = () => {
+export const MyPackTable = () => {
   const userProfileData = useProfile()
   const packList = usePackList()
   const navigate = useNavigate()

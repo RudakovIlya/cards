@@ -38,71 +38,71 @@ type ThunkAPIType = {
 }
 
 export const getPackList = createAsyncThunk<PackListResponse, void, ThunkAPIType>(
-  'pack-list/get-pack-list',
-  async (_, { rejectWithValue, getState, dispatch }) => {
-    try {
-      const parameters = getUrlParams()
-      const params = getState().packList.queryParams
+    'pack-list/get-pack-list',
+    async (_, { rejectWithValue, getState, dispatch }) => {
+      try {
+        const parameters = getUrlParams()
+        const params = getState().packList.queryParams
 
-      const response = await packListAPI.getPackList({ ...params, ...parameters })
-      const { page, pageCount, minCardsCount, maxCardsCount } = response.data
+        const response = await packListAPI.getPackList({ ...params, ...parameters })
+        const { page, pageCount, minCardsCount, maxCardsCount } = response.data
 
-      dispatch(
-        packListActions.setQueryParams({
-          ...params,
-          min: params.min,
-          max: params.max,
-          page,
-          pageCount,
-        })
-      )
+        dispatch(
+            packListActions.setQueryParams({
+              ...params,
+              min: params.min,
+              max: params.max,
+              page,
+              pageCount,
+            })
+        )
 
-      return response.data
-    } catch (e) {
-      const error = errorUtils(e)
+        return response.data
+      } catch (e) {
+        const error = errorUtils(e)
 
-      return rejectWithValue(error)
+        return rejectWithValue(error)
+      }
     }
-  }
 )
 
 export const addPack = createAsyncThunk<void, AddPackRequestType, ThunkAPIType>(
-  'pack-list/add-pack',
-  async (data, { dispatch }) => {
-    await packListAPI.addPack(data)
+    'pack-list/add-pack',
+    async (data, { dispatch }) => {
+      await packListAPI.addPack(data)
 
-    dispatch(getPackList())
-  }
+      dispatch(getPackList())
+    }
 )
 
 export const updatePack = createAsyncThunk<void, UpdatePackRequestType, ThunkAPIType>(
-  'pack-list/update-pack',
-  async (data, { rejectWithValue, dispatch }) => {
-    try {
-      await packListAPI.updatePack(data)
+    'pack-list/update-pack',
+    async (data, { rejectWithValue, dispatch }) => {
+      try {
+        await packListAPI.updatePack(data)
 
-      dispatch(getPackList())
-    } catch (e) {
-      const error = errorUtils(e)
+        dispatch(getPackList())
+      } catch (e) {
+        const error = errorUtils(e)
 
-      return rejectWithValue(error)
+        return rejectWithValue(error)
+      }
     }
-  }
 )
 
 export const deletePack = createAsyncThunk<void, string, ThunkAPIType>(
-  'pack-list/delete-pack',
-  async (id, { rejectWithValue, dispatch }) => {
-    try {
-      await packListAPI.deletePack(id)
+    'pack-list/delete-pack',
+    async (id, { rejectWithValue, dispatch }) => {
+      try {
+        await packListAPI.deletePack(id)
 
-      dispatch(getPackList())
-    } catch (e) {
-      const error = errorUtils(e)
+        dispatch(getPackList())
+      } catch (e) {
+        const error = errorUtils(e)
 
-      return rejectWithValue(error)
+        return rejectWithValue(error)
+      }
     }
-  }
 )
 
 export const packListSlice = createSlice({

@@ -1,19 +1,24 @@
-import { useParams } from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 
-import { Filters, InputSearch, SubHeader } from 'common'
-import { usePack } from 'features/pack'
+import {Filters, InputSearch, SubHeader} from 'common'
+import {usePack} from 'features/pack'
+import {MyPackTable} from "./my-pack-table/MyPackTable";
+
 
 export const Pack = () => {
-  const { packId } = useParams<{ packId: string }>()
+  const {packId} = useParams<{ packId: string }>()
 
-  const { pack } = usePack(packId as string)
+  const {pack} = usePack(packId as string)
 
   return (
-    <>
-      <SubHeader title={pack.packName} titleButton={'Learn to pack'} />
-      <Filters>
-        <InputSearch onChangeValue={() => {}} searchValue={''} />
-      </Filters>
-    </>
+      <>
+        <SubHeader title={pack.packName} titleButton={'Learn to pack'}/>
+        <Filters>
+          <InputSearch onChangeValue={() => {
+          }} searchValue={''}/>
+        </Filters>
+        <MyPackTable/>
+
+      </>
   )
 }
