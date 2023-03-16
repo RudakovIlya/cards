@@ -12,7 +12,7 @@ type ButtonsGroupType = {
 }
 
 export const ButtonsGroup: FC<ButtonsGroupType> = memo(({ onClickAll, onClickMy }) => {
-  const { onClickChangeColor, allActive, myActive } = useSwitch()
+  const { onClickChangeColor, allActive, myActive, disabled } = useSwitch()
 
   return (
     <div>
@@ -20,10 +20,20 @@ export const ButtonsGroup: FC<ButtonsGroupType> = memo(({ onClickAll, onClickMy 
         Show packs cards
       </Typography>
       <ButtonGroup variant="contained">
-        <Button sx={myActive} onClick={onClickChangeColor(onClickMy)} size={'large'}>
+        <Button
+          disabled={!!disabled}
+          sx={myActive}
+          onClick={onClickChangeColor(onClickMy)}
+          size={'large'}
+        >
           My
         </Button>
-        <Button sx={allActive} onClick={onClickChangeColor(onClickAll)} size={'large'}>
+        <Button
+          disabled={!disabled}
+          sx={allActive}
+          onClick={onClickChangeColor(onClickAll)}
+          size={'large'}
+        >
           All
         </Button>
       </ButtonGroup>

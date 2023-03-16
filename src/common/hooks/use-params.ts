@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 
-export const useParams = () => {
+export const useParam = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 

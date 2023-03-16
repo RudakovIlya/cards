@@ -3,9 +3,9 @@ import { ChangeEvent, FC, MouseEvent } from 'react'
 import TablePagination from '@mui/material/TablePagination'
 
 type PaginationType = {
-  page: number
-  rows: number
-  count: number
+  page: number // страницы
+  rows: number // кол-во рядов
+  count: number // общее кол-во
   onChange: (page: number) => void
   onChangePageCount: (pageCount: number) => void
 }
@@ -25,7 +25,7 @@ export const Pagination: FC<PaginationType> = props => {
     <TablePagination
       component="div"
       count={count || 1}
-      page={page - 1}
+      page={page - 1} // добавить -1 (page - 1) !count || count <= 0 ? 0 : page
       rowsPerPageOptions={[4, 7, 10]}
       onPageChange={handleChangePage}
       rowsPerPage={rows}
