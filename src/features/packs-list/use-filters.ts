@@ -27,10 +27,7 @@ export const useFilters = () => {
 
   console.log(minCardsCount, maxCardsCount)
   const getMyPacks = useCallback(() => {
-    dispatch(
-      // packListActions.setQueryParams({ user_id: userId })
-      packListActions.setQueryParams({ min: 0, max: 0, user_id: userId })
-    )
+    dispatch(packListActions.setQueryParams({ min: 0, max: 0, user_id: userId }))
   }, [])
 
   const getAllPacks = useCallback(() => {

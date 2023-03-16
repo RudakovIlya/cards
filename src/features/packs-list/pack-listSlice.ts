@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { getPack } from '../pack'
-
 import { AddPackRequestType, UpdatePackRequestType } from './types'
 
 import { RootState } from 'app/store'
@@ -14,7 +12,14 @@ type InitialStateType = {
 }
 
 const initialState: InitialStateType = {
-  packList: {} as PackListResponse,
+  packList: {
+    minCardsCount: 0,
+    maxCardsCount: 0,
+    page: 1,
+    pageCount: 7,
+    cardPacks: [],
+    cardPacksTotalCount: 0,
+  },
   queryParams: {
     min: 0,
     max: 0,
@@ -68,19 +73,39 @@ export const addPack = createAsyncThunk<any, AddPackRequestType>(
     return response.data
   }
 )
-export const updatePack = createAsyncThunk<any, UpdatePackRequestType>(
-  'pack-list/update-pack',
-  async data => {
-    const response = await packListAPI.updatePack(data)
-
-    return response.data
+export const updatePack = createAsyncThunk<
+  any,
+  UpdatePackRequestType,
+  {
+    state: RootState
   }
-)
+>('pack-list/update-pack', async (data, { getState }) => {
+  const currentPack = getState().packList.packList.cardPacks.find(
+    pack => pack._id === data.cardsPack._id
+  )
 
-export const deletePack = createAsyncThunk<any, string>('pack-list/delete-pack', async id => {
-  const response = await packListAPI.deletePack(id)
+  console.log(currentPack)
+  const response = await packListAPI.updatePack(data)
 
   return response.data
+})
+
+export const deletePack = createAsyncThunk<
+  any,
+  string,
+  {
+    rejectValue: string
+  }
+>('pack-list/delete-pack', async (id, { rejectWithValue }) => {
+  try {
+    const response = await packListAPI.deletePack(id)
+
+    return { data: response.data, id }
+  } catch (e) {
+    const error = errorUtils(e)
+
+    return rejectWithValue(error)
+  }
 })
 
 export const packListSlice = createSlice({
@@ -100,7 +125,9 @@ export const packListSlice = createSlice({
         state.packList = action.payload
       })
       .addCase(deletePack.fulfilled, (state, action) => {
-        state.packList.cardPacks.filter(pack => pack._id !== action.payload)
+        const packIndex = state.packList.cardPacks.findIndex(pack => pack._id === action.payload.id)
+
+        state.packList.cardPacks.splice(packIndex, 1)
       })
   },
 })

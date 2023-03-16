@@ -14,6 +14,8 @@ import { visuallyHidden } from '@mui/utils'
 import pack_table_delete from 'assets/img/pack-table-delete.svg'
 import pack_table_edit from 'assets/img/pack-table-edit.svg'
 import pack_table_teacher from 'assets/img/pack-table-teacher.svg'
+import { useAppDispatch } from 'common'
+import { deletePack, updatePack } from 'features/packs-list/pack-listSlice'
 import { usePackList } from 'features/packs-list/use-packlist'
 import { useProfile } from 'features/profile'
 
@@ -49,6 +51,7 @@ interface EnhancedTableProps {
 
 export const EnhancedTableHead = (props: EnhancedTableProps) => {
   const { order, orderBy, onRequestSort } = props
+
   const createSortHandler = (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property)
   }
@@ -56,7 +59,7 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
   return (
     <TableHead>
       <TableRow>
-        {headCells.map(headCell => (
+        {headCells?.map(headCell => (
           <TableCell
             key={headCell.id}
             align={'left'}
@@ -86,86 +89,9 @@ export const PackTable = () => {
   const userProfileData = useProfile()
   const packList = usePackList()
 
-  /*const packList = [
-    {
-      _id: '6412152d9c62a1934d54ec44',
-      user_id: '640a6d447b509e27c30eedb8',
-      user_name: 'Sergey',
-      name: 'New Added Pack',
-      private: false,
-      path: '/def',
-      grade: 0,
-      shots: 0,
-      cardsCount: 0,
-      type: 'pack',
-      rating: 0,
-      more_id: '640a6d447b509e27c30eedb8',
-      created: '2023-03-15T18:57:49.967Z',
-      updated: '2023-03-15T18:57:49.967Z',
-      __v: 0,
-      deckCover: 'url or base64',
-    },
-    {
-      _id: '641214e79c62a1934d54ec38',
-      user_id: '640a6d447b509e27c30eedb8',
-      user_name: 'nergey',
-      name: 'New Added Pack',
-      private: false,
-      path: '/def',
-      grade: 0,
-      shots: 0,
-      cardsCount: 0,
-      type: 'pack',
-      rating: 0,
-      more_id: '640a6d447b509e27c30eedb8',
-      created: '2023-03-15T18:56:39.002Z',
-      updated: '2023-03-15T18:56:39.002Z',
-      __v: 0,
-      deckCover: 'url or base64',
-    },
-    {
-      _id: '641214d99c62a1934d54ec2c',
-      user_id: '640a6d447b509e27c30eedb8',
-      user_name: 'rergey',
-      name: 'New Added Pack',
-      private: false,
-      path: '/def',
-      grade: 0,
-      shots: 0,
-      cardsCount: 0,
-      type: 'pack',
-      rating: 0,
-      more_id: '640a6d447b509e27c30eedb8',
-      created: '2023-03-15T18:56:25.888Z',
-      updated: '2023-03-15T18:56:25.888Z',
-      __v: 0,
-      deckCover: 'url or base64',
-    },
-    {
-      _id: '641213829c62a1934d54ebe1',
-      user_id: '640a6d447b509e27c30eedb8',
-      user_name: 'Sergey',
-      name: 'New Added Pack',
-      private: false,
-      path: '/def',
-      grade: 0,
-      shots: 0,
-      cardsCount: 0,
-      type: 'pack',
-      rating: 0,
-      more_id: '640a6d447b509e27c30eedb8',
-      created: '2023-03-15T18:50:42.292Z',
-      updated: '2023-03-15T18:50:42.292Z',
-      __v: 0,
-      deckCover: 'url or base64',
-    },
-  ]*/
-
-  console.log(packList)
-  console.log(userProfileData)
   const [order, setOrder] = React.useState<Order>('asc')
   const [orderBy, setOrderBy] = React.useState<keyof Data>('name')
-
+  const dispatch = useAppDispatch()
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc'
 
@@ -174,8 +100,15 @@ export const PackTable = () => {
   }
   const onClickNavigateToCardsHandler = () => {}
   const onClickLearnHandler = () => {}
-  const onClickEditPackHandler = () => {}
-  const onClickDeletePackHandler = () => {}
+
+  const onClickEditPackHandler = (id: string) => {
+    return () =>
+      dispatch(updatePack({ cardsPack: { name: 'New Name(Жоские)', _id: id, deckCover: '' } }))
+  }
+
+  const onClickDeletePackHandler = (id: string) => {
+    return () => dispatch(deletePack(id))
+  }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -223,13 +156,13 @@ export const PackTable = () => {
                               style={{ paddingLeft: '15px', cursor: 'pointer' }}
                               src={pack_table_edit}
                               alt="edit"
-                              onClick={() => onClickEditPackHandler()}
+                              onClick={onClickEditPackHandler(p._id)}
                             />
                             <img
                               style={{ paddingLeft: '15px', cursor: 'pointer' }}
                               src={pack_table_delete}
                               alt="delete"
-                              onClick={() => onClickDeletePackHandler()}
+                              onClick={onClickDeletePackHandler(p._id)}
                             />
                           </span>
                         </>

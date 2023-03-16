@@ -2,6 +2,7 @@ import { FC, memo } from 'react'
 
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 import IconButton from '@mui/material/IconButton'
+
 type ResetButtonType = {
   onClick: () => void
 }
