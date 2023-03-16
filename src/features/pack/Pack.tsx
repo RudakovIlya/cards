@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom'
 
-import { MyPackTable } from './my-pack-table/MyPackTable'
-
 import { Filters, InputSearch, SubHeader } from 'common'
 import { usePack } from 'features/pack'
 
@@ -16,7 +14,6 @@ export const Pack = () => {
       <Filters>
         <InputSearch onChangeValue={() => {}} searchValue={''} />
       </Filters>
-      <MyPackTable />
     </>
   )
 }
