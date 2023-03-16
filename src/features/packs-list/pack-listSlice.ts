@@ -32,7 +32,7 @@ const initialState: InitialStateType = {
   },
 }
 
-type ThunkAPIType = {
+export type ThunkAPIType = {
   rejectValue: string
   state: RootState
 }

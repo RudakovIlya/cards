@@ -1,27 +1,30 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
 import { getPack, packActions } from 'features/pack/pack-slice'
-import { useProfile } from 'features/profile'
 
 export const usePackFilters = () => {
   const { packId } = useParams<{ packId: string }>()
+
   const dispatch = useAppDispatch()
-  const { _id } = useProfile()
-  const packTitle = useAppSelector(state => state.pack.packName)
-  const packUserId = useAppSelector(state => state.pack.packUserId)
 
-  const isMe = packUserId === _id
+  const packTitle = useAppSelector(state => state.pack.pack.packName)
 
-  const addNewCard = () => {
-    console.log('addNewCard')
-  }
+  const { page, pageCount, cardsTotalCount, packName } = useAppSelector(state => state.pack.pack)
 
-  const learnCard = () => {
-    console.log('learnCard')
-  }
+  const onPaginationChange = useCallback((page: number) => {
+    dispatch(packActions.setQueryParams({ page }))
+  }, [])
+
+  const onChangePageCount = useCallback((pageCount: number) => {
+    dispatch(packActions.setQueryParams({ pageCount }))
+  }, [])
+
+  const onSearchChange = useCallback((search: string) => {
+    dispatch(packActions.setQueryParams({ cardAnswer: search }))
+  }, [])
 
   useEffect(() => {
     dispatch(getPack({ cardsPack_id: packId }))
@@ -32,9 +35,13 @@ export const usePackFilters = () => {
   }, [])
 
   return {
+    page,
+    pageCount,
+    cardsTotalCount,
     packTitle,
-    isMe,
-    addNewCard,
-    learnCard,
+    packName,
+    onSearchChange,
+    onPaginationChange,
+    onChangePageCount,
   }
 }

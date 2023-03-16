@@ -1,22 +1,18 @@
-import { Filters, InputSearch, SubHeader } from 'common'
-import { usePackCards } from 'features/pack'
-import { usePackFilters } from 'features/pack/use-packFilters'
+import { SubHeader } from 'common'
+import { FilterPanels } from 'features/pack/filter-panels/FilterPanels'
+import { usePackCards } from 'features/pack/use-pack-cards'
 
 export const Pack = () => {
-  const packCards = usePackCards()
-
-  const { packTitle, isMe, addNewCard, learnCard } = usePackFilters()
+  const { isMe, packName, learnCard, addNewCard } = usePackCards()
 
   return (
     <>
       <SubHeader
-        title={packTitle}
+        title={packName}
         titleButton={isMe ? 'Add new card' : 'Learn to pack'}
         onClick={isMe ? addNewCard : learnCard}
       />
-      <Filters>
-        <InputSearch onChangeValue={() => {}} searchValue={''} />
-      </Filters>
+      <FilterPanels />
     </>
   )
 }

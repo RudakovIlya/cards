@@ -4,7 +4,7 @@ export type QueryPackParams = {
   cardsPack_id: string
   min: number
   max: number
-  sortCards: 0 | 1
+  sortCards: string
   page: number
   pageCount: number
 }
