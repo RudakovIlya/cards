@@ -36,3 +36,5 @@ export type ResponseInfoType = {
   info: string
   error: string
 }
+
+export type AddPackRequestType = {}

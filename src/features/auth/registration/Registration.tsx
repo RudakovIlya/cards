@@ -1,7 +1,8 @@
 import TextField from '@mui/material/TextField'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { Form, PasswordInput, paths, useRedirect, useScheme } from 'common'
-import { useAuth } from 'features/auth'
+import { errorUtils, Form, PasswordInput, paths, useRedirect, useScheme } from 'common'
+import { authAPI, ResponseInfoType, useAuth } from 'features/auth'
 
 export const Registration = () => {
   const {

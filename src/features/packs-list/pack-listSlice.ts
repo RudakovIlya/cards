@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { getPack } from '../pack'
+
+import { AddPackRequestType, UpdatePackRequestType } from './types'
+
 import { RootState } from 'app/store'
 import { errorUtils } from 'common'
 import { packListAPI, PackListResponse, QueryParams } from 'features/packs-list'
@@ -54,6 +58,29 @@ export const getPackList = createAsyncThunk<
   }
 })
 
+export const addPack = createAsyncThunk<any, AddPackRequestType>(
+  'pack-list/add-pack',
+  async data => {
+    const response = await packListAPI.addPack(data)
+
+    return response.data
+  }
+)
+export const updatePack = createAsyncThunk<any, UpdatePackRequestType>(
+  'pack-list/update-pack',
+  async data => {
+    const response = await packListAPI.updatePack(data)
+
+    return response.data
+  }
+)
+
+export const deletePack = createAsyncThunk<any, string>('pack-list/delete-pack', async id => {
+  const response = await packListAPI.deletePack(id)
+
+  return response.data
+})
+
 export const packListSlice = createSlice({
   name: 'pack-list',
   initialState,
@@ -66,9 +93,13 @@ export const packListSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getPackList.fulfilled, (state, action) => {
-      state.packList = action.payload
-    })
+    builder
+      .addCase(getPackList.fulfilled, (state, action) => {
+        state.packList = action.payload
+      })
+      .addCase(deletePack.fulfilled, (state, action) => {
+        state.packList.cardPacks.filter(pack => pack._id !== action.payload)
+      })
   },
 })
 
