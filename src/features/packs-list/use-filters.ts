@@ -25,12 +25,8 @@ export const useFilters = () => {
     dispatch(packListActions.resetQueryParams())
   }, [])
 
-  console.log(minCardsCount, maxCardsCount)
   const getMyPacks = useCallback(() => {
-    dispatch(
-      // packListActions.setQueryParams({ user_id: userId })
-      packListActions.setQueryParams({ min: 0, max: 0, user_id: userId })
-    )
+    dispatch(packListActions.setQueryParams({ min: 0, max: 0, user_id: userId }))
   }, [])
 
   const getAllPacks = useCallback(() => {
@@ -39,6 +35,7 @@ export const useFilters = () => {
 
   const onChangeSliderValue = useCallback((event: any, numbers: number[] | number) => {
     if (Array.isArray(numbers)) {
+      console.log(numbers)
       dispatch(packListActions.setQueryParams({ min: numbers[0], max: numbers[1] }))
     }
   }, [])
