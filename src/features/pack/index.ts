@@ -2,8 +2,9 @@ import { Pack } from './Pack'
 import { packAPI } from './pack-api'
 import { getPack, PackReducer } from './pack-slice'
 import { PackResponse, PackType, QueryPackParams } from './types'
-import { usePack } from './use-pack'
 
-export { Pack, PackReducer, getPack, packAPI, usePack }
+import { usePackCards } from 'features/pack/use-pack-cards'
+
+export { Pack, PackReducer, getPack, packAPI, usePackCards }
 
 export type { QueryPackParams, PackType, PackResponse }

@@ -1,16 +1,19 @@
-import { useParams } from 'react-router-dom'
-
 import { Filters, InputSearch, SubHeader } from 'common'
-import { usePack } from 'features/pack'
+import { usePackCards } from 'features/pack'
+import { usePackFilters } from 'features/pack/use-packFilters'
 
 export const Pack = () => {
-  const { packId } = useParams<{ packId: string }>()
+  const packCards = usePackCards()
 
-  const { pack } = usePack(packId as string)
+  const { packTitle, isMe, addNewCard, learnCard } = usePackFilters()
 
   return (
     <>
-      <SubHeader title={pack.packName} titleButton={'Learn to pack'} />
+      <SubHeader
+        title={packTitle}
+        titleButton={isMe ? 'Add new card' : 'Learn to pack'}
+        onClick={isMe ? addNewCard : learnCard}
+      />
       <Filters>
         <InputSearch onChangeValue={() => {}} searchValue={''} />
       </Filters>

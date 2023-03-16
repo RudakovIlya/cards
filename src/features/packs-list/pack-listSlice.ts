@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AddPackRequestType, UpdatePackRequestType } from './types'
 
 import { RootState } from 'app/store'
-import { errorUtils, getUrlParams } from 'common'
+import { errorUtils } from 'common'
 import { packListAPI, PackListResponse, QueryParams } from 'features/packs-list'
 
 type InitialStateType = {
@@ -15,10 +15,10 @@ const initialState: InitialStateType = {
   packList: {
     minCardsCount: 0,
     maxCardsCount: 0,
-    page: 1,
+    page: 0,
     pageCount: 7,
     cardPacks: [],
-    cardPacksTotalCount: 0,
+    cardPacksTotalCount: 100,
   },
   queryParams: {
     min: 0,
@@ -26,7 +26,7 @@ const initialState: InitialStateType = {
     packName: '',
     user_id: '',
     block: false,
-    page: 1,
+    page: 0,
     pageCount: 7,
     sortPacks: '0updated',
   },
@@ -39,23 +39,11 @@ type ThunkAPIType = {
 
 export const getPackList = createAsyncThunk<PackListResponse, void, ThunkAPIType>(
   'pack-list/get-pack-list',
-  async (_, { rejectWithValue, getState, dispatch }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      const parameters = getUrlParams()
       const params = getState().packList.queryParams
 
-      const response = await packListAPI.getPackList({ ...params, ...parameters })
-      const { page, pageCount, minCardsCount, maxCardsCount } = response.data
-
-      dispatch(
-        packListActions.setQueryParams({
-          ...params,
-          min: params.min,
-          max: params.max,
-          page,
-          pageCount,
-        })
-      )
+      const response = await packListAPI.getPackList({ ...params })
 
       return response.data
     } catch (e) {

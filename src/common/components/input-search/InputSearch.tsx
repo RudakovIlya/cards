@@ -27,6 +27,7 @@ export const InputSearch: FC<InputSearchType> = ({ onChangeValue, searchValue })
   }, [searchValue])
 
   useEffect(() => {
+    if (value === searchValue) return
     onChangeValue(value)
   }, [debouncedValue])
 
