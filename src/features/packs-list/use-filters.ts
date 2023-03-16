@@ -10,9 +10,13 @@ export const useFilters = () => {
 
   const { _id: userId } = useProfile()
 
-  const { minCardsCount, maxCardsCount, cardPacksTotalCount } = useAppSelector(
-    state => state.packList.packList
-  )
+  const {
+    minCardsCount,
+    maxCardsCount,
+    cardPacksTotalCount,
+    pageCount: pages,
+    page: p,
+  } = useAppSelector(state => state.packList.packList)
   const { packName, user_id, max, min, sortPacks, page, pageCount } = useAppSelector(
     state => state.packList.queryParams
   )
@@ -26,7 +30,9 @@ export const useFilters = () => {
   }, [])
 
   const getMyPacks = useCallback(() => {
-    dispatch(packListActions.setQueryParams({ min: 0, max: 0, user_id: userId }))
+    dispatch(
+      packListActions.setQueryParams({ min, max, user_id: userId, page: p, pageCount: pages })
+    )
   }, [])
 
   const getAllPacks = useCallback(() => {

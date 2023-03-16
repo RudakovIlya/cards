@@ -14,7 +14,7 @@ export const Pagination: FC<PaginationType> = props => {
   const { onChange, page, rows, onChangePageCount, count } = props
 
   const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    onChange(newPage + 1)
+    onChange(newPage)
   }
 
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -24,8 +24,9 @@ export const Pagination: FC<PaginationType> = props => {
   return (
     <TablePagination
       component="div"
-      count={count || 1}
-      page={page - 1} // добавить -1 (page - 1) !count || count <= 0 ? 0 : page
+      count={count}
+      // page={!count || count <= 0 ? 0 : page} // добавить -1 (page - 1) || !count || count <= 0 ? 0 : page
+      page={page > 0 && count < rows ? 0 : page} // добавить -1 (page - 1) || !count || count <= 0 ? 0 : page
       rowsPerPageOptions={[4, 7, 10]}
       onPageChange={handleChangePage}
       rowsPerPage={rows}

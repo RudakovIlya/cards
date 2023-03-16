@@ -10,13 +10,10 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
-import { useNavigate } from 'react-router-dom'
 
 import pack_table_delete from 'assets/img/pack-table-delete.svg'
 import pack_table_edit from 'assets/img/pack-table-edit.svg'
 import pack_table_teacher from 'assets/img/pack-table-teacher.svg'
-import { useAppDispatch } from 'common'
-import { deletePack, updatePack } from 'features/packs-list/pack-listSlice'
 import { usePackList } from 'features/packs-list/use-packlist'
 import { useProfile } from 'features/profile'
 
@@ -88,35 +85,21 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
 
 export const PackTable = () => {
   const userProfileData = useProfile()
-  const packList = usePackList()
-  const navigate = useNavigate()
+  const {
+    onClickEditPackHandler,
+    onClickDeletePackHandler,
+    cardPacks,
+    onClickNavigateToCardsHandler,
+  } = usePackList()
+
   const [order, setOrder] = React.useState<Order>('asc')
   const [orderBy, setOrderBy] = React.useState<keyof Data>('name')
-  const dispatch = useAppDispatch()
+
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc'
 
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
-  }
-
-  const onClickNavigateToCardsHandler = (id: string) => {
-    return () => navigate(`/pack/${id}`)
-  }
-
-  const onClickLearnHandler = () => {}
-
-  const onClickEditPackHandler = (id: string) => {
-    return () =>
-      dispatch(
-        updatePack({
-          cardsPack: { name: `New Name(Жоские) ${Math.random()}`, _id: id, deckCover: '' },
-        })
-      )
-  }
-
-  const onClickDeletePackHandler = (id: string) => {
-    return () => dispatch(deletePack(id))
   }
 
   return (
@@ -131,7 +114,7 @@ export const PackTable = () => {
               rowCount={8}
             />
             <TableBody>
-              {packList.map(p => (
+              {cardPacks.map(p => (
                 <TableRow hover key={p._id}>
                   <TableCell component="th" scope="row">
                     <div style={{ display: 'flex', height: '35px' }}>
@@ -153,7 +136,7 @@ export const PackTable = () => {
                           style={{ paddingLeft: '10px', cursor: 'pointer' }}
                           src={pack_table_teacher}
                           alt="edit"
-                          onClick={() => onClickLearnHandler()}
+                          onClick={() => {}}
                         />
                       </span>
                       {userProfileData._id === p.user_id && (

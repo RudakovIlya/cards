@@ -21,12 +21,25 @@ export const getPack = createAsyncThunk<
   }
 })
 
-const initialState: PackResponse = {} as PackResponse
+const initialState: PackResponse = {
+  packUserId: '',
+  cards: [],
+  page: 0,
+  pageCount: 7,
+  minGrade: 0,
+  maxGrade: 0,
+  cardsTotalCount: 100,
+  packName: '',
+} as PackResponse
 
 const packSlice = createSlice({
   name: 'pack',
   initialState,
-  reducers: {},
+  reducers: {
+    resetPackData: () => {
+      return initialState
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getPack.fulfilled, (state, action) => {
       return action.payload
@@ -34,4 +47,4 @@ const packSlice = createSlice({
   },
 })
 
-export const { reducer: PackReducer } = packSlice
+export const { reducer: PackReducer, actions: packActions } = packSlice
