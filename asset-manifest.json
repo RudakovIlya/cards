@@ -1,24 +1,27 @@
 {
   "files": {
     "main.css": "/cards/static/css/main.bab09fe5.css",
-    "main.js": "/cards/static/js/main.d261ff2d.js",
+    "main.js": "/cards/static/js/main.2da6056b.js",
     "static/js/787.8517b185.chunk.js": "/cards/static/js/787.8517b185.chunk.js",
     "static/media/test_ava.png": "/cards/static/media/test_ava.f5e8c8ee57f0a828b458.png",
     "static/media/email-svg.svg": "/cards/static/media/email-svg.352823548fed002956a4ae76e5ee459f.svg",
     "static/media/incub-logo.svg": "/cards/static/media/incub-logo.50d0ab25d70d75414746210505353a2f.svg",
+    "static/media/pack-table-delete.svg": "/cards/static/media/pack-table-delete.15fa5d24d1ddc0784a2824d9207ca491.svg",
+    "static/media/pack-table-edit.svg": "/cards/static/media/pack-table-edit.db1a8053750361043fb7bf4347730d05.svg",
     "static/media/edit_user_name.svg": "/cards/static/media/edit_user_name.f0b5f71b7c5a254b7b67e2e265228696.svg",
     "static/media/edit_photo.svg": "/cards/static/media/edit_photo.46a5e311169dc20ea3318225b0b7a67c.svg",
     "static/media/eye-closed.svg": "/cards/static/media/eye-closed.feb6291f335bc1eaa3bacd5c73fcbe17.svg",
     "index.html": "/cards/index.html",
+    "static/media/pack-table-teacher.svg": "/cards/static/media/pack-table-teacher.71a9bfddd194ee49b3d695c73ba28802.svg",
     "static/media/eye.svg": "/cards/static/media/eye.560ae41c64b9b34ec2d9c996f2adac31.svg",
     "static/media/profile_logout.svg": "/cards/static/media/profile_logout.6db3f01bb40a36c0a69cdba5db9bb562.svg",
     "static/media/arrow_to_left.svg": "/cards/static/media/arrow_to_left.8c89774f8eed0b22ce17ff59be54a874.svg",
     "main.bab09fe5.css.map": "/cards/static/css/main.bab09fe5.css.map",
-    "main.d261ff2d.js.map": "/cards/static/js/main.d261ff2d.js.map",
+    "main.2da6056b.js.map": "/cards/static/js/main.2da6056b.js.map",
     "787.8517b185.chunk.js.map": "/cards/static/js/787.8517b185.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bab09fe5.css",
-    "static/js/main.d261ff2d.js"
+    "static/js/main.2da6056b.js"
   ]
 }
