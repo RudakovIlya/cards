@@ -11,9 +11,16 @@ type SubHeaderType = {
   titleButton: string
   onClick?: () => void
   isVisible: boolean
+  disabled: boolean
 }
 
-export const SubHeader: FC<SubHeaderType> = ({ onClick, titleButton, title, isVisible }) => {
+export const SubHeader: FC<SubHeaderType> = ({
+  onClick,
+  titleButton,
+  title,
+  isVisible,
+  disabled,
+}) => {
   return (
     <Grid container justifyContent={'space-between'} alignItems={'center'} sx={{ paddingTop: 3 }}>
       {isVisible ? (
@@ -24,7 +31,7 @@ export const SubHeader: FC<SubHeaderType> = ({ onClick, titleButton, title, isVi
         <DotsPreloader />
       )}
 
-      <Button onClick={onClick} variant={'radius'}>
+      <Button onClick={onClick} variant={'radius'} disabled={disabled}>
         {titleButton}
       </Button>
     </Grid>

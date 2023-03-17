@@ -1,4 +1,11 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {
+  createAsyncThunk,
+  createSlice,
+  isFulfilled,
+  isPending,
+  isRejected,
+  PayloadAction,
+} from '@reduxjs/toolkit'
 
 import { AddPackRequestType, UpdatePackRequestType } from './types'
 
@@ -101,6 +108,10 @@ export const deletePack = createAsyncThunk<void, string, ThunkAPIType>(
   }
 )
 
+const pending = isPending(getPackList, addPack, updatePack, deletePack)
+const fulfilled = isFulfilled(getPackList, addPack, updatePack, deletePack)
+const rejected = isRejected(getPackList, addPack, updatePack, deletePack)
+
 export const packListSlice = createSlice({
   name: 'pack-list',
   initialState,
@@ -114,14 +125,20 @@ export const packListSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getPackList.pending, state => {
-        state.status = 'loading'
-      })
       .addCase(getPackList.fulfilled, (state, action) => {
         state.packList = action.payload
         state.status = 'succeeded'
       })
       .addCase(getPackList.rejected, state => {
+        state.status = 'failed'
+      })
+      .addMatcher(pending, state => {
+        state.status = 'loading'
+      })
+      .addMatcher(fulfilled, state => {
+        state.status = 'succeeded'
+      })
+      .addMatcher(rejected, state => {
         state.status = 'failed'
       })
   },

@@ -7,7 +7,7 @@ import { FilterPanels } from 'features/pack/filter-panels/FilterPanels'
 import { usePackCards } from 'features/pack/use-pack-cards'
 
 export const Pack = () => {
-  const { isMe, packName, isLoading, learnCard, addNewCard } = usePackCards()
+  const { isMe, packName, isLoading, learnCard, addNewCard, status } = usePackCards()
   const navigate = useNavigate()
   const returnToPackList = () => navigate(-1)
 
@@ -15,6 +15,7 @@ export const Pack = () => {
     <>
       <NavigationToBack onClick={returnToPackList} />
       <SubHeader
+        disabled={status === 'loading'}
         isVisible={!isLoading}
         title={packName}
         titleButton={isMe ? 'Add new card' : 'Learn to pack'}

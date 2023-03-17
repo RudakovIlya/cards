@@ -6,12 +6,13 @@ type PaginationType = {
   page: number // страницы
   rows: number // кол-во рядов
   count: number // общее кол-во
+  disabled: boolean
   onChange: (page: number) => void
   onChangePageCount: (pageCount: number) => void
 }
 
 export const Pagination: FC<PaginationType> = props => {
-  const { onChange, page, rows, onChangePageCount, count } = props
+  const { onChange, page, rows, onChangePageCount, count, disabled } = props
 
   const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     onChange(newPage)
@@ -20,6 +21,7 @@ export const Pagination: FC<PaginationType> = props => {
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     onChangePageCount(parseInt(event.target.value, 10))
   }
+  const isDisabled = Math.round(count / rows) - 1 === page
 
   return (
     <TablePagination
@@ -33,12 +35,17 @@ export const Pagination: FC<PaginationType> = props => {
       onRowsPerPageChange={handleChangeRowsPerPage}
       showFirstButton
       showLastButton
+      backIconButtonProps={{ disabled: disabled || page === 0 }}
+      nextIconButtonProps={{ disabled: disabled || isDisabled }}
       hidden={!count}
       sx={{
         '& .MuiTablePagination-toolbar': {
           padding: 0,
           margin: '20px 0',
         },
+      }}
+      SelectProps={{
+        disabled,
       }}
     />
   )

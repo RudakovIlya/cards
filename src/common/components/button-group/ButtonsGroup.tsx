@@ -9,10 +9,11 @@ import { useSwitch } from 'common/components'
 type ButtonsGroupType = {
   onClickMy?: () => void
   onClickAll?: () => void
+  disabled: boolean
 }
 
-export const ButtonsGroup: FC<ButtonsGroupType> = memo(({ onClickAll, onClickMy }) => {
-  const { onClickChangeColor, allActive, myActive, disabled } = useSwitch()
+export const ButtonsGroup: FC<ButtonsGroupType> = memo(({ onClickAll, onClickMy, disabled }) => {
+  const { onClickChangeColor, allActive, myActive, disabled: disable } = useSwitch()
 
   return (
     <div>
@@ -21,7 +22,7 @@ export const ButtonsGroup: FC<ButtonsGroupType> = memo(({ onClickAll, onClickMy 
       </Typography>
       <ButtonGroup variant="contained">
         <Button
-          disabled={!!disabled}
+          disabled={!!disable || disabled}
           sx={myActive}
           onClick={onClickChangeColor(onClickMy)}
           size={'large'}
@@ -29,7 +30,7 @@ export const ButtonsGroup: FC<ButtonsGroupType> = memo(({ onClickAll, onClickMy 
           My
         </Button>
         <Button
-          disabled={!disabled}
+          disabled={!disable || disabled}
           sx={allActive}
           onClick={onClickChangeColor(onClickAll)}
           size={'large'}

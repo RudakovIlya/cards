@@ -5,7 +5,7 @@ import Slider, { SliderProps } from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 
 export const CustomSlider: FC<SliderProps & { values: number[]; minMax: number[] }> = memo(
-  ({ values, minMax, ...props }) => {
+  ({ values, minMax, disabled, ...props }) => {
     const [value, setValue] = useState<number[]>(values)
 
     const handleChange = (event: any, newValue: number | number[]) => {
@@ -33,7 +33,7 @@ export const CustomSlider: FC<SliderProps & { values: number[]; minMax: number[]
             onChange={handleChange}
             min={values[0]}
             max={values[1]}
-            disabled={!values[1]}
+            disabled={!values[1] || disabled}
             {...props}
           />
           <span>max: {value[1]}</span>

@@ -1,5 +1,6 @@
 import { ButtonsGroup, CustomSlider, Filters, InputSearch, ResetButton, Pagination } from 'common'
 import { useFilters } from 'features/packs-list/use-filters'
+import { usePackList } from 'features/packs-list/use-packlist'
 
 export const FilterPanels = () => {
   const {
@@ -20,22 +21,30 @@ export const FilterPanels = () => {
     cardPacksTotalCount,
   } = useFilters()
 
+  const { status } = usePackList()
+
   return (
     <Filters>
       <InputSearch onChangeValue={onSearchChange} searchValue={packName} />
-      <ButtonsGroup onClickMy={getMyPacks} onClickAll={getAllPacks} />
+      <ButtonsGroup
+        disabled={status === 'loading'}
+        onClickMy={getMyPacks}
+        onClickAll={getAllPacks}
+      />
       <CustomSlider
+        disabled={status === 'loading'}
         minMax={[min, max]}
         onChangeCommitted={onChangeSliderValue}
         values={[minCardsCount, maxCardsCount]}
       />
-      <ResetButton onClick={onReset} />
+      <ResetButton disabled={status === 'loading'} onClick={onReset} />
       <Pagination
         onChange={onPaginationChange}
         page={page}
         rows={pageCount}
         onChangePageCount={onChangePageCount}
         count={cardPacksTotalCount}
+        disabled={status === 'loading'}
       />
     </Filters>
   )
