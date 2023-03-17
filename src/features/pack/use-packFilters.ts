@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
-import { getPack, packActions } from 'features/pack/pack-slice'
+import { addCard, getPack, packActions } from 'features/pack/pack-slice'
 import {
   packQuestionParams,
   packCardPacksTotalCount,
@@ -11,9 +11,9 @@ import {
   pageParams,
   pageCountParams,
 } from 'features/pack/selectors/selectors'
+import { useProfile } from 'features/profile'
 
 export const usePackFilters = () => {
-  const dispatch = useAppDispatch()
   const { packId } = useParams<{ packId: string }>()
 
   // pack data
@@ -25,6 +25,19 @@ export const usePackFilters = () => {
   const user_id = useAppSelector(user_idParams)
   const searchValue = useAppSelector(packQuestionParams)
 
+  const dispatch = useAppDispatch()
+  const addNewCard = () => {
+    dispatch(
+      addCard({
+        card: {
+          cardsPack_id: packId as string,
+          question: 'Will u be my slave?',
+          answer: 'Of course',
+        },
+      })
+    )
+    console.log('addNewCard')
+  }
   const onSearchChange = useCallback((search: string) => {
     dispatch(packActions.setQueryParams({ cardQuestion: search }))
   }, [])

@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { AddCardRequestType, UpdateCardRequestType } from './types'
+
 import { errorUtils } from 'common'
 import { packAPI, PackResponse, QueryPackParams } from 'features/pack'
-import { ThunkAPIType } from 'features/packs-list/pack-listSlice'
+import { getPackList, ThunkAPIType } from 'features/packs-list/pack-listSlice'
 
 type InitialStateType = {
   pack: PackResponse
@@ -43,6 +45,43 @@ export const getPack = createAsyncThunk<PackResponse, { cardsPack_id: string }, 
       const response = await packAPI.getPack({ ...params, ...data })
 
       return response.data
+    } catch (e) {
+      const error = errorUtils(e)
+
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const addCard = createAsyncThunk<void, AddCardRequestType, ThunkAPIType>(
+  'pack/add-card',
+  async (data, { dispatch }) => {
+    await packAPI.addCard(data)
+
+    dispatch(getPackList())
+  }
+)
+
+export const updateCard = createAsyncThunk<void, UpdateCardRequestType, ThunkAPIType>(
+  'pack/update-card',
+  async (data, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await packAPI.updateCard(data)
+
+      dispatch(getPackList())
+    } catch (e) {
+      const error = errorUtils(e)
+
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const deleteCard = createAsyncThunk<void, string, ThunkAPIType>(
+  'pack/delete-card',
+  async (id: string, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await packAPI.deleteCard(id)
     } catch (e) {
       const error = errorUtils(e)
 

@@ -38,8 +38,8 @@ export type AddCardRequestType = {
 
 export type AddCardType = {
   cardsPack_id: string
-  question?: string
-  answer?: string
+  question: string
+  answer: string
   grade?: number
   shots?: number
   answerImg?: string
@@ -49,14 +49,14 @@ export type AddCardType = {
 }
 
 export type UpdateCardType = {
-  cardsPack_id: string
-  answer?: string
-  grade?: number
-  shots?: number
-  answerImg?: string
-  questionImg?: string
-  questionVideo?: string
-  answerVideo?: string
+  // cardsPack_id: string
+  // answer?: string
+  // grade?: number
+  // shots?: number
+  // answerImg?: string
+  // questionImg?: string
+  // questionVideo?: string
+  // answerVideo?: string
   _id: string
   question: string
 }

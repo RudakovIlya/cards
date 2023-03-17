@@ -8,6 +8,7 @@ export const usePackCards = () => {
   const packName = useAppSelector(state => state.pack.pack.packName)
   const isLoading = useAppSelector(state => state.pack.isLoading)
   const isMe = packUserId === _id
+  const packCards = useAppSelector(state => state.pack.pack.cards)
 
   const addNewCard = () => {
     console.log('addNewCard')
@@ -17,5 +18,5 @@ export const usePackCards = () => {
     console.log('learnCard')
   }
 
-  return { isMe, packName, isLoading, addNewCard, learnCard }
+  return { isMe, packName, isLoading, addNewCard, learnCard, packCards }
 }

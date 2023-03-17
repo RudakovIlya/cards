@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
+import { MyPackTable } from './my-pack-table/MyPackTable'
+
 import { NavigationToBack, SubHeader } from 'common'
 import { FilterPanels } from 'features/pack/filter-panels/FilterPanels'
 import { usePackCards } from 'features/pack/use-pack-cards'
@@ -19,6 +21,7 @@ export const Pack = () => {
         onClick={isMe ? addNewCard : learnCard}
       />
       <FilterPanels />
+      <MyPackTable />
     </>
   )
 }
