@@ -1,8 +1,7 @@
 import * as React from 'react'
-import { useEffect } from 'react'
 
+import { Rating } from '@mui/material'
 import Box from '@mui/material/Box'
-import { idID } from '@mui/material/locale'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -12,14 +11,13 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
-import { useNavigate } from 'react-router-dom'
 
 import { usePackCards } from '../use-pack-cards'
 
 import pack_table_delete from 'assets/img/pack-table-delete.svg'
 import pack_table_edit from 'assets/img/pack-table-edit.svg'
-import pack_table_teacher from 'assets/img/pack-table-teacher.svg'
 import { useProfile } from 'features/profile'
+
 type Order = 'asc' | 'desc'
 
 type Data = {
@@ -87,7 +85,6 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
 export const MyPackTable = () => {
   const { packCards } = usePackCards()
   const userProfileData = useProfile()
-  const navigate = useNavigate()
   const [order, setOrder] = React.useState<Order>('asc')
   const [orderBy, setOrderBy] = React.useState<keyof Data>('question')
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
@@ -96,23 +93,6 @@ export const MyPackTable = () => {
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
   }
-
-  const onClickNavigateToCardsHandler = (id: string) => {
-    return () => navigate(`/pack/${id}`)
-  }
-
-  // const onClickEditPackHandler = (id: string) => {
-  //   return () =>
-  //     dispatch(
-  //       updatePack({
-  //         cardsPack: { name: `New Name(Жоские) ${Math.random()}`, _id: id, deckCover: '' },
-  //       })
-  //     )
-  // }
-  //
-  // const onClickDeletePackHandler = (id: string) => {
-  //   return () => dispatch(deletePack(id))
-  // }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -129,27 +109,19 @@ export const MyPackTable = () => {
               {packCards?.map(p => (
                 <TableRow hover key={p._id}>
                   <TableCell component="th" scope="row">
-                    <div style={{ display: 'flex', height: '35px' }}>
-                      {/*{p.deckCover && <img alt="img" src={p.deckCover} />}*/}
-                    </div>
+                    <div style={{ display: 'flex', height: '35px' }}>{p.question}</div>
                   </TableCell>
                   <TableCell onClick={() => {}} align="left">
-                    {/*{p.cardsCount}*/}
+                    {p.answer}
                   </TableCell>
                   <TableCell onClick={() => {}} align="left">
                     {p.updated?.slice(0, 10)}
                   </TableCell>
-                  <TableCell align="left">{p.cardsPack_id}</TableCell>
+                  <TableCell align="left">
+                    <Rating name="read-only" value={p.grade} readOnly />
+                  </TableCell>
                   <TableCell align="left">
                     <>
-                      <span>
-                        <img
-                          style={{ paddingLeft: '10px', cursor: 'pointer' }}
-                          src={pack_table_teacher}
-                          alt="edit"
-                          // onClick={() => onClickAddCardHandler()}
-                        />
-                      </span>
                       {userProfileData._id === p.user_id && (
                         <>
                           <span>
