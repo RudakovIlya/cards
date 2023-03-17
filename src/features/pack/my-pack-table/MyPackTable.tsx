@@ -1,8 +1,8 @@
-import * as React from 'react'
+import { MouseEvent, useState } from 'react'
 
-import { Rating } from '@mui/material'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
+import Rating from '@mui/material/Rating'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -16,7 +16,7 @@ import { usePackCards } from '../use-pack-cards'
 
 import pack_table_delete from 'assets/img/pack-table-delete.svg'
 import pack_table_edit from 'assets/img/pack-table-edit.svg'
-import { useProfile } from 'features/profile'
+import { TableSkeleton } from 'common'
 
 type Order = 'asc' | 'desc'
 
@@ -40,7 +40,7 @@ const headCells: readonly HeadCell[] = [
 ]
 
 interface EnhancedTableProps {
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void
+  onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void
   order: Order
   orderBy: string
   rowCount: number
@@ -49,7 +49,7 @@ interface EnhancedTableProps {
 export const EnhancedTableHead = (props: EnhancedTableProps) => {
   const { order, orderBy, onRequestSort } = props
 
-  const createSortHandler = (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+  const createSortHandler = (property: keyof Data) => (event: MouseEvent<unknown>) => {
     onRequestSort(event, property)
   }
 
@@ -83,16 +83,54 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
 }
 
 export const MyPackTable = () => {
-  const { packCards } = usePackCards()
-  const userProfileData = useProfile()
-  const [order, setOrder] = React.useState<Order>('asc')
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('question')
-  const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
+  const { packCards, removeCard, updateCurrentCard, isMe, status } = usePackCards()
+  const [order, setOrder] = useState<Order>('asc')
+  const [orderBy, setOrderBy] = useState<keyof Data>('question')
+  const handleRequestSort = (event: MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc'
 
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
   }
+
+  const packItems = packCards.map(p => (
+    <TableRow hover key={p._id}>
+      <TableCell component="th" scope="row">
+        <div style={{ display: 'flex', height: '35px' }}>{p.question}</div>
+      </TableCell>
+      <TableCell onClick={() => {}} align="left">
+        {p.answer}
+      </TableCell>
+      <TableCell onClick={() => {}} align="left">
+        {p.updated?.slice(0, 10)}
+      </TableCell>
+      <TableCell align="left">
+        <Rating name="read-only" value={p.grade} readOnly />
+      </TableCell>
+      <TableCell align="left">
+        <>
+          {isMe && (
+            <>
+              <span>
+                <img
+                  style={{ paddingLeft: '15px', cursor: 'pointer' }}
+                  src={pack_table_edit}
+                  alt="edit"
+                  onClick={updateCurrentCard(p._id)}
+                />
+                <img
+                  style={{ paddingLeft: '15px', cursor: 'pointer' }}
+                  src={pack_table_delete}
+                  alt="delete"
+                  onClick={removeCard(p._id)}
+                />
+              </span>
+            </>
+          )}
+        </>
+      </TableCell>
+    </TableRow>
+  ))
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -106,44 +144,8 @@ export const MyPackTable = () => {
               rowCount={8}
             />
             <TableBody>
-              {packCards?.map(p => (
-                <TableRow hover key={p._id}>
-                  <TableCell component="th" scope="row">
-                    <div style={{ display: 'flex', height: '35px' }}>{p.question}</div>
-                  </TableCell>
-                  <TableCell onClick={() => {}} align="left">
-                    {p.answer}
-                  </TableCell>
-                  <TableCell onClick={() => {}} align="left">
-                    {p.updated?.slice(0, 10)}
-                  </TableCell>
-                  <TableCell align="left">
-                    <Rating name="read-only" value={p.grade} readOnly />
-                  </TableCell>
-                  <TableCell align="left">
-                    <>
-                      {userProfileData._id === p.user_id && (
-                        <>
-                          <span>
-                            <img
-                              style={{ paddingLeft: '15px', cursor: 'pointer' }}
-                              src={pack_table_edit}
-                              alt="edit"
-                              // onClick={onClickEditPackHandler(p._id)}
-                            />
-                            <img
-                              style={{ paddingLeft: '15px', cursor: 'pointer' }}
-                              src={pack_table_delete}
-                              alt="delete"
-                              // onClick={onClickDeletePackHandler(p._id)}
-                            />
-                          </span>
-                        </>
-                      )}
-                    </>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {status === 'succeeded' && packItems}
+              {status === 'loading' && <TableSkeleton />}
             </TableBody>
           </Table>
         </TableContainer>

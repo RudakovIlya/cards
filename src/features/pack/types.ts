@@ -29,7 +29,7 @@ export type PackResponse = {
   minGrade: number
   page: number
   pageCount: number
-  packUserId: string | null
+  packUserId: string
 }
 
 export type AddCardRequestType = {
@@ -38,8 +38,8 @@ export type AddCardRequestType = {
 
 export type AddCardType = {
   cardsPack_id: string
-  question: string
-  answer: string
+  question?: string
+  answer?: string
   grade?: number
   shots?: number
   answerImg?: string

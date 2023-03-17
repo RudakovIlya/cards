@@ -3,15 +3,13 @@ import { useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
-import { addCard, getPack, packActions } from 'features/pack/pack-slice'
+import { getPack, packActions } from 'features/pack/pack-slice'
 import {
   packQuestionParams,
   packCardPacksTotalCount,
-  user_idParams,
   pageParams,
   pageCountParams,
 } from 'features/pack/selectors/selectors'
-import { useProfile } from 'features/profile'
 
 export const usePackFilters = () => {
   const { packId } = useParams<{ packId: string }>()
@@ -22,22 +20,10 @@ export const usePackFilters = () => {
   // pack query-params
   const pageParam = useAppSelector(pageParams)
   const pageCountParam = useAppSelector(pageCountParams)
-  const user_id = useAppSelector(user_idParams)
   const searchValue = useAppSelector(packQuestionParams)
 
   const dispatch = useAppDispatch()
-  const addNewCard = () => {
-    dispatch(
-      addCard({
-        card: {
-          cardsPack_id: packId as string,
-          question: 'Will u be my slave?',
-          answer: 'Of course',
-        },
-      })
-    )
-    console.log('addNewCard')
-  }
+
   const onSearchChange = useCallback((search: string) => {
     dispatch(packActions.setQueryParams({ cardQuestion: search }))
   }, [])
@@ -52,9 +38,11 @@ export const usePackFilters = () => {
 
   useEffect(() => {
     dispatch(getPack({ cardsPack_id: packId as string }))
-  }, [searchValue, user_id, pageParam, pageCountParam])
+  }, [searchValue, pageParam, pageCountParam])
 
   useEffect(() => {
+    dispatch(packActions.setQueryParams({ cardsPack_id: packId as string }))
+
     return () => {
       dispatch(packActions.resetPackData())
     }

@@ -4,12 +4,13 @@ import { AddCardRequestType, UpdateCardRequestType } from './types'
 
 import { errorUtils } from 'common'
 import { packAPI, PackResponse, QueryPackParams } from 'features/pack'
-import { getPackList, ThunkAPIType } from 'features/packs-list/pack-listSlice'
+import { ThunkAPIType } from 'features/packs-list/pack-listSlice'
 
 type InitialStateType = {
   pack: PackResponse
   queryParams: QueryPackParams
   isLoading: boolean
+  status: 'idle' | 'loading' | 'succeeded' | 'failed'
 }
 
 const initialState: InitialStateType = {
@@ -34,15 +35,16 @@ const initialState: InitialStateType = {
     cardAnswer: '',
   },
   isLoading: false,
+  status: 'idle',
 }
 
 export const getPack = createAsyncThunk<PackResponse, { cardsPack_id: string }, ThunkAPIType>(
   'pack/get-pack',
-  async (data, { rejectWithValue, getState }) => {
+  async (id, { rejectWithValue, getState }) => {
     const params = getState().pack.queryParams
 
     try {
-      const response = await packAPI.getPack({ ...params, ...data })
+      const response = await packAPI.getPack({ ...params, ...id })
 
       return response.data
     } catch (e) {
@@ -55,20 +57,29 @@ export const getPack = createAsyncThunk<PackResponse, { cardsPack_id: string }, 
 
 export const addCard = createAsyncThunk<void, AddCardRequestType, ThunkAPIType>(
   'pack/add-card',
-  async (data, { dispatch }) => {
-    await packAPI.addCard(data)
+  async (data, { dispatch, getState, rejectWithValue }) => {
+    const cardsPack_id = getState().pack.queryParams.cardsPack_id
 
-    dispatch(getPackList())
+    try {
+      await packAPI.addCard(data)
+
+      dispatch(getPack({ cardsPack_id }))
+    } catch (e) {
+      const error = errorUtils(e)
+
+      return rejectWithValue(error)
+    }
   }
 )
 
 export const updateCard = createAsyncThunk<void, UpdateCardRequestType, ThunkAPIType>(
   'pack/update-card',
-  async (data, { rejectWithValue, dispatch }) => {
-    try {
-      const response = await packAPI.updateCard(data)
+  async (data, { rejectWithValue, dispatch, getState }) => {
+    const cardsPack_id = getState().pack.queryParams.cardsPack_id
 
-      dispatch(getPackList())
+    try {
+      await packAPI.updateCard(data)
+      dispatch(getPack({ cardsPack_id }))
     } catch (e) {
       const error = errorUtils(e)
 
@@ -79,9 +90,12 @@ export const updateCard = createAsyncThunk<void, UpdateCardRequestType, ThunkAPI
 
 export const deleteCard = createAsyncThunk<void, string, ThunkAPIType>(
   'pack/delete-card',
-  async (id: string, { rejectWithValue, dispatch }) => {
+  async (id: string, { rejectWithValue, dispatch, getState }) => {
+    const cardsPack_id = getState().pack.queryParams.cardsPack_id
+
     try {
-      const res = await packAPI.deleteCard(id)
+      await packAPI.deleteCard(id)
+      dispatch(getPack({ cardsPack_id }))
     } catch (e) {
       const error = errorUtils(e)
 
@@ -105,10 +119,16 @@ const packSlice = createSlice({
     builder
       .addCase(getPack.pending, state => {
         state.isLoading = true
+        state.status = 'loading'
       })
       .addCase(getPack.fulfilled, (state, action) => {
         state.pack = action.payload
         state.isLoading = false
+        state.status = 'succeeded'
+      })
+      .addCase(getPack.rejected, state => {
+        state.isLoading = false
+        state.status = 'failed'
       })
   },
 })
