@@ -4,17 +4,32 @@ import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
 import { getPack, packActions } from 'features/pack/pack-slice'
+import {
+  packQuestionParams,
+  packCardPacksTotalCount,
+  user_idParams,
+  pageParams,
+  pageCountParams,
+} from 'features/pack/selectors/selectors'
 
 export const usePackFilters = () => {
+  const dispatch = useAppDispatch()
   const { packId } = useParams<{ packId: string }>()
 
-  const dispatch = useAppDispatch()
+  // pack data
+  const cardsTotalCount = useAppSelector(packCardPacksTotalCount)
 
-  const packTitle = useAppSelector(state => state.pack.pack.packName)
+  // pack query-params
+  const pageParam = useAppSelector(pageParams)
+  const pageCountParam = useAppSelector(pageCountParams)
+  const user_id = useAppSelector(user_idParams)
+  const searchValue = useAppSelector(packQuestionParams)
 
-  const { page, pageCount, cardsTotalCount, packName } = useAppSelector(state => state.pack.pack)
+  const onSearchChange = useCallback((search: string) => {
+    dispatch(packActions.setQueryParams({ cardQuestion: search }))
+  }, [])
 
-  const onPaginationChange = useCallback((page: number) => {
+  const onChangePagination = useCallback((page: number) => {
     dispatch(packActions.setQueryParams({ page }))
   }, [])
 
@@ -22,26 +37,23 @@ export const usePackFilters = () => {
     dispatch(packActions.setQueryParams({ pageCount }))
   }, [])
 
-  const onSearchChange = useCallback((search: string) => {
-    dispatch(packActions.setQueryParams({ cardAnswer: search }))
-  }, [])
+  useEffect(() => {
+    dispatch(getPack({ cardsPack_id: packId as string }))
+  }, [searchValue, user_id, pageParam, pageCountParam])
 
   useEffect(() => {
-    dispatch(getPack({ cardsPack_id: packId }))
-
     return () => {
       dispatch(packActions.resetPackData())
     }
   }, [])
 
   return {
-    page,
-    pageCount,
+    pageParam,
+    pageCountParam,
     cardsTotalCount,
-    packTitle,
-    packName,
+    searchValue,
     onSearchChange,
-    onPaginationChange,
     onChangePageCount,
+    onChangePagination,
   }
 }

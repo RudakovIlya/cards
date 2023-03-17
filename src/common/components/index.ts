@@ -13,13 +13,16 @@ import { Layout } from './layout/Layout'
 import { LinkWrapper } from './link/CustomLink'
 import { MainPreloader } from './main-preloader/MainPreloader'
 import { NavigationToBack } from './navigation-to-back/NavigationToBack'
+import { Pagination } from './pagination/Pagination'
 import { PasswordInput } from './password/PasswordInput'
 import { Portal } from './portal/Portal'
+import { DotsPreloader } from './preloader/DotsPreloader'
 import { ProfileAvatar } from './profile-avatar/ProfileAvatar'
 import { ResetButton } from './reset-button/ResetButton'
 import { CustomSlider } from './slider/CustomSlider'
 import { DescriptionSnackbar } from './snackbar/Snackbar'
 import { SubHeader } from './sub-header/SubHeader'
+import { TableSkeleton } from './table-skeleton/TableSkeleton'
 import { UserName } from './user-name/UserName'
 import { ValidError } from './valid-error/ValidError'
 
@@ -48,4 +51,7 @@ export {
   CustomSlider,
   ResetButton,
   useSwitch,
+  Pagination,
+  DotsPreloader,
+  TableSkeleton,
 }

@@ -8,7 +8,7 @@ export const Filters: FC<PropsWithChildren> = ({ children }) => {
       container
       justifyContent={'space-between'}
       alignItems={'center'}
-      sx={{ paddingTop: 5, marginBottom: 3 }}
+      sx={{ paddingTop: 3, marginBottom: 3 }}
     >
       {children}
     </Grid>

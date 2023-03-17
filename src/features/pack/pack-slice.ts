@@ -4,24 +4,10 @@ import { errorUtils } from 'common'
 import { packAPI, PackResponse, QueryPackParams } from 'features/pack'
 import { ThunkAPIType } from 'features/packs-list/pack-listSlice'
 
-export const getPack = createAsyncThunk<PackResponse, Partial<QueryPackParams>, ThunkAPIType>(
-  'pack/get-pack',
-  async (data = {}, { rejectWithValue }) => {
-    try {
-      const response = await packAPI.getPack(data)
-
-      return response.data
-    } catch (e) {
-      const error = errorUtils(e)
-
-      return rejectWithValue(error)
-    }
-  }
-)
-
 type InitialStateType = {
   pack: PackResponse
   queryParams: QueryPackParams
+  isLoading: boolean
 }
 
 const initialState: InitialStateType = {
@@ -45,7 +31,25 @@ const initialState: InitialStateType = {
     sortCards: '0updated',
     cardAnswer: '',
   },
+  isLoading: false,
 }
+
+export const getPack = createAsyncThunk<PackResponse, { cardsPack_id: string }, ThunkAPIType>(
+  'pack/get-pack',
+  async (data, { rejectWithValue, getState }) => {
+    const params = getState().pack.queryParams
+
+    try {
+      const response = await packAPI.getPack({ ...params, ...data })
+
+      return response.data
+    } catch (e) {
+      const error = errorUtils(e)
+
+      return rejectWithValue(error)
+    }
+  }
+)
 
 const packSlice = createSlice({
   name: 'pack',
@@ -59,9 +63,14 @@ const packSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getPack.fulfilled, (state, action) => {
-      state.pack = action.payload
-    })
+    builder
+      .addCase(getPack.pending, state => {
+        state.isLoading = true
+      })
+      .addCase(getPack.fulfilled, (state, action) => {
+        state.pack = action.payload
+        state.isLoading = false
+      })
   },
 })
 

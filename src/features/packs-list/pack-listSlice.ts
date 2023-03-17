@@ -9,6 +9,7 @@ import { packListAPI, PackListResponse, QueryParams } from 'features/packs-list'
 type InitialStateType = {
   packList: PackListResponse
   queryParams: QueryParams
+  status: 'idle' | 'loading' | 'succeeded' | 'failed'
 }
 
 const initialState: InitialStateType = {
@@ -30,6 +31,7 @@ const initialState: InitialStateType = {
     pageCount: 7,
     sortPacks: '0updated',
   },
+  status: 'idle',
 }
 
 export type ThunkAPIType = {
@@ -56,10 +58,16 @@ export const getPackList = createAsyncThunk<PackListResponse, void, ThunkAPIType
 
 export const addPack = createAsyncThunk<void, AddPackRequestType, ThunkAPIType>(
   'pack-list/add-pack',
-  async (data, { dispatch }) => {
-    await packListAPI.addPack(data)
+  async (data, { dispatch, rejectWithValue }) => {
+    try {
+      await packListAPI.addPack(data)
 
-    dispatch(getPackList())
+      dispatch(getPackList())
+    } catch (e) {
+      const error = errorUtils(e)
+
+      return rejectWithValue(error)
+    }
   }
 )
 
@@ -105,9 +113,17 @@ export const packListSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getPackList.fulfilled, (state, action) => {
-      state.packList = action.payload
-    })
+    builder
+      .addCase(getPackList.pending, state => {
+        state.status = 'loading'
+      })
+      .addCase(getPackList.fulfilled, (state, action) => {
+        state.packList = action.payload
+        state.status = 'succeeded'
+      })
+      .addCase(getPackList.rejected, state => {
+        state.status = 'failed'
+      })
   },
 })
 

@@ -20,7 +20,12 @@ export const PackList = () => {
 
   return (
     <div>
-      <SubHeader title={'Pack list'} titleButton={'Add new pack'} onClick={addNewPack} />
+      <SubHeader
+        isVisible={true}
+        title={'Pack list'}
+        titleButton={'Add new pack'}
+        onClick={addNewPack}
+      />
       <FilterPanels />
       <PackTable />
     </div>

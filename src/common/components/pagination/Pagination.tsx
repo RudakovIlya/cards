@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, MouseEvent, useMemo } from 'react'
+import { ChangeEvent, FC, MouseEvent } from 'react'
 
 import TablePagination from '@mui/material/TablePagination'
 
@@ -21,14 +21,12 @@ export const Pagination: FC<PaginationType> = props => {
     onChangePageCount(parseInt(event.target.value, 10))
   }
 
-  const totalCount = useMemo(() => Math.ceil(count / rows), [count, rows])
-
   return (
     <TablePagination
       component="div"
-      count={totalCount}
-      page={!totalCount || totalCount <= 0 ? 0 : page} // добавить -1 (page - 1) || !count || count <= 0 ? 0 : page
-      // page={page > 0 && count < rows ? 0 : page} // добавить -1 (page - 1) || !count || count <= 0 ? 0 : page
+      count={count}
+      //page={!count || count <= 0 ? 0 : page} // добавить -1 (page - 1) || !count || count <= 0 ? 0 : page
+      page={page > 0 && count < rows ? 0 : page} // добавить -1 (page - 1) || !count || count <= 0 ? 0 : page
       rowsPerPageOptions={[4, 7, 10]}
       onPageChange={handleChangePage}
       rowsPerPage={rows}

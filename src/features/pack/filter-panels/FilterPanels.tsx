@@ -1,27 +1,26 @@
-import { Filters, InputSearch } from 'common'
-import { Pagination } from 'common/components/pagination/Pagination'
+import { Filters, InputSearch, Pagination } from 'common'
 import { usePackFilters } from 'features/pack/use-packFilters'
 
 export const FilterPanels = () => {
   const {
-    packName,
-    cardsTotalCount,
-    pageCount,
-    page,
-    onChangePageCount,
-    onPaginationChange,
+    searchValue,
     onSearchChange,
+    onChangePagination,
+    onChangePageCount,
+    pageParam,
+    pageCountParam,
+    cardsTotalCount,
   } = usePackFilters()
 
   return (
     <Filters>
-      <InputSearch onChangeValue={onSearchChange} searchValue={packName} />
+      <InputSearch onChangeValue={onSearchChange} searchValue={searchValue} />
       <Pagination
-        onChange={onPaginationChange}
-        page={page}
-        rows={pageCount}
-        onChangePageCount={onChangePageCount}
+        page={pageParam}
+        rows={pageCountParam}
         count={cardsTotalCount}
+        onChange={onChangePagination}
+        onChangePageCount={onChangePageCount}
       />
     </Filters>
   )

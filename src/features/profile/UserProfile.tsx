@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
+import { useNavigate } from 'react-router-dom'
 
 import edit_photo from 'assets/img/edit_photo.svg'
 import profile_logout from 'assets/img/profile_logout.svg'
@@ -20,6 +21,9 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 export const UserProfile = () => {
   const userProfileData = useProfile()
   const { logoutHandler, isLoggedIn } = useAuth()
+  const navigate = useNavigate()
+
+  const returnToPackList = () => navigate(paths.PACK_LIST)
 
   useRedirect(paths.LOGIN, !isLoggedIn)
 
@@ -32,7 +36,7 @@ export const UserProfile = () => {
       alignItems={'center'}
     >
       <div>
-        <NavigationToBack />
+        <NavigationToBack onClick={returnToPackList} />
       </div>
       <Paper
         elevation={3}

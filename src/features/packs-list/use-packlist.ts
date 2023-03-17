@@ -2,11 +2,19 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
 import { deletePack, updatePack } from 'features/packs-list/pack-listSlice'
+import {
+  packListCardPacks,
+  packListStatus,
+  pageCountParams,
+} from 'features/packs-list/selectors/selectors'
 
 export const usePackList = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
+  const cardPacks = useAppSelector(packListCardPacks)
+  const status = useAppSelector(packListStatus)
+  const pageCount = useAppSelector(pageCountParams)
   const onClickNavigateToCardsHandler = (id: string) => {
     return () => navigate(`/pack/${id}`)
   }
@@ -23,10 +31,11 @@ export const usePackList = () => {
   const onClickDeletePackHandler = (id: string) => {
     return () => dispatch(deletePack(id))
   }
-  const cardPacks = useAppSelector(state => state.packList.packList.cardPacks)
 
   return {
+    status,
     cardPacks,
+    pageCount,
     onClickNavigateToCardsHandler,
     onClickEditPackHandler,
     onClickDeletePackHandler,

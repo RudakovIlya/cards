@@ -1,5 +1,4 @@
-import { ButtonsGroup, CustomSlider, Filters, InputSearch, ResetButton } from 'common'
-import { Pagination } from 'common/components/pagination/Pagination'
+import { ButtonsGroup, CustomSlider, Filters, InputSearch, ResetButton, Pagination } from 'common'
 import { useFilters } from 'features/packs-list/use-filters'
 
 export const FilterPanels = () => {
