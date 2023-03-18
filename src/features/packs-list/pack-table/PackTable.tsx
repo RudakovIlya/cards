@@ -25,7 +25,7 @@ type Data = {
   cardsCount: string
   updated: string
   user_name: string
-  empty: string
+  without_sort: string
 }
 
 type HeadCell = {
@@ -38,7 +38,7 @@ const headCells: readonly HeadCell[] = [
   { id: 'cardsCount', label: 'Cards' },
   { id: 'updated', label: 'Last updated' },
   { id: 'user_name', label: 'Created by' },
-  { id: 'empty', label: 'Actions' },
+  { id: 'without_sort', label: 'Actions' },
 ]
 
 interface EnhancedTableProps {
@@ -65,18 +65,22 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
             padding={'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </Box>
-              ) : null}
-            </TableSortLabel>
+            {headCell.id === 'without_sort' ? (
+              headCell.label
+            ) : (
+              <TableSortLabel
+                active={orderBy === headCell.id}
+                direction={orderBy === headCell.id ? order : 'asc'}
+                onClick={createSortHandler(headCell.id)}
+              >
+                {headCell.label}
+                {orderBy === headCell.id ? (
+                  <Box component="span" sx={visuallyHidden}>
+                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  </Box>
+                ) : null}
+              </TableSortLabel>
+            )}
           </TableCell>
         ))}
       </TableRow>
