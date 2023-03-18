@@ -72,6 +72,10 @@ export const useFilters = () => {
     dispatch(packListActions.setQueryParams({ pageCount }))
   }, [])
 
+  const onSortPackTable = useCallback((PackTableHeaderData: string) => {
+    dispatch(packListActions.setQueryParams({ sortPacks: PackTableHeaderData }))
+  }, [])
+
   useEffect(() => {
     dispatch(getPackList())
   }, [packName, user_id, max, min, sortPacks, page, pageCount])
@@ -89,8 +93,10 @@ export const useFilters = () => {
     onReset,
     getMyPacks,
     getAllPacks,
+    sortPacks,
     onChangeSliderValue,
     onPaginationChange, // это изменение пагинации
     onChangePageCount,
+    onSortPackTable,
   }
 }

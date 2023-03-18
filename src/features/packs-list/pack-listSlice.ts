@@ -55,7 +55,6 @@ export const getPackList = createAsyncThunk<PackListResponseType, void, ThunkAPI
   async (_, { rejectWithValue, getState }) => {
     try {
       const params = getState().packList.queryParams
-
       const response = await packListAPI.getPackList({ ...params })
 
       return response.data

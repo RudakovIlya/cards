@@ -1,5 +1,3 @@
-import { MouseEvent, useState } from 'react'
-
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
@@ -10,31 +8,17 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import TableSortLabel from '@mui/material/TableSortLabel'
-import { visuallyHidden } from '@mui/utils'
 
 import { TableSkeleton } from 'common'
-import { usePackList } from 'features/packs-list'
+import { useFilters, usePackList } from 'features/packs-list'
+import {
+  EnhancedTableHead,
+  HeadCellType,
+} from 'features/packs-list/pack-table/pack-table-header/EnhancedTableHead'
 import { useProfile } from 'features/profile'
 
-type Order = 'asc' | 'desc'
-
-type Data = {
-  name: string
-  cardsCount: string
-  updated: string
-  user_name: string
-  empty: string
-}
-
-type HeadCell = {
-  id: keyof Data
-  label: string
-}
-
-const headCells: readonly HeadCell[] = [
+const headCells: HeadCellType[] = [
   { id: 'name', label: 'Name' },
   { id: 'cardsCount', label: 'Cards' },
   { id: 'updated', label: 'Last updated' },
@@ -42,62 +26,11 @@ const headCells: readonly HeadCell[] = [
   { id: 'empty', label: 'Actions' },
 ]
 
-interface EnhancedTableProps {
-  onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void
-  order: Order
-  orderBy: string
-  rowCount: number
-}
-
-export const EnhancedTableHead = (props: EnhancedTableProps) => {
-  const { order, orderBy, onRequestSort } = props
-
-  const createSortHandler = (property: keyof Data) => (event: MouseEvent<unknown>) => {
-    onRequestSort(event, property)
-  }
-
-  return (
-    <TableHead>
-      <TableRow>
-        {headCells?.map(headCell => (
-          <TableCell
-            key={headCell.id}
-            align={'left'}
-            padding={'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  )
-}
-
 export const PackTable = () => {
   const userProfileData = useProfile()
   const { status, cardPacks, pageCount, editPack, removePack, navigateToCards } = usePackList()
 
-  const [order, setOrder] = useState<Order>('asc')
-  const [orderBy, setOrderBy] = useState<keyof Data>('name')
-
-  const handleRequestSort = (event: MouseEvent<unknown>, property: keyof Data) => {
-    const isAsc = orderBy === property && order === 'asc'
-
-    setOrder(isAsc ? 'desc' : 'asc')
-    setOrderBy(property)
-  }
+  const { onSortPackTable } = useFilters()
 
   const packItems = cardPacks.map(p => (
     <TableRow hover key={p._id}>
@@ -138,12 +71,7 @@ export const PackTable = () => {
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
-            <EnhancedTableHead
-              order={order}
-              orderBy={orderBy}
-              onRequestSort={handleRequestSort}
-              rowCount={8}
-            />
+            <EnhancedTableHead headCells={headCells} onSortPackTable={onSortPackTable} />
             <TableBody>
               {status === 'loading' && <TableSkeleton amountRow={pageCount} />}
               {status === 'succeeded' && packItems}
