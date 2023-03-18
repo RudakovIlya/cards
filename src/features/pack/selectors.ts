@@ -1,6 +1,5 @@
 import { RootState } from 'app/store'
 
-// pack query-params
 const minParams = (state: RootState) => state.pack.queryParams.min
 const maxParams = (state: RootState) => state.pack.queryParams.max
 const pageParams = (state: RootState) => state.pack.queryParams.page
@@ -9,14 +8,16 @@ const pageCountParams = (state: RootState) => state.pack.queryParams.pageCount
 const sortPacksParams = (state: RootState) => state.pack.queryParams.sortCards
 const packQuestionParams = (state: RootState) => state.pack.queryParams.cardQuestion
 
-// pack data
 const packPage = (state: RootState) => state.pack.pack.page
 const packPageCount = (state: RootState) => state.pack.pack.pageCount
 const packCardPacks = (state: RootState) => state.pack.pack.cards
+const packCardUserId = (state: RootState) => state.pack.pack.packUserId
 const packCardPacksTotalCount = (state: RootState) => state.pack.pack.cardsTotalCount
+const packCardPacksName = (state: RootState) => state.pack.pack.packName
+const packLoading = (state: RootState) => state.pack.isLoading
+const packStatus = (state: RootState) => state.pack.status
 
 export {
-  // pack query-params
   minParams,
   maxParams,
   pageParams,
@@ -24,9 +25,12 @@ export {
   pageCountParams,
   sortPacksParams,
   packQuestionParams,
-  // pack data
   packPage,
   packPageCount,
   packCardPacks,
   packCardPacksTotalCount,
+  packCardUserId,
+  packCardPacksName,
+  packLoading,
+  packStatus,
 }

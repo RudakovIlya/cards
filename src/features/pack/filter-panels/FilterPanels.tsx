@@ -1,6 +1,5 @@
 import { Filters, InputSearch, Pagination } from 'common'
-import { usePackCards } from 'features/pack/use-pack-cards'
-import { usePackFilters } from 'features/pack/use-packFilters'
+import { usePackFilters, usePackCards } from 'features/pack'
 
 export const FilterPanels = () => {
   const {

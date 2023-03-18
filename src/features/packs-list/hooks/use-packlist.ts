@@ -1,12 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
-import { deletePack, updatePack } from 'features/packs-list/pack-listSlice'
-import {
-  packListCardPacks,
-  packListStatus,
-  pageCountParams,
-} from 'features/packs-list/selectors/selectors'
+import { packListCardPacks, packListStatus, pageCountParams } from 'features/packs-list'
+import { addPack, deletePack, updatePack } from 'features/packs-list/pack-listSlice'
 
 export const usePackList = () => {
   const navigate = useNavigate()
@@ -15,11 +11,12 @@ export const usePackList = () => {
   const cardPacks = useAppSelector(packListCardPacks)
   const status = useAppSelector(packListStatus)
   const pageCount = useAppSelector(pageCountParams)
-  const onClickNavigateToCardsHandler = (id: string) => {
+
+  const navigateToCards = (id: string) => {
     return () => navigate(`/pack/${id}`)
   }
 
-  const onClickEditPackHandler = (id: string) => {
+  const editPack = (id: string) => {
     return () =>
       dispatch(
         updatePack({
@@ -28,7 +25,19 @@ export const usePackList = () => {
       )
   }
 
-  const onClickDeletePackHandler = (id: string) => {
+  const addNewPack = () => {
+    dispatch(
+      addPack({
+        cardsPack: {
+          name: 'New Pack (Жоские) ' + (Math.random() + 10),
+          deckCover: '',
+          private: false,
+        },
+      })
+    )
+  }
+
+  const removePack = (id: string) => {
     return () => dispatch(deletePack(id))
   }
 
@@ -36,8 +45,9 @@ export const usePackList = () => {
     status,
     cardPacks,
     pageCount,
-    onClickNavigateToCardsHandler,
-    onClickEditPackHandler,
-    onClickDeletePackHandler,
+    editPack,
+    addNewPack,
+    removePack,
+    navigateToCards,
   }
 }

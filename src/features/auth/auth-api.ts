@@ -1,11 +1,12 @@
-import { instance } from 'common/api-instance/api-instance'
+import { instance } from 'common'
 import {
-  ForgotEmail,
+  ForgotEmailDataType,
   LoginDataType,
   RegisterDataType,
   ResponseInfoType,
   ResponseProfileType,
   ResponseRegisterType,
+  SetPasswordDataType,
 } from 'features/auth'
 
 export const authAPI = {
@@ -16,18 +17,15 @@ export const authAPI = {
     return instance.post<ResponseProfileType>('/auth/login', data)
   },
   register(data: RegisterDataType) {
-    return instance.post<ResponseRegisterType>('/auth/register', {
-      email: data.email,
-      password: data.password,
-    })
+    return instance.post<ResponseRegisterType>('/auth/register', data)
   },
   logout() {
     return instance.delete<ResponseInfoType>('/auth/me')
   },
-  forgot(data: ForgotEmail) {
+  forgot(data: ForgotEmailDataType) {
     return instance.post<ResponseInfoType>('/auth/forgot', data)
   },
-  setNewPassword(data: { password: string; resetPasswordToken: string }) {
+  setNewPassword(data: SetPasswordDataType) {
     return instance.post<ResponseInfoType>('/auth/set-new-password', data)
   },
 }

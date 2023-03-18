@@ -1,6 +1,9 @@
-import { MouseEvent, useState } from 'react'
+import { FC, MouseEvent, useState } from 'react'
 
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Rating from '@mui/material/Rating'
 import Table from '@mui/material/Table'
@@ -12,11 +15,8 @@ import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
 
-import { usePackCards } from '../use-pack-cards'
-
-import pack_table_delete from 'assets/img/pack-table-delete.svg'
-import pack_table_edit from 'assets/img/pack-table-edit.svg'
 import { TableSkeleton } from 'common'
+import { usePackCards } from 'features/pack'
 
 type Order = 'asc' | 'desc'
 
@@ -39,16 +39,14 @@ const headCells: readonly HeadCell[] = [
   { id: 'grade', label: 'Grade' },
 ]
 
-interface EnhancedTableProps {
+type EnhancedTableProps = {
   onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void
   order: Order
   orderBy: string
   rowCount: number
 }
 
-export const EnhancedTableHead = (props: EnhancedTableProps) => {
-  const { order, orderBy, onRequestSort } = props
-
+export const EnhancedTableHead: FC<EnhancedTableProps> = ({ order, orderBy, onRequestSort }) => {
   const createSortHandler = (property: keyof Data) => (event: MouseEvent<unknown>) => {
     onRequestSort(event, property)
   }
@@ -83,7 +81,7 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
 }
 
 export const MyPackTable = () => {
-  const { packCards, removeCard, updateCurrentCard, isMe, status } = usePackCards()
+  const { packCards, removeCard, updateCurrentCard, isMe, status, pageCount } = usePackCards()
   const [order, setOrder] = useState<Order>('asc')
   const [orderBy, setOrderBy] = useState<keyof Data>('question')
   const handleRequestSort = (event: MouseEvent<unknown>, property: keyof Data) => {
@@ -104,30 +102,21 @@ export const MyPackTable = () => {
       <TableCell onClick={() => {}} align="left">
         {p.updated?.slice(0, 10)}
       </TableCell>
-      <TableCell align="left">
+      <TableCell
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        align="left"
+      >
         <Rating name="read-only" value={p.grade} readOnly />
-      </TableCell>
-      <TableCell align="left">
-        <>
-          {isMe && (
-            <>
-              <span>
-                <img
-                  style={{ paddingLeft: '15px', cursor: 'pointer' }}
-                  src={pack_table_edit}
-                  alt="edit"
-                  onClick={updateCurrentCard(p._id)}
-                />
-                <img
-                  style={{ paddingLeft: '15px', cursor: 'pointer' }}
-                  src={pack_table_delete}
-                  alt="delete"
-                  onClick={removeCard(p._id)}
-                />
-              </span>
-            </>
-          )}
-        </>
+        {isMe && (
+          <span>
+            <IconButton onClick={updateCurrentCard(p._id)}>
+              <BorderColorOutlinedIcon />
+            </IconButton>
+            <IconButton onClick={removeCard(p._id)}>
+              <DeleteOutlinedIcon />
+            </IconButton>
+          </span>
+        )}
       </TableCell>
     </TableRow>
   ))
@@ -145,7 +134,7 @@ export const MyPackTable = () => {
             />
             <TableBody>
               {status === 'succeeded' && packItems}
-              {status === 'loading' && <TableSkeleton />}
+              {status === 'loading' && <TableSkeleton amountRow={pageCount} />}
             </TableBody>
           </Table>
         </TableContainer>

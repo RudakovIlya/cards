@@ -1,4 +1,4 @@
-import { instance } from 'common/api-instance/api-instance'
+import { instance } from 'common'
 import { UpdatedProfileType, UserDataType } from 'features/profile'
 
 export const userProfileAPI = {

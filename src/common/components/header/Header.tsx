@@ -6,10 +6,13 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import logo from 'assets/img/incub-logo.svg'
 import { AccountMenu, ContentPreloader, DescriptionSnackbar, paths, useAppSelector } from 'common'
+import { authLoggedIn } from 'features/auth'
 
 export const Header = () => {
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(authLoggedIn)
+
   const navigate = useNavigate()
+
   const onClick = () => navigate(paths.LOGIN)
 
   return (

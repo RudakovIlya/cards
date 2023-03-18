@@ -1,29 +1,13 @@
-import { addPack } from './pack-listSlice'
-
-import { SubHeader, useAppDispatch } from 'common'
-import { FilterPanels } from 'features/packs-list/filter-panels/FilterPanels'
-import { PackTable } from 'features/packs-list/pack-table/PackTable'
-import { usePackList } from 'features/packs-list/use-packlist'
+import { SubHeader } from 'common'
+import { usePackList, FilterPanels, PackTable } from 'features/packs-list'
 
 export const PackList = () => {
-  const dispatch = useAppDispatch()
-  const addNewPack = () => {
-    dispatch(
-      addPack({
-        cardsPack: {
-          name: 'New Pack (Жоские) ' + (Math.random() + 10),
-          deckCover: '',
-          private: false,
-        },
-      })
-    )
-  }
-  const { status } = usePackList()
+  const { status, addNewPack } = usePackList()
 
   return (
     <div>
       <SubHeader
-        isVisible={true}
+        isLoading={false}
         title={'Pack list'}
         titleButton={'Add new pack'}
         disabled={status === 'loading'}

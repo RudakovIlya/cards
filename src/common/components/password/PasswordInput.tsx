@@ -3,14 +3,13 @@ import { FC, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { UseFormRegister } from 'react-hook-form'
 
-import { Eye, ValidError } from 'common'
-import { IFormValidate } from 'common/hooks/use-scheme'
+import { Eye, ValidError, FormValidateType } from 'common'
 
 type PasswordInputPropsType = {
   name: 'password' | 'confPassword'
   label: string
   errorMessage?: string
-  register: UseFormRegister<IFormValidate>
+  register: UseFormRegister<FormValidateType>
 }
 
 export const PasswordInput: FC<PasswordInputPropsType> = ({

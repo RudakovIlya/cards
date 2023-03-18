@@ -2,6 +2,14 @@ import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
 import { addCard, deleteCard, updateCard } from 'features/pack/pack-slice'
+import {
+  packCardPacks,
+  packCardPacksName,
+  packCardUserId,
+  packLoading,
+  packStatus,
+  pageCountParams,
+} from 'features/pack/selectors'
 import { useProfile } from 'features/profile'
 
 export const usePackCards = () => {
@@ -9,11 +17,12 @@ export const usePackCards = () => {
   const dispatch = useAppDispatch()
   const { packId } = useParams<{ packId: string }>()
 
-  const packUserId = useAppSelector(state => state.pack.pack.packUserId)
-  const packName = useAppSelector(state => state.pack.pack.packName)
-  const isLoading = useAppSelector(state => state.pack.isLoading)
-  const packCards = useAppSelector(state => state.pack.pack.cards)
-  const status = useAppSelector(state => state.pack.status)
+  const packUserId = useAppSelector(packCardUserId)
+  const packName = useAppSelector(packCardPacksName)
+  const isLoading = useAppSelector(packLoading)
+  const packCards = useAppSelector(packCardPacks)
+  const status = useAppSelector(packStatus)
+  const pageCount = useAppSelector(pageCountParams)
 
   const isMe = packUserId === _id
 
@@ -44,13 +53,14 @@ export const usePackCards = () => {
 
   return {
     isMe,
+    status,
     packName,
     isLoading,
-    addNewCard,
-    learnCard,
-    removeCard,
     packCards,
+    pageCount,
+    learnCard,
+    addNewCard,
+    removeCard,
     updateCurrentCard,
-    status,
   }
 }

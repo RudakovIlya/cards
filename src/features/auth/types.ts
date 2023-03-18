@@ -14,6 +14,15 @@ export type ResponseProfileType = {
   avatar?: string
 }
 
+export type ResponseRegisterType = {
+  addedUser: ResponseProfileType
+}
+
+export type ResponseInfoType = {
+  info: string
+  error: string
+}
+
 export type LoginDataType = {
   email: string
   password: string
@@ -22,19 +31,13 @@ export type LoginDataType = {
 
 export type RegisterDataType = Omit<LoginDataType, 'rememberMe'>
 
-export type ResponseRegisterType = {
-  addedUser: ResponseProfileType
-}
-
-export type ForgotEmail = {
+export type ForgotEmailDataType = {
   email: string
   from: string
   message: string
 }
 
-export type ResponseInfoType = {
-  info: string
-  error: string
+export type SetPasswordDataType = {
+  password: string
+  resetPasswordToken: string
 }
-
-export type AddPackRequestType = {}

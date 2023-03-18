@@ -1,12 +1,13 @@
-import { FC } from 'react'
+import KeyboardBackspaceTwoToneIcon from '@mui/icons-material/KeyboardBackspaceTwoTone'
+import IconButton from '@mui/material/IconButton'
+import { useNavigate } from 'react-router-dom'
 
-import arrow_to_left from 'assets/img/arrow_to_left.svg'
+import { paths } from 'common/constants'
 
-type NavigationToBackType = {
-  onClick: () => void
-}
+export const NavigationToBack = () => {
+  const navigate = useNavigate()
+  const returnToPackList = () => navigate(paths.PACK_LIST)
 
-export const NavigationToBack: FC<NavigationToBackType> = ({ onClick }) => {
   return (
     <div
       style={{
@@ -15,9 +16,12 @@ export const NavigationToBack: FC<NavigationToBackType> = ({ onClick }) => {
         alignItems: 'center',
         marginTop: '24px',
       }}
-      onClick={onClick}
+      onClick={returnToPackList}
     >
-      <img src={arrow_to_left} alt="arrow" style={{ marginRight: '10px' }} /> Back to Packs List
+      <IconButton disableRipple disableTouchRipple>
+        <KeyboardBackspaceTwoToneIcon sx={{ marginRight: '10px' }} />
+      </IconButton>
+      <span>Back to Packs List</span>
     </div>
   )
 }

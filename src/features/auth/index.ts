@@ -1,30 +1,32 @@
 import {
-  authActions,
-  authMe,
-  authReducer,
-  forgot,
   login,
   logOut,
-  registerMe,
+  forgot,
+  authMe,
+  authReducer,
+  authActions,
   setNewPassword,
+  registerMe,
 } from './auth-slice'
+import { authRegistered, authMailSent, authPasswordSent, authLoggedIn } from './selectors'
 
 import { Auth } from 'features/auth/Auth'
 import { authAPI } from 'features/auth/auth-api'
 import { CheckEmail } from 'features/auth/forgot-password/CheckEmail'
 import { ForgotPassword } from 'features/auth/forgot-password/ForgotPassword'
+import { useAuth } from 'features/auth/hooks/use-auth'
 import { Login } from 'features/auth/login/Login'
 import { NewPassword } from 'features/auth/new-password/NewPassword'
 import { Registration } from 'features/auth/registration/Registration'
 import {
-  ForgotEmail,
+  ForgotEmailDataType,
   LoginDataType,
   RegisterDataType,
   ResponseInfoType,
   ResponseProfileType,
   ResponseRegisterType,
+  SetPasswordDataType,
 } from 'features/auth/types'
-import { useAuth } from 'features/auth/use-auth'
 
 export {
   logOut,
@@ -43,13 +45,18 @@ export {
   Auth,
   useAuth,
   authAPI,
+  authLoggedIn,
+  authRegistered,
+  authPasswordSent,
+  authMailSent,
 }
 
 export type {
-  ForgotEmail,
   LoginDataType,
+  ForgotEmailDataType,
   RegisterDataType,
   ResponseInfoType,
   ResponseProfileType,
+  SetPasswordDataType,
   ResponseRegisterType,
 }

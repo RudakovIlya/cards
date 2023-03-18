@@ -9,18 +9,15 @@ import {
   packCardPacksTotalCount,
   pageParams,
   pageCountParams,
-} from 'features/pack/selectors/selectors'
+} from 'features/pack/selectors'
 
 export const usePackFilters = () => {
-  const { packId } = useParams<{ packId: string }>()
-
-  // pack data
   const cardsTotalCount = useAppSelector(packCardPacksTotalCount)
-
-  // pack query-params
   const pageParam = useAppSelector(pageParams)
   const pageCountParam = useAppSelector(pageCountParams)
   const searchValue = useAppSelector(packQuestionParams)
+
+  const { packId } = useParams<{ packId: string }>()
 
   const dispatch = useAppDispatch()
 

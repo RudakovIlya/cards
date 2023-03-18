@@ -110,23 +110,3 @@ body {
 .passwordWrapper {
   display: grid;
 }
-
-.eye {
-  position: relative;
-  top: -140%;
-  right: -92%;
-
-  align-content: center;
-
-  width: 23px;
-
-  color: red;
-
-  opacity: 50%;
-}
-
-.eye:hover {
-  cursor: pointer;
-
-  opacity: 100%;
-}
