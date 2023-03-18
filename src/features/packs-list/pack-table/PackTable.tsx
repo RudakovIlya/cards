@@ -15,7 +15,7 @@ import pack_table_delete from 'assets/img/pack-table-delete.svg'
 import pack_table_edit from 'assets/img/pack-table-edit.svg'
 import pack_table_teacher from 'assets/img/pack-table-teacher.svg'
 import { TableSkeleton } from 'common'
-import { usePackList } from 'features/packs-list/use-packlist'
+import { usePackList } from 'features/packs-list'
 import { useProfile } from 'features/profile'
 
 type Order = 'asc' | 'desc'
@@ -86,14 +86,7 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
 
 export const PackTable = () => {
   const userProfileData = useProfile()
-  const {
-    status,
-    cardPacks,
-    pageCount,
-    onClickEditPackHandler,
-    onClickDeletePackHandler,
-    onClickNavigateToCardsHandler,
-  } = usePackList()
+  const { status, cardPacks, pageCount, editPack, removePack, navigateToCards } = usePackList()
 
   const [order, setOrder] = useState<Order>('asc')
   const [orderBy, setOrderBy] = useState<keyof Data>('name')
@@ -110,7 +103,7 @@ export const PackTable = () => {
       <TableCell component="th" scope="row">
         <div style={{ display: 'flex', height: '35px' }}>
           {p.deckCover && <img alt="img" src={p.deckCover} />}
-          <button onClick={onClickNavigateToCardsHandler(p._id)}>{p.name}</button>
+          <button onClick={navigateToCards(p._id)}>{p.name}</button>
         </div>
       </TableCell>
       <TableCell onClick={() => {}} align="left">
@@ -137,13 +130,13 @@ export const PackTable = () => {
                   style={{ paddingLeft: '15px', cursor: 'pointer' }}
                   src={pack_table_edit}
                   alt="edit"
-                  onClick={onClickEditPackHandler(p._id)}
+                  onClick={editPack(p._id)}
                 />
                 <img
                   style={{ paddingLeft: '15px', cursor: 'pointer' }}
                   src={pack_table_delete}
                   alt="delete"
-                  onClick={onClickDeletePackHandler(p._id)}
+                  onClick={removePack(p._id)}
                 />
               </span>
             </>

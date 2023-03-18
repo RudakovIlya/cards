@@ -3,23 +3,29 @@ import { ChangeEvent, FC, MouseEvent } from 'react'
 import TablePagination from '@mui/material/TablePagination'
 
 type PaginationType = {
-  page: number // страницы
-  rows: number // кол-во рядов
-  count: number // общее кол-во
+  page: number
+  rows: number
+  count: number
   disabled: boolean
   onChange: (page: number) => void
   onChangePageCount: (pageCount: number) => void
 }
 
-export const Pagination: FC<PaginationType> = props => {
-  const { onChange, page, rows, onChangePageCount, count, disabled } = props
-
+export const Pagination: FC<PaginationType> = ({
+  onChange,
+  page,
+  rows,
+  onChangePageCount,
+  count,
+  disabled,
+}) => {
   const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     onChange(newPage)
   }
 
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     onChangePageCount(parseInt(event.target.value, 10))
+    onChange(0)
   }
   const isDisabled = Math.round(count / rows) - 1 === page
 

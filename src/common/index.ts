@@ -1,5 +1,7 @@
+export * from './api-instance'
 export * from './components'
 export * from './constants'
 export * from './hooks'
 export * from './utils'
+export * from './types'
 export * from './hoc'

@@ -13,15 +13,17 @@ import { paths, ProfileAvatar, useAppSelector } from 'common'
 import { useAuth } from 'features/auth'
 
 export const AccountMenu = () => {
-  const userProfileData = useAppSelector(state => state.profile.profile)
-  const { logoutHandler } = useAuth()
-  const menuItemStyle = { display: 'flex', alignItems: 'center', justifyContent: 'center' }
+  const { onLogout } = useAuth()
   const navigate = useNavigate()
+  const userProfileData = useAppSelector(state => state.profile.profile)
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
+
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
+
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -84,11 +86,17 @@ export const AccountMenu = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={redirectToProfileHandler} sx={menuItemStyle}>
+        <MenuItem
+          onClick={redirectToProfileHandler}
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
           <ProfileAvatar imageSize={{ width: '25px', height: '25px' }} /> Profile
         </MenuItem>
         <Divider />
-        <MenuItem onClick={logoutHandler} sx={menuItemStyle}>
+        <MenuItem
+          onClick={onLogout}
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
           <img style={{ marginRight: '5px' }} src={profile_logout} alt="edit" />
           Logout
         </MenuItem>

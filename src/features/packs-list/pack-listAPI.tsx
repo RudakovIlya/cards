@@ -1,20 +1,18 @@
+import { instance } from 'common'
 import {
   AddPackRequestType,
   AddPackType,
   DeleteResponseType,
+  PackListResponseType,
+  QueryParams,
   UpdatePackRequestType,
   UpdateResponseType,
-} from './types'
-
-import { instance } from 'common/api-instance/api-instance'
-import { PackListResponse, QueryParams } from 'features/packs-list'
+} from 'features/packs-list'
 
 export const packListAPI = {
   getPackList(params?: Partial<QueryParams>) {
-    return instance.get<PackListResponse>('cards/pack', {
-      params: {
-        ...params,
-      },
+    return instance.get<PackListResponseType>('cards/pack', {
+      params,
     })
   },
   addPack(data: AddPackRequestType) {

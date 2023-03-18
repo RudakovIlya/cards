@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 import { LinkWrapper } from 'common'
 
-interface IForm {
+type FormType = {
   link?: {
     to: string
     title: string
@@ -22,7 +22,7 @@ interface IForm {
   onClick?: () => void
 }
 
-export const Form: FC<IForm & PropsWithChildren> = memo(
+export const Form: FC<FormType & PropsWithChildren> = memo(
   ({ onSubmit, title, children, titleButton, description, link, as, onClick }) => {
     const Component = as || 'form'
 

@@ -1,11 +1,12 @@
 import { SxProps } from '@mui/material'
 
-import { useAppSelector } from 'common/hooks'
+import { useAppSelector } from 'common'
+import { user_idParams } from 'features/packs-list/selectors'
 
 export const useSwitch = () => {
-  const userId = useAppSelector(state => state.packList.queryParams.user_id)
+  const userId = useAppSelector(user_idParams)
 
-  const onClickChangeColor = (foo?: () => void) => {
+  const onChangeColor = (foo?: () => void) => {
     return () => {
       foo && foo()
     }
@@ -14,11 +15,17 @@ export const useSwitch = () => {
   const allActive: SxProps = {
     backgroundColor: userId ? '#fff' : '#366EFF',
     color: userId ? '#366EFF' : '#fff',
+    '&:hover': {
+      color: '#fff',
+    },
   }
   const myActive: SxProps = {
     backgroundColor: !userId ? '#fff' : '#366EFF',
     color: !userId ? '#366EFF' : '#fff',
+    '&:hover': {
+      color: '#fff',
+    },
   }
 
-  return { onClickChangeColor, allActive, myActive, disabled: userId }
+  return { onChangeColor, allActive, myActive, isMy: userId }
 }

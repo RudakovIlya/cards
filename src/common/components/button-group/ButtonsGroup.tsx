@@ -4,7 +4,7 @@ import Button from '@mui/material/Button/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import Typography from '@mui/material/Typography'
 
-import { useSwitch } from 'common/components'
+import { useSwitch } from 'common'
 
 type ButtonsGroupType = {
   onClickMy?: () => void
@@ -13,7 +13,7 @@ type ButtonsGroupType = {
 }
 
 export const ButtonsGroup: FC<ButtonsGroupType> = memo(({ onClickAll, onClickMy, disabled }) => {
-  const { onClickChangeColor, allActive, myActive, disabled: disable } = useSwitch()
+  const { onChangeColor, allActive, myActive, isMy } = useSwitch()
 
   return (
     <div>
@@ -22,17 +22,17 @@ export const ButtonsGroup: FC<ButtonsGroupType> = memo(({ onClickAll, onClickMy,
       </Typography>
       <ButtonGroup variant="contained">
         <Button
-          disabled={!!disable || disabled}
+          disabled={!!isMy || disabled}
           sx={myActive}
-          onClick={onClickChangeColor(onClickMy)}
+          onClick={onChangeColor(onClickMy)}
           size={'large'}
         >
           My
         </Button>
         <Button
-          disabled={!disable || disabled}
+          disabled={!isMy || disabled}
           sx={allActive}
-          onClick={onClickChangeColor(onClickAll)}
+          onClick={onChangeColor(onClickAll)}
           size={'large'}
         >
           All

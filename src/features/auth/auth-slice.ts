@@ -1,43 +1,38 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { appActions } from 'app/app-slice'
-import { errorUtils } from 'common'
+import { errorUtils, ThunkAPIType } from 'common'
 import {
-  ForgotEmail,
+  authAPI,
+  ForgotEmailDataType,
   LoginDataType,
   RegisterDataType,
   ResponseInfoType,
   ResponseProfileType,
   ResponseRegisterType,
 } from 'features/auth'
-import { authAPI } from 'features/auth/auth-api'
 
-export const authMe = createAsyncThunk<
-  ResponseProfileType,
-  void,
-  {
-    rejectValue: string
+export const authMe = createAsyncThunk<ResponseProfileType, void, ThunkAPIType>(
+  'auth/me',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await authAPI.me()
+
+      return response.data
+    } catch (e) {
+      const error = errorUtils(e)
+
+      return rejectWithValue(error)
+    } finally {
+      dispatch(appActions.initialization({ isInit: true }))
+    }
   }
->('auth', async (_, { dispatch, rejectWithValue }) => {
-  try {
-    const response = await authAPI.me()
-
-    return response.data
-  } catch (e) {
-    const error = errorUtils(e)
-
-    return rejectWithValue(error)
-  } finally {
-    dispatch(appActions.initialization({ isInit: true }))
-  }
-})
+)
 
 export const login = createAsyncThunk<
   ResponseProfileType & { info: string },
   LoginDataType,
-  {
-    rejectValue: string
-  }
+  ThunkAPIType
 >('auth/login', async (data, { rejectWithValue }) => {
   try {
     const response = await authAPI.login(data)
@@ -53,9 +48,7 @@ export const login = createAsyncThunk<
 export const registerMe = createAsyncThunk<
   ResponseRegisterType & { info: string },
   RegisterDataType,
-  {
-    rejectValue: string
-  }
+  ThunkAPIType
 >('auth/register', async (data, { rejectWithValue }) => {
   try {
     const response = await authAPI.register(data)
@@ -68,31 +61,26 @@ export const registerMe = createAsyncThunk<
   }
 })
 
-export const logOut = createAsyncThunk<
-  ResponseInfoType,
-  void,
-  {
-    rejectValue: string
-  }
->('auth/logout', async (_, { rejectWithValue }) => {
-  try {
-    const response = await authAPI.logout()
+export const logOut = createAsyncThunk<ResponseInfoType, void, ThunkAPIType>(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await authAPI.logout()
 
-    return response.data
-  } catch (e) {
-    const error = errorUtils(e)
+      return response.data
+    } catch (e) {
+      const error = errorUtils(e)
 
-    return rejectWithValue(error)
+      return rejectWithValue(error)
+    }
   }
-})
+)
 
 export const forgot = createAsyncThunk<
   ResponseInfoType & { isMailSent: boolean },
-  ForgotEmail,
-  {
-    rejectValue: string
-  }
->('auth/forgot', async (data: ForgotEmail, { rejectWithValue }) => {
+  ForgotEmailDataType,
+  ThunkAPIType
+>('auth/forgot', async (data: ForgotEmailDataType, { rejectWithValue }) => {
   try {
     const response = await authAPI.forgot(data)
 
@@ -107,9 +95,7 @@ export const forgot = createAsyncThunk<
 export const setNewPassword = createAsyncThunk<
   ResponseInfoType,
   { password: string; resetPasswordToken: string },
-  {
-    rejectValue: string
-  }
+  ThunkAPIType
 >('auth/set-new-password', async (data, { rejectWithValue }) => {
   try {
     const response = await authAPI.setNewPassword(data)

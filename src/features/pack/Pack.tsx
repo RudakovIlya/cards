@@ -1,22 +1,17 @@
-import { useNavigate } from 'react-router-dom'
-
 import { MyPackTable } from './my-pack-table/MyPackTable'
 
 import { NavigationToBack, SubHeader } from 'common'
-import { FilterPanels } from 'features/pack/filter-panels/FilterPanels'
-import { usePackCards } from 'features/pack/use-pack-cards'
+import { usePackCards, FilterPanels } from 'features/pack'
 
 export const Pack = () => {
-  const { isMe, packName, isLoading, learnCard, addNewCard, status } = usePackCards()
-  const navigate = useNavigate()
-  const returnToPackList = () => navigate(-1)
+  const { isMe, packName, learnCard, addNewCard, status } = usePackCards()
 
   return (
     <>
-      <NavigationToBack onClick={returnToPackList} />
+      <NavigationToBack />
       <SubHeader
         disabled={status === 'loading'}
-        isVisible={!isLoading}
+        isLoading={status === 'loading'}
         title={packName}
         titleButton={isMe ? 'Add new card' : 'Learn to pack'}
         onClick={isMe ? addNewCard : learnCard}

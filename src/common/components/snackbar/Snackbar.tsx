@@ -4,15 +4,17 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 
 import { appActions } from 'app/app-slice'
-import { useAppDispatch, useAppSelector } from 'common'
+import { useAppData } from 'app/use-app-data'
+import { useAppDispatch } from 'common'
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
 export const DescriptionSnackbar = () => {
-  const { error, infoMessage } = useAppSelector(state => state.app)
+  const { error, infoMessage } = useAppData()
   const dispatch = useAppDispatch()
+
   const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return

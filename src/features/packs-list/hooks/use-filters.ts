@@ -1,9 +1,8 @@
 import { useCallback, useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'common'
-import { getPackList } from 'features/packs-list'
-import { packListActions } from 'features/packs-list/pack-listSlice'
 import {
+  getPackList,
   maxParams,
   minParams,
   packListCardPacksTotalCount,
@@ -16,7 +15,8 @@ import {
   pageParams,
   sortPacksParams,
   user_idParams,
-} from 'features/packs-list/selectors/selectors'
+} from 'features/packs-list'
+import { packListActions } from 'features/packs-list/pack-listSlice'
 import { useProfile } from 'features/profile'
 
 export const useFilters = () => {

@@ -6,7 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import { useDebounce } from 'common/hooks'
+import { useDebounce } from 'common'
 
 type InputSearchType = {
   searchValue: string

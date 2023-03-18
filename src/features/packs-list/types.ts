@@ -21,7 +21,7 @@ export type PackType = {
   updated: string
 }
 
-export type PackListResponse = {
+export type PackListResponseType = {
   cardPacks: PackType[]
   cardPacksTotalCount: number
   maxCardsCount: number

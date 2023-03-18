@@ -2,15 +2,14 @@ import { FC } from 'react'
 
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
+import Skeleton from '@mui/material/Skeleton'
 import Typography from '@mui/material/Typography'
-
-import { DotsPreloader } from 'common'
 
 type SubHeaderType = {
   title: string
   titleButton: string
   onClick?: () => void
-  isVisible: boolean
+  isLoading: boolean
   disabled: boolean
 }
 
@@ -18,18 +17,14 @@ export const SubHeader: FC<SubHeaderType> = ({
   onClick,
   titleButton,
   title,
-  isVisible,
+  isLoading,
   disabled,
 }) => {
   return (
     <Grid container justifyContent={'space-between'} alignItems={'center'} sx={{ paddingTop: 3 }}>
-      {isVisible ? (
-        <Typography fontSize={22} fontWeight={600}>
-          {title}
-        </Typography>
-      ) : (
-        <DotsPreloader />
-      )}
+      <Typography sx={{ flex: '0 0 25%' }} variant={'h2'} fontSize={22} fontWeight={600}>
+        {isLoading ? <Skeleton sx={{ fontSize: '3rem' }} variant={'text'} /> : title}
+      </Typography>
 
       <Button onClick={onClick} variant={'radius'} disabled={disabled}>
         {titleButton}

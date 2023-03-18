@@ -12,11 +12,10 @@ import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
 
-import { usePackCards } from '../use-pack-cards'
-
 import pack_table_delete from 'assets/img/pack-table-delete.svg'
 import pack_table_edit from 'assets/img/pack-table-edit.svg'
 import { TableSkeleton } from 'common'
+import { usePackCards } from 'features/pack'
 
 type Order = 'asc' | 'desc'
 

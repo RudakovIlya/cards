@@ -1,7 +1,10 @@
+import { profileData } from './selectors'
 import { ProfileDataType, ProfileStateType, UpdatedProfileType, UserDataType } from './types'
-import { useProfile } from './use-profile'
 import { UserProfile } from './UserProfile'
+import { userProfileAPI } from './userProfile-api'
 import { changeUserData, userProfileReducer } from './userProfile-slice'
 
-export { useProfile, UserProfile, userProfileReducer, changeUserData }
+import { useProfile } from 'features/profile/hooks/use-profile'
+
+export { useProfile, UserProfile, profileData, changeUserData, userProfileAPI, userProfileReducer }
 export type { UpdatedProfileType, ProfileDataType, UserDataType, ProfileStateType }

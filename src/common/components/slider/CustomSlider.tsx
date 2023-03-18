@@ -4,7 +4,12 @@ import Grid from '@mui/material/Grid'
 import Slider, { SliderProps } from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 
-export const CustomSlider: FC<SliderProps & { values: number[]; minMax: number[] }> = memo(
+type CustomSliderType = {
+  values: number[]
+  minMax: number[]
+}
+
+export const CustomSlider: FC<SliderProps & CustomSliderType> = memo(
   ({ values, minMax, disabled, ...props }) => {
     const [value, setValue] = useState<number[]>(values)
 

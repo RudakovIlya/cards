@@ -1,9 +1,10 @@
 import Box from '@mui/material/Box'
 
+import { appStatus } from 'app/selectors'
 import { MainPreloader, Portal, useAppSelector } from 'common'
 
 export const ContentPreloader = () => {
-  const status = useAppSelector(state => state.app.status)
+  const status = useAppSelector(appStatus)
 
   if (status !== 'loading') {
     return null

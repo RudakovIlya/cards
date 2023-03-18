@@ -1,15 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import { useForm } from 'react-hook-form'
 
-import { createValidationSchema } from 'common'
-
-export interface IFormValidate {
-  email: string
-  password: string
-  confPassword?: string
-  rememberMe?: boolean
-  name: string
-}
+import { createValidationSchema, FormValidateType } from 'common'
 
 export const useScheme = (keys: string[]) => {
   const {
@@ -17,7 +9,7 @@ export const useScheme = (keys: string[]) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IFormValidate>({
+  } = useForm<FormValidateType>({
     resolver: yupResolver(createValidationSchema(keys)),
     mode: 'onSubmit',
   })
