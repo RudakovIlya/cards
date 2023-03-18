@@ -19,6 +19,8 @@ export const Pagination: FC<PaginationType> = ({
   count,
   disabled,
 }) => {
+  const isDisabled = Math.ceil(count / rows) - 1 === page || page <= -1
+
   const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     onChange(newPage)
   }
@@ -27,14 +29,12 @@ export const Pagination: FC<PaginationType> = ({
     onChangePageCount(parseInt(event.target.value, 10))
     onChange(0)
   }
-  const isDisabled = Math.round(count / rows) - 1 === page
 
   return (
     <TablePagination
       component="div"
       count={count}
-      //page={!count || count <= 0 ? 0 : page} // добавить -1 (page - 1) || !count || count <= 0 ? 0 : page
-      page={page > 0 && count < rows ? 0 : page} // добавить -1 (page - 1) || !count || count <= 0 ? 0 : page
+      page={page > 0 && count < rows ? 0 : page}
       rowsPerPageOptions={[4, 7, 10]}
       onPageChange={handleChangePage}
       rowsPerPage={rows}

@@ -11,7 +11,11 @@ const packQuestionParams = (state: RootState) => state.pack.queryParams.cardQues
 const packPage = (state: RootState) => state.pack.pack.page
 const packPageCount = (state: RootState) => state.pack.pack.pageCount
 const packCardPacks = (state: RootState) => state.pack.pack.cards
+const packCardUserId = (state: RootState) => state.pack.pack.packUserId
 const packCardPacksTotalCount = (state: RootState) => state.pack.pack.cardsTotalCount
+const packCardPacksName = (state: RootState) => state.pack.pack.packName
+const packLoading = (state: RootState) => state.pack.isLoading
+const packStatus = (state: RootState) => state.pack.status
 
 export {
   minParams,
@@ -25,4 +29,8 @@ export {
   packPageCount,
   packCardPacks,
   packCardPacksTotalCount,
+  packCardUserId,
+  packCardPacksName,
+  packLoading,
+  packStatus,
 }

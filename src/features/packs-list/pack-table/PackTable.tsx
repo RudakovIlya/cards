@@ -1,6 +1,10 @@
 import { MouseEvent, useState } from 'react'
 
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
 import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -11,9 +15,6 @@ import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
 
-import pack_table_delete from 'assets/img/pack-table-delete.svg'
-import pack_table_edit from 'assets/img/pack-table-edit.svg'
-import pack_table_teacher from 'assets/img/pack-table-teacher.svg'
 import { TableSkeleton } from 'common'
 import { usePackList } from 'features/packs-list'
 import { useProfile } from 'features/profile'
@@ -114,34 +115,20 @@ export const PackTable = () => {
       </TableCell>
       <TableCell align="left">{p.user_name}</TableCell>
       <TableCell align="left">
-        <>
+        <IconButton onClick={() => {}}>
+          <SchoolOutlinedIcon />
+        </IconButton>
+
+        {userProfileData._id === p.user_id && (
           <span>
-            <img
-              style={{ paddingLeft: '10px', cursor: 'pointer' }}
-              src={pack_table_teacher}
-              alt="edit"
-              onClick={() => {}}
-            />
+            <IconButton onClick={editPack(p._id)}>
+              <BorderColorOutlinedIcon />
+            </IconButton>
+            <IconButton onClick={removePack(p._id)}>
+              <DeleteOutlinedIcon />
+            </IconButton>
           </span>
-          {userProfileData._id === p.user_id && (
-            <>
-              <span>
-                <img
-                  style={{ paddingLeft: '15px', cursor: 'pointer' }}
-                  src={pack_table_edit}
-                  alt="edit"
-                  onClick={editPack(p._id)}
-                />
-                <img
-                  style={{ paddingLeft: '15px', cursor: 'pointer' }}
-                  src={pack_table_delete}
-                  alt="delete"
-                  onClick={removePack(p._id)}
-                />
-              </span>
-            </>
-          )}
-        </>
+        )}
       </TableCell>
     </TableRow>
   ))

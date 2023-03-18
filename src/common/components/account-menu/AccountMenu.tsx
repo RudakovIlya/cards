@@ -1,5 +1,6 @@
 import { MouseEvent, useState } from 'react'
 
+import LogoutIcon from '@mui/icons-material/Logout'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
@@ -8,8 +9,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Tooltip from '@mui/material/Tooltip'
 import { useNavigate } from 'react-router-dom'
 
-import profile_logout from 'assets/img/profile_logout.svg'
-import { paths, ProfileAvatar, useAppSelector } from 'common'
+import { ProfileAvatar, paths, useAppSelector } from 'common'
 import { useAuth } from 'features/auth'
 
 export const AccountMenu = () => {
@@ -93,11 +93,8 @@ export const AccountMenu = () => {
           <ProfileAvatar imageSize={{ width: '25px', height: '25px' }} /> Profile
         </MenuItem>
         <Divider />
-        <MenuItem
-          onClick={onLogout}
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-        >
-          <img style={{ marginRight: '5px' }} src={profile_logout} alt="edit" />
+        <MenuItem onClick={onLogout} sx={{ display: 'flex', alignItems: 'center', columnGap: 2 }}>
+          <LogoutIcon />
           Logout
         </MenuItem>
       </Menu>

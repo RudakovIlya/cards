@@ -1,6 +1,7 @@
+import KeyboardBackspaceTwoToneIcon from '@mui/icons-material/KeyboardBackspaceTwoTone'
+import IconButton from '@mui/material/IconButton'
 import { useNavigate } from 'react-router-dom'
 
-import arrow_to_left from 'assets/img/arrow_to_left.svg'
 import { paths } from 'common/constants'
 
 export const NavigationToBack = () => {
@@ -17,7 +18,10 @@ export const NavigationToBack = () => {
       }}
       onClick={returnToPackList}
     >
-      <img src={arrow_to_left} alt="arrow" style={{ marginRight: '10px' }} /> Back to Packs List
+      <IconButton disableRipple disableTouchRipple>
+        <KeyboardBackspaceTwoToneIcon sx={{ marginRight: '10px' }} />
+      </IconButton>
+      <span>Back to Packs List</span>
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import { ChangeEvent, FC, useState } from 'react'
 
+import BorderColorIcon from '@mui/icons-material/BorderColor'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 
-import edit_user_name from 'assets/img/edit_user_name.svg'
 import { useAppDispatch } from 'common'
 import { changeUserData } from 'features/profile'
 
@@ -67,7 +67,7 @@ export const UserName: FC<UserNamePropsType> = ({ name: userName, avatar }) => {
     <div>
       <span onDoubleClick={editModeOnHandler}>{userName}</span>
       <span style={{ marginLeft: '10px', cursor: 'pointer' }} onClick={editModeOnHandler}>
-        <img src={edit_user_name} alt="edit" />
+        <BorderColorIcon />
       </span>
     </div>
   )

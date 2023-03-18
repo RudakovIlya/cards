@@ -16,7 +16,6 @@ import { NavigationToBack } from './navigation-to-back/NavigationToBack'
 import { Pagination } from './pagination/Pagination'
 import { PasswordInput } from './password/PasswordInput'
 import { Portal } from './portal/Portal'
-import { DotsPreloader } from './preloader/DotsPreloader'
 import { ProfileAvatar } from './profile-avatar/ProfileAvatar'
 import { ResetButton } from './reset-button/ResetButton'
 import { CustomSlider } from './slider/CustomSlider'
@@ -52,6 +51,5 @@ export {
   ResetButton,
   useSwitch,
   Pagination,
-  DotsPreloader,
   TableSkeleton,
 }
