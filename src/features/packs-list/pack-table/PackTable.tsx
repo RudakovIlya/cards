@@ -6,87 +6,19 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import TableSortLabel from '@mui/material/TableSortLabel'
-import { visuallyHidden } from '@mui/utils'
 
 import pack_table_delete from 'assets/img/pack-table-delete.svg'
 import pack_table_edit from 'assets/img/pack-table-edit.svg'
 import pack_table_teacher from 'assets/img/pack-table-teacher.svg'
 import { TableSkeleton } from 'common'
+import {
+  Data,
+  EnhancedTableHead,
+  Order,
+} from 'features/packs-list/pack-table/pack-table-header/EnhancedTableHead'
 import { usePackList } from 'features/packs-list/use-packlist'
 import { useProfile } from 'features/profile'
-
-type Order = 'asc' | 'desc'
-
-type Data = {
-  name: string
-  cardsCount: string
-  updated: string
-  user_name: string
-  without_sort: string
-}
-
-type HeadCell = {
-  id: keyof Data
-  label: string
-}
-
-const headCells: readonly HeadCell[] = [
-  { id: 'name', label: 'Name' },
-  { id: 'cardsCount', label: 'Cards' },
-  { id: 'updated', label: 'Last updated' },
-  { id: 'user_name', label: 'Created by' },
-  { id: 'without_sort', label: 'Actions' },
-]
-
-interface EnhancedTableProps {
-  onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void
-  order: Order
-  orderBy: string
-  rowCount: number
-}
-
-export const EnhancedTableHead = (props: EnhancedTableProps) => {
-  const { order, orderBy, onRequestSort } = props
-
-  const createSortHandler = (property: keyof Data) => (event: MouseEvent<unknown>) => {
-    onRequestSort(event, property)
-  }
-
-  return (
-    <TableHead>
-      <TableRow>
-        {headCells?.map(headCell => (
-          <TableCell
-            key={headCell.id}
-            align={'left'}
-            padding={'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            {headCell.id === 'without_sort' ? (
-              headCell.label
-            ) : (
-              <TableSortLabel
-                active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : 'asc'}
-                onClick={createSortHandler(headCell.id)}
-              >
-                {headCell.label}
-                {orderBy === headCell.id ? (
-                  <Box component="span" sx={visuallyHidden}>
-                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                  </Box>
-                ) : null}
-              </TableSortLabel>
-            )}
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  )
-}
 
 export const PackTable = () => {
   const userProfileData = useProfile()
