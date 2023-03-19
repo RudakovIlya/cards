@@ -16,11 +16,12 @@ import {
   AddPackRequestType,
   UpdatePackRequestType,
 } from 'features/packs-list'
+import { StatusType } from 'features/packs-list/types'
 
 type InitialStateType = {
   packList: PackListResponseType
   queryParams: QueryParams
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: StatusType
 }
 
 const initialState: InitialStateType = {
