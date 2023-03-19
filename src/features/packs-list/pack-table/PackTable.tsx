@@ -7,12 +7,13 @@ import TableRow from '@mui/material/TableRow'
 
 import { EnhancedTableContent } from 'common/components/table-content/EnhancedTableContent'
 import { HeadCellType } from 'common/components/table-header/EnhancedTableHead'
-import { usePackList } from 'features/packs-list'
+import { useFilters, usePackList } from 'features/packs-list'
 import { useProfile } from 'features/profile'
 
 export const PackTable = () => {
   const userProfileData = useProfile()
   const { status, cardPacks, pageCount, editPack, removePack, navigateToCards } = usePackList()
+  const { onSortPackTable } = useFilters()
   const headCells: HeadCellType[] = [
     { id: 'name', label: 'Name' },
     { id: 'cardsCount', label: 'Cards' },
@@ -55,7 +56,12 @@ export const PackTable = () => {
   ))
 
   return (
-    <EnhancedTableContent status={status} headCells={headCells} pageCount={pageCount}>
+    <EnhancedTableContent
+      sortTableHandler={onSortPackTable}
+      status={status}
+      headCells={headCells}
+      pageCount={pageCount}
+    >
       {packItems}
     </EnhancedTableContent>
   )

@@ -16,7 +16,7 @@ export type HeadCellType = {
 
 type EnhancedTableProps = {
   headCells: HeadCellType[]
-  onSortPackList: (PackTableHeaderData: string) => void
+  onSortPackList: (TableHeaderData: string) => void
 }
 
 export const EnhancedTableHead: FC<EnhancedTableProps> = ({ headCells, onSortPackList }) => {

@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow'
 
 import { EnhancedTableContent } from 'common/components/table-content/EnhancedTableContent'
 import { HeadCellType } from 'common/components/table-header/EnhancedTableHead'
-import { usePackCards } from 'features/pack'
+import { usePackCards, usePackFilters } from 'features/pack'
 
 export const MyPackTable = () => {
   const { packCards, removeCard, updateCurrentCard, isMe, status, pageCount } = usePackCards()
@@ -17,7 +17,7 @@ export const MyPackTable = () => {
     { id: 'updated', label: 'Last updated' },
     { id: 'grade', label: 'Grade' },
   ]
-  const handleRequestSort = () => {}
+  const { onSortCardsTable } = usePackFilters()
 
   const packItems = packCards.map(p => (
     <TableRow hover key={p._id}>
@@ -50,7 +50,12 @@ export const MyPackTable = () => {
   ))
 
   return (
-    <EnhancedTableContent status={status} headCells={headCells} pageCount={pageCount}>
+    <EnhancedTableContent
+      sortTableHandler={onSortCardsTable}
+      status={status}
+      headCells={headCells}
+      pageCount={pageCount}
+    >
       {packItems}
     </EnhancedTableContent>
   )

@@ -69,8 +69,8 @@ export const useFilters = () => {
     dispatch(packListActions.setQueryParams({ pageCount }))
   }, [])
 
-  const onSortPackTable = useCallback((PackTableHeaderData: string) => {
-    dispatch(packListActions.setQueryParams({ sortPacks: PackTableHeaderData }))
+  const onSortPackTable = useCallback((TableHeaderData: string) => {
+    dispatch(packListActions.setQueryParams({ sortPacks: TableHeaderData }))
   }, [])
 
   return {

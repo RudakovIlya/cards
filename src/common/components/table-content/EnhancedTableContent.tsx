@@ -8,13 +8,13 @@ import TableContainer from '@mui/material/TableContainer'
 
 import { EnhancedTableHead, HeadCellType } from 'common/components/table-header/EnhancedTableHead'
 import { TableSkeleton } from 'common/components/table-skeleton/TableSkeleton'
-import { useFilters } from 'features/packs-list'
 import { StatusType } from 'features/packs-list/types'
 
 type TableContentPropsType = {
   headCells: HeadCellType[]
   status: StatusType
   pageCount: number
+  sortTableHandler: (TableHeaderData: string) => void
   children?: any
 }
 
@@ -23,15 +23,14 @@ export const EnhancedTableContent: FC<TableContentPropsType> = ({
   status,
   pageCount,
   children,
+  sortTableHandler,
 }) => {
-  const { onSortPackTable } = useFilters()
-
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
-            <EnhancedTableHead headCells={headCells} onSortPackList={onSortPackTable} />
+            <EnhancedTableHead headCells={headCells} onSortPackList={sortTableHandler} />
             <TableBody>
               {status === 'loading' && <TableSkeleton amountRow={pageCount} />}
               {status === 'succeeded' && children}
