@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
 import { EnhancedTableContent } from 'common/components/table-content/EnhancedTableContent'
+import { styleForIcons } from 'common/components/table-content/tableStyles'
 import { HeadCellType } from 'common/components/table-header/EnhancedTableHead'
 import { usePackCards, usePackFilters } from 'features/pack'
 
@@ -22,7 +23,7 @@ export const MyPackTable = () => {
   const packItems = packCards.map(p => (
     <TableRow hover key={p._id}>
       <TableCell component="th" scope="row">
-        <div style={{ display: 'flex', height: '35px' }}>{p.question}</div>
+        <div style={{ display: 'flex', width: '300px' }}>{p.question}</div>
       </TableCell>
       <TableCell onClick={() => {}} align="left">
         {p.answer}
@@ -30,14 +31,11 @@ export const MyPackTable = () => {
       <TableCell onClick={() => {}} align="left">
         {p.updated?.slice(0, 10)}
       </TableCell>
-      <TableCell
-        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-        align="left"
-      >
-        <Rating name="read-only" value={p.grade} readOnly />
+      <TableCell align="left">
+        <Rating sx={styleForIcons} name="read-only" value={p.grade} readOnly />
         {isMe && (
           <span>
-            <IconButton onClick={updateCurrentCard(p._id)}>
+            <IconButton sx={styleForIcons} onClick={updateCurrentCard(p._id)}>
               <BorderColorOutlinedIcon />
             </IconButton>
             <IconButton onClick={removeCard(p._id)}>

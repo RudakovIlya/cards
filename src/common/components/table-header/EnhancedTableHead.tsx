@@ -35,7 +35,11 @@ export const EnhancedTableHead: FC<EnhancedTableProps> = ({ headCells, onSortPac
     <TableHead>
       <TableRow>
         {headCells?.map(headCell => (
-          <TableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
+          <TableCell
+            sx={{ ':first-child': { width: '350px' } }}
+            key={headCell.id}
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
             {headCell.id === 'empty' ? (
               headCell.label
             ) : (

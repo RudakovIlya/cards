@@ -15,7 +15,7 @@ type TableContentPropsType = {
   status: StatusType
   pageCount: number
   sortTableHandler: (TableHeaderData: string) => void
-  children?: any
+  children?: JSX.Element[]
 }
 
 export const EnhancedTableContent: FC<TableContentPropsType> = ({
@@ -31,8 +31,10 @@ export const EnhancedTableContent: FC<TableContentPropsType> = ({
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
             <EnhancedTableHead headCells={headCells} onSortPackList={sortTableHandler} />
-            <TableBody>
-              {status === 'loading' && <TableSkeleton amountRow={pageCount} />}
+            <TableBody sx={{ height: 'inherit' }}>
+              {status === 'loading' && (
+                <TableSkeleton amountRow={pageCount} amountCell={headCells.length} />
+              )}
               {status === 'succeeded' && children}
             </TableBody>
           </Table>
