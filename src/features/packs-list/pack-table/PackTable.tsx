@@ -11,11 +11,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
 
 import { TableSkeleton } from 'common'
+import { EnhancedTableHead, HeadCellType } from 'common/components/table-header/EnhancedTableHead'
 import { useFilters, usePackList } from 'features/packs-list'
-import {
-  EnhancedTableHead,
-  HeadCellType,
-} from 'features/packs-list/pack-table/pack-table-header/EnhancedTableHead'
 import { useProfile } from 'features/profile'
 
 const headCells: HeadCellType[] = [
