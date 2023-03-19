@@ -1,5 +1,7 @@
 import { createHashRouter } from 'react-router-dom'
 
+import { LearnPack } from '../../features/pack/learn-pack/LearnPack'
+
 import { App } from 'app/App'
 import { AuthRedirect, ErrorPage, paths } from 'common'
 import { Auth, CheckEmail, ForgotPassword, Login, NewPassword, Registration } from 'features/auth'
@@ -28,6 +30,10 @@ export const router = createHashRouter([
           {
             path: paths.USER_PROFILE,
             element: <UserProfile />,
+          },
+          {
+            path: paths.LEARN_PACK,
+            element: <LearnPack />,
           },
         ],
       },
