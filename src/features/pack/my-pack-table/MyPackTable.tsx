@@ -5,7 +5,7 @@ import Rating from '@mui/material/Rating'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { HeadCellType, EnhancedTableContent, styleForIcons } from 'common'
+import { EnhancedTableContent, HeadCellType, styleForIcons } from 'common'
 import { useModals } from 'features/modals'
 import { usePackCards, usePackFilters } from 'features/pack'
 

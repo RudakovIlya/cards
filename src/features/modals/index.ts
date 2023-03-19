@@ -1,5 +1,5 @@
 import { Modals } from './Modals'
-import { modalsReducer, modalActions } from './modalsSlice'
+import { modalActions, modalsReducer } from './modalsSlice'
 import { modalData, showAddedModal, showDeleteModal, showEditModal } from './selectors'
 import { ModalDataType, ModalStateType } from './types'
 import { useModals } from './useModals'

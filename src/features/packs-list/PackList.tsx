@@ -1,5 +1,5 @@
 import { SubHeader } from 'common'
-import { usePackList, FilterPanels, PackTable, useFetchPackList } from 'features/packs-list'
+import { FilterPanels, PackTable, useFetchPackList, usePackList } from 'features/packs-list'
 
 export const PackList = () => {
   const { status, addNewPack } = usePackList()

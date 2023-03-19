@@ -38,8 +38,6 @@ export const usePackList = () => {
   }
 
   const removePack = (id: string) => {
-    console.log(id)
-
     return () => dispatch(deletePack(id))
   }
 

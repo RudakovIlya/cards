@@ -3,11 +3,10 @@ import { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from 'common'
 import { packActions } from 'features/pack/pack-slice'
 import {
-  packQuestionParams,
   packCardPacksTotalCount,
-  pageParams,
+  packQuestionParams,
   pageCountParams,
-  sortPacksParams,
+  pageParams,
 } from 'features/pack/selectors'
 
 export const usePackFilters = () => {

@@ -1,7 +1,7 @@
 import { MyPackTable } from './my-pack-table/MyPackTable'
 
 import { NavigationToBack, SubHeader } from 'common'
-import { useFetchPack, usePackCards, FilterPanels } from 'features/pack'
+import { FilterPanels, useFetchPack, usePackCards } from 'features/pack'
 
 export const Pack = () => {
   const { isMe, packName, learnCard, addNewCard, status } = usePackCards()

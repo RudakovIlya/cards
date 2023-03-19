@@ -1,11 +1,11 @@
 import { useAppDispatch, useAppSelector } from 'common'
 import {
+  modalActions,
+  modalData,
+  ModalDataType,
   showAddedModal,
   showDeleteModal,
   showEditModal,
-  modalData,
-  ModalDataType,
-  modalActions,
 } from 'features/modals'
 
 type ShowModalType = 'add' | 'edit' | 'delete'

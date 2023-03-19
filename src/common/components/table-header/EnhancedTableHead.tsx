@@ -38,14 +38,12 @@ export const EnhancedTableHead: FC<EnhancedTableProps> = ({
     onSortPackList((isAsc ? '0' : '1') + property)
   }
 
-  console.log(order)
-
   return (
     <TableHead>
       <TableRow>
         {headCells?.map(headCell => (
           <TableCell
-            sx={{ ':first-child': { width: '350px' } }}
+            sx={{ '&:first-of-type': { width: '350px' } }} // Фанур я тут поменял, что бы не было warning-ов
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
           >
