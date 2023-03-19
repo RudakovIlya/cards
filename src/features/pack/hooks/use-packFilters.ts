@@ -1,9 +1,7 @@
-import { useCallback, useEffect } from 'react'
-
-import { useParams } from 'react-router-dom'
+import { useCallback } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'common'
-import { getPack, packActions } from 'features/pack/pack-slice'
+import { packActions } from 'features/pack/pack-slice'
 import {
   packQuestionParams,
   packCardPacksTotalCount,
@@ -17,8 +15,6 @@ export const usePackFilters = () => {
   const pageCountParam = useAppSelector(pageCountParams)
   const searchValue = useAppSelector(packQuestionParams)
 
-  const { packId } = useParams<{ packId: string }>()
-
   const dispatch = useAppDispatch()
 
   const onSearchChange = useCallback((search: string) => {
@@ -31,18 +27,6 @@ export const usePackFilters = () => {
 
   const onChangePageCount = useCallback((pageCount: number) => {
     dispatch(packActions.setQueryParams({ pageCount }))
-  }, [])
-
-  useEffect(() => {
-    dispatch(getPack({ cardsPack_id: packId as string }))
-  }, [searchValue, pageParam, pageCountParam])
-
-  useEffect(() => {
-    dispatch(packActions.setQueryParams({ cardsPack_id: packId as string }))
-
-    return () => {
-      dispatch(packActions.resetPackData())
-    }
   }, [])
 
   return {

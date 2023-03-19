@@ -1,8 +1,7 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'common'
 import {
-  getPackList,
   maxParams,
   minParams,
   packListCardPacksTotalCount,
@@ -14,7 +13,6 @@ import {
   pageCountParams,
   pageParams,
   sortPacksParams,
-  user_idParams,
 } from 'features/packs-list'
 import { packListActions } from 'features/packs-list/pack-listSlice'
 import { useProfile } from 'features/profile'
@@ -35,7 +33,6 @@ export const useFilters = () => {
   const min = useAppSelector(minParams)
   const max = useAppSelector(maxParams)
   const page = useAppSelector(pageParams)
-  const user_id = useAppSelector(user_idParams)
   const packName = useAppSelector(packNameParams)
   const sortPacks = useAppSelector(sortPacksParams)
   const pageCount = useAppSelector(pageCountParams)
@@ -75,10 +72,6 @@ export const useFilters = () => {
   const onSortPackTable = useCallback((PackTableHeaderData: string) => {
     dispatch(packListActions.setQueryParams({ sortPacks: PackTableHeaderData }))
   }, [])
-
-  useEffect(() => {
-    dispatch(getPackList())
-  }, [packName, user_id, max, min, sortPacks, page, pageCount])
 
   return {
     max,

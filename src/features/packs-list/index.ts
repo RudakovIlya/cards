@@ -1,4 +1,5 @@
 import { FilterPanels } from './filter-panels/FilterPanels'
+import { useFetchPackList } from './hooks/use-fetch-packList'
 import { PackTable } from './pack-table/PackTable'
 import { PackList } from './PackList'
 import {
@@ -38,6 +39,7 @@ export {
   PackList,
   getPackList,
   useFilters,
+  useFetchPackList,
   usePackList,
   FilterPanels,
   PackTable,
