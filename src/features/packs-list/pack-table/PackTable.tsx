@@ -21,6 +21,7 @@ export const PackTable = () => {
     { id: 'user_name', label: 'Created by' },
     { id: 'empty', label: 'Actions' },
   ]
+
   const packItems = cardPacks.map(p => (
     <TableRow hover key={p._id}>
       <TableCell component="th" scope="row">
