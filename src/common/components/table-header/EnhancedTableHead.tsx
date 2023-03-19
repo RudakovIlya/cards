@@ -31,6 +31,8 @@ export const EnhancedTableHead: FC<EnhancedTableProps> = ({ headCells, onSortPac
     onSortPackList((isAsc ? '0' : '1') + property)
   }
 
+  console.log(order)
+
   return (
     <TableHead>
       <TableRow>
