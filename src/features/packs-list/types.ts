@@ -57,3 +57,5 @@ export type DeleteResponseType = {
 export type UpdateResponseType = {
   updatedCardsPack: PackType
 }
+
+export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'

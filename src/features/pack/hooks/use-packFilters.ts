@@ -7,6 +7,7 @@ import {
   packCardPacksTotalCount,
   pageParams,
   pageCountParams,
+  sortPacksParams,
 } from 'features/pack/selectors'
 
 export const usePackFilters = () => {
@@ -29,6 +30,10 @@ export const usePackFilters = () => {
     dispatch(packActions.setQueryParams({ pageCount }))
   }, [])
 
+  const onSortCardsTable = useCallback((TableHeaderData: string) => {
+    dispatch(packActions.setQueryParams({ sortCards: TableHeaderData }))
+  }, [])
+
   return {
     pageParam,
     pageCountParam,
@@ -37,5 +42,6 @@ export const usePackFilters = () => {
     onSearchChange,
     onChangePageCount,
     onChangePagination,
+    onSortCardsTable,
   }
 }
