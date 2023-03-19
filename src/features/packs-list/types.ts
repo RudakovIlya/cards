@@ -58,4 +58,15 @@ export type UpdateResponseType = {
   updatedCardsPack: PackType
 }
 
+export type ModalStateType = {
+  isShowDeleteModal: boolean
+  isShowEditModal: boolean
+  isShowAddedModal: boolean
+}
+
+export type ModalDataType = {
+  modalData: PackType
+  modalState: ModalStateType
+}
+
 export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'

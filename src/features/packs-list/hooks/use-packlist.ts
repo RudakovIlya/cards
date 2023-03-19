@@ -20,7 +20,7 @@ export const usePackList = () => {
     return () =>
       dispatch(
         updatePack({
-          cardsPack: { name: `New Name(Жоские) ${Math.random()}`, _id: id, deckCover: '' },
+          cardsPack: { name: `New Name(Жоские) New TestModal`, _id: id, deckCover: '' },
         })
       )
   }

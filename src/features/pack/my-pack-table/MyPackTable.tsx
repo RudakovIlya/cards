@@ -5,13 +5,14 @@ import Rating from '@mui/material/Rating'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { EnhancedTableContent } from 'common/components/table-content/EnhancedTableContent'
 import { styleForIcons } from 'common/components/table-content/tableStyles'
-import { HeadCellType } from 'common/components/table-header/EnhancedTableHead'
 import { usePackCards, usePackFilters } from 'features/pack'
+import { TableSkeleton, EnhancedTableHead, HeadCellType } from 'common'
+import { useModals } from 'features/modals'
+import { EnhancedTableContent } from 'common/components/table-content/EnhancedTableContent'
 
 export const MyPackTable = () => {
-  const { packCards, removeCard, updateCurrentCard, isMe, status, pageCount } = usePackCards()
+  const { packCards, isMe, status, pageCount } = usePackCards()
   const headCells: HeadCellType[] = [
     { id: 'question', label: 'Question' },
     { id: 'answer', label: 'Answer' },
@@ -19,6 +20,8 @@ export const MyPackTable = () => {
     { id: 'grade', label: 'Grade' },
   ]
   const { onSortCardsTable } = usePackFilters()
+
+  const { showModal } = useModals()
 
   const packItems = packCards.map(p => (
     <TableRow hover key={p._id}>
@@ -35,10 +38,10 @@ export const MyPackTable = () => {
         <Rating sx={styleForIcons} name="read-only" value={p.grade} readOnly />
         {isMe && (
           <span>
-            <IconButton sx={styleForIcons} onClick={updateCurrentCard(p._id)}>
+            <IconButton sx={styleForIcons} onClick={showModal('edit', p)}>
               <BorderColorOutlinedIcon />
             </IconButton>
-            <IconButton onClick={removeCard(p._id)}>
+            <IconButton onClick={showModal('delete', p)}>
               <DeleteOutlinedIcon />
             </IconButton>
           </span>

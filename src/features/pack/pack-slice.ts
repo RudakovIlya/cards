@@ -145,4 +145,4 @@ const packSlice = createSlice({
   },
 })
 
-export const { reducer: PackReducer, actions: packActions } = packSlice
+export const { reducer: packReducer, actions: packActions } = packSlice

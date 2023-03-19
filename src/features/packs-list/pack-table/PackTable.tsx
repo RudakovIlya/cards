@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow'
 import { EnhancedTableContent } from 'common/components/table-content/EnhancedTableContent'
 import { styleForIcons } from 'common/components/table-content/tableStyles'
 import { HeadCellType } from 'common/components/table-header/EnhancedTableHead'
+import { TableSkeleton, EnhancedTableHead, HeadCellType } from 'common'
+import { useModals } from 'features/modals'
 import { useFilters, usePackList } from 'features/packs-list'
 import { useProfile } from 'features/profile'
 
@@ -22,6 +24,12 @@ export const PackTable = () => {
     { id: 'user_name', label: 'Created by' },
     { id: 'empty', label: 'Actions' },
   ]
+
+export const PackTable = () => {
+  const userProfileData = useProfile()
+  const { status, cardPacks, pageCount, navigateToCards } = usePackList()
+  const { showModal } = useModals()
+  const { onSortPackTable } = useFilters()
 
   const packItems = cardPacks.map(p => (
     <TableRow hover key={p._id}>
@@ -47,10 +55,10 @@ export const PackTable = () => {
 
         {userProfileData._id === p.user_id && (
           <span>
-            <IconButton sx={styleForIcons} onClick={editPack(p._id)}>
+            <IconButton sx={styleForIcons} onClick={showModal('edit', p)}>
               <BorderColorOutlinedIcon />
             </IconButton>
-            <IconButton sx={styleForIcons} onClick={removePack(p._id)}>
+            <IconButton sx={styleForIcons} onClick={showModal('edit', p)}>
               <DeleteOutlinedIcon />
             </IconButton>
           </span>
