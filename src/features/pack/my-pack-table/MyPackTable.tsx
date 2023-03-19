@@ -1,5 +1,3 @@
-import { FC, MouseEvent, useState } from 'react'
-
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import Box from '@mui/material/Box'
@@ -12,8 +10,8 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
 
-import { TableSkeleton } from 'common'
-import { EnhancedTableHead, HeadCellType } from 'common/components/table-header/EnhancedTableHead'
+import { TableSkeleton, EnhancedTableHead, HeadCellType } from 'common'
+import { useModals } from 'features/modals'
 import { usePackCards } from 'features/pack'
 
 const headCells: HeadCellType[] = [
@@ -25,8 +23,10 @@ const headCells: HeadCellType[] = [
 ]
 
 export const MyPackTable = () => {
-  const { packCards, removeCard, updateCurrentCard, isMe, status, pageCount } = usePackCards()
+  const { packCards, isMe, status, pageCount } = usePackCards()
   const handleRequestSort = () => {}
+
+  const { showModal } = useModals()
 
   const packItems = packCards.map(p => (
     <TableRow hover key={p._id}>
@@ -46,10 +46,10 @@ export const MyPackTable = () => {
         <Rating name="read-only" value={p.grade} readOnly />
         {isMe && (
           <span>
-            <IconButton onClick={updateCurrentCard(p._id)}>
+            <IconButton onClick={showModal('edit', p)}>
               <BorderColorOutlinedIcon />
             </IconButton>
-            <IconButton onClick={removeCard(p._id)}>
+            <IconButton onClick={showModal('delete', p)}>
               <DeleteOutlinedIcon />
             </IconButton>
           </span>

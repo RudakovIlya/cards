@@ -25,6 +25,15 @@ export const theme = createTheme({
           },
         },
         {
+          props: { color: 'error' },
+          style: {
+            background: '#FF3636',
+            '&:hover': {
+              background: '#ff1616',
+            },
+          },
+        },
+        {
           props: { size: 'medium' },
           style: {
             maxWidth: 174,

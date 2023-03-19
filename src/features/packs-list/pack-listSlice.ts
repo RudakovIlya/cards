@@ -11,15 +11,19 @@ import { RootState } from 'app/store'
 import { errorUtils } from 'common'
 import {
   packListAPI,
-  PackListResponseType,
+  PackType,
   QueryParams,
+  ModalDataType,
+  ModalStateType,
   AddPackRequestType,
+  PackListResponseType,
   UpdatePackRequestType,
 } from 'features/packs-list'
 
 type InitialStateType = {
   packList: PackListResponseType
   queryParams: QueryParams
+  modalData: ModalDataType
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
 }
 
@@ -42,6 +46,16 @@ const initialState: InitialStateType = {
     pageCount: 7,
     sortPacks: '0updated',
   },
+  modalData: {
+    modalData: {
+      _id: '',
+    },
+    modalState: {
+      isShowAddedModal: false,
+      isShowEditModal: false,
+      isShowDeleteModal: false,
+    },
+  } as ModalDataType,
   status: 'idle',
 }
 
@@ -121,6 +135,12 @@ export const packListSlice = createSlice({
   reducers: {
     setQueryParams: (state, action: PayloadAction<Partial<QueryParams>>) => {
       state.queryParams = { ...state.queryParams, ...action.payload }
+    },
+    setModalData: (state, action: PayloadAction<Partial<PackType>>) => {
+      state.modalData.modalData = { ...state.modalData.modalData, ...action.payload }
+    },
+    toggleModal: (state, action: PayloadAction<Partial<ModalStateType>>) => {
+      state.modalData.modalState = { ...state.modalData.modalState, ...action.payload }
     },
     resetQueryParams: state => {
       state.queryParams = initialState.queryParams

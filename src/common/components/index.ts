@@ -1,4 +1,5 @@
 import { AccountMenu } from './account-menu/AccountMenu'
+import { BasicModal } from './basic-modal/BasicModal'
 import { ButtonsGroup } from './button-group/ButtonsGroup'
 import { useSwitch } from './button-group/use-switch'
 import { ContentPreloader } from './content-preloader/ContentPreloader'
@@ -21,6 +22,7 @@ import { ResetButton } from './reset-button/ResetButton'
 import { CustomSlider } from './slider/CustomSlider'
 import { DescriptionSnackbar } from './snackbar/Snackbar'
 import { SubHeader } from './sub-header/SubHeader'
+import { EnhancedTableHead, HeadCellType } from './table-header/EnhancedTableHead'
 import { TableSkeleton } from './table-skeleton/TableSkeleton'
 import { UserName } from './user-name/UserName'
 import { ValidError } from './valid-error/ValidError'
@@ -52,4 +54,8 @@ export {
   useSwitch,
   Pagination,
   TableSkeleton,
+  BasicModal,
+  EnhancedTableHead,
 }
+
+export type { HeadCellType }

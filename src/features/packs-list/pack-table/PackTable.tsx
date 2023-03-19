@@ -10,8 +10,8 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
 
-import { TableSkeleton } from 'common'
-import { EnhancedTableHead, HeadCellType } from 'common/components/table-header/EnhancedTableHead'
+import { TableSkeleton, EnhancedTableHead, HeadCellType } from 'common'
+import { useModals } from 'features/modals'
 import { useFilters, usePackList } from 'features/packs-list'
 import { useProfile } from 'features/profile'
 
@@ -25,8 +25,8 @@ const headCells: HeadCellType[] = [
 
 export const PackTable = () => {
   const userProfileData = useProfile()
-  const { status, cardPacks, pageCount, editPack, removePack, navigateToCards } = usePackList()
-
+  const { status, cardPacks, pageCount, navigateToCards } = usePackList()
+  const { showModal } = useModals()
   const { onSortPackTable } = useFilters()
 
   const packItems = cardPacks.map(p => (
@@ -51,10 +51,10 @@ export const PackTable = () => {
 
         {userProfileData._id === p.user_id && (
           <span>
-            <IconButton onClick={editPack(p._id)}>
+            <IconButton onClick={showModal('edit', p)}>
               <BorderColorOutlinedIcon />
             </IconButton>
-            <IconButton onClick={removePack(p._id)}>
+            <IconButton onClick={showModal('delete', p)}>
               <DeleteOutlinedIcon />
             </IconButton>
           </span>

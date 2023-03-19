@@ -28,6 +28,8 @@ import {
   UpdatePackRequestType,
   DeleteResponseType,
   UpdateResponseType,
+  ModalDataType,
+  ModalStateType,
 } from './types'
 
 import { useFilters } from 'features/packs-list/hooks/use-filters'
@@ -71,4 +73,6 @@ export type {
   UpdatePackRequestType,
   DeleteResponseType,
   UpdateResponseType,
+  ModalDataType,
+  ModalStateType,
 }
