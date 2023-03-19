@@ -30,7 +30,11 @@ export const EnhancedTableContent: FC<TableContentPropsType> = ({
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
-            <EnhancedTableHead headCells={headCells} onSortPackList={sortTableHandler} />
+            <EnhancedTableHead
+              status={status}
+              headCells={headCells}
+              onSortPackList={sortTableHandler}
+            />
             <TableBody sx={{ height: 'inherit' }}>
               {status === 'loading' && (
                 <TableSkeleton amountRow={pageCount} amountCell={headCells.length} />

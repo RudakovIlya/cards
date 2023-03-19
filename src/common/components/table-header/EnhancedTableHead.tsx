@@ -7,6 +7,8 @@ import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
 
+import { StatusType } from 'features/packs-list/types'
+
 type Order = 'asc' | 'desc'
 
 export type HeadCellType = {
@@ -17,9 +19,14 @@ export type HeadCellType = {
 type EnhancedTableProps = {
   headCells: HeadCellType[]
   onSortPackList: (TableHeaderData: string) => void
+  status: StatusType
 }
 
-export const EnhancedTableHead: FC<EnhancedTableProps> = ({ headCells, onSortPackList }) => {
+export const EnhancedTableHead: FC<EnhancedTableProps> = ({
+  headCells,
+  onSortPackList,
+  status,
+}) => {
   const [order, setOrder] = useState<Order>('asc')
   const [orderBy, setOrderBy] = useState<string>(headCells[0].id)
 
@@ -44,6 +51,7 @@ export const EnhancedTableHead: FC<EnhancedTableProps> = ({ headCells, onSortPac
               headCell.label
             ) : (
               <TableSortLabel
+                disabled={status === 'loading'}
                 active={orderBy === headCell.id}
                 direction={orderBy === headCell.id ? order : 'asc'}
                 onClick={() => onClickSortHandler(headCell.id)}
