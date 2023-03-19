@@ -22,6 +22,8 @@ import { ResetButton } from './reset-button/ResetButton'
 import { CustomSlider } from './slider/CustomSlider'
 import { DescriptionSnackbar } from './snackbar/Snackbar'
 import { SubHeader } from './sub-header/SubHeader'
+import { EnhancedTableContent } from './table-content/EnhancedTableContent'
+import { styleForIcons } from './table-content/tableStyles'
 import { EnhancedTableHead, HeadCellType } from './table-header/EnhancedTableHead'
 import { TableSkeleton } from './table-skeleton/TableSkeleton'
 import { UserName } from './user-name/UserName'
@@ -56,6 +58,9 @@ export {
   TableSkeleton,
   BasicModal,
   EnhancedTableHead,
+  EnhancedTableContent,
 }
+
+export { styleForIcons }
 
 export type { HeadCellType }

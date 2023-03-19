@@ -14,8 +14,6 @@ export const ModalRemoveEntity: FC<ModalRemoveEntityType> = ({ onRemove, title }
     data: { name, question },
   } = useModals()
 
-  console.log(title)
-
   return (
     <DeleteModal
       open={isShowDeleteModal}

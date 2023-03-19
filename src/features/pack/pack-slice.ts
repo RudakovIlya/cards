@@ -9,9 +9,8 @@ import {
 
 import { AddCardRequestType, UpdateCardRequestType } from './types'
 
-import { errorUtils } from 'common'
+import { errorUtils, ThunkAPIType } from 'common'
 import { packAPI, PackResponse, QueryPackParams } from 'features/pack'
-import { ThunkAPIType } from 'features/packs-list/pack-listSlice'
 
 type InitialStateType = {
   pack: PackResponse

@@ -5,11 +5,9 @@ import Rating from '@mui/material/Rating'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { styleForIcons } from 'common/components/table-content/tableStyles'
-import { usePackCards, usePackFilters } from 'features/pack'
-import { TableSkeleton, EnhancedTableHead, HeadCellType } from 'common'
+import { HeadCellType, EnhancedTableContent, styleForIcons } from 'common'
 import { useModals } from 'features/modals'
-import { EnhancedTableContent } from 'common/components/table-content/EnhancedTableContent'
+import { usePackCards, usePackFilters } from 'features/pack'
 
 export const MyPackTable = () => {
   const { packCards, isMe, status, pageCount } = usePackCards()

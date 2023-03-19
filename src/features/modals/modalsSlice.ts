@@ -45,6 +45,7 @@ const modalsSlice = createSlice({
         isShowAddedModal: false,
         isShowEditModal: false,
       }
+      state.modalData = initialState.modalData
     })
   },
 })
