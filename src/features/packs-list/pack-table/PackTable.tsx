@@ -45,7 +45,7 @@ export const PackTable = () => {
       </TableCell>
       <TableCell align="left">{p.user_name}</TableCell>
       <TableCell align="left">
-        <IconButton onClick={() => {}}>
+        <IconButton disabled={p.cardsCount === 0} onClick={() => {}}>
           <SchoolOutlinedIcon />
         </IconButton>
 
