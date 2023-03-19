@@ -46,7 +46,7 @@ type EnhancedTableProps = {
   rowCount: number
 }
 
-export const EnhancedTableHead: FC<EnhancedTableProps> = ({ order, orderBy, onRequestSort }) => {
+export const MyTableHead: FC<EnhancedTableProps> = ({ order, orderBy, onRequestSort }) => {
   const createSortHandler = (property: keyof Data) => (event: MouseEvent<unknown>) => {
     onRequestSort(event, property)
   }
@@ -126,7 +126,7 @@ export const MyPackTable = () => {
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
-            <EnhancedTableHead
+            <MyTableHead
               order={order}
               orderBy={orderBy}
               onRequestSort={handleRequestSort}

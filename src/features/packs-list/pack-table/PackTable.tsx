@@ -71,7 +71,7 @@ export const PackTable = () => {
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
-            <EnhancedTableHead headCells={headCells} onSortPackTable={onSortPackTable} />
+            <EnhancedTableHead headCells={headCells} onSortPackList={onSortPackTable} />
             <TableBody>
               {status === 'loading' && <TableSkeleton amountRow={pageCount} />}
               {status === 'succeeded' && packItems}

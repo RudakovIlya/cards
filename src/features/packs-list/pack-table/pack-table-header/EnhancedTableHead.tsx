@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 
 import Box from '@mui/material/Box'
 import TableCell from '@mui/material/TableCell'
@@ -16,12 +16,10 @@ export type HeadCellType = {
 
 type EnhancedTableProps = {
   headCells: HeadCellType[]
-  onSortPackTable: (PackTableHeaderData: string) => void
+  onSortPackList: (PackTableHeaderData: string) => void
 }
 
-export const EnhancedTableHead = (props: EnhancedTableProps) => {
-  const { headCells, onSortPackTable } = props
-
+export const EnhancedTableHead: FC<EnhancedTableProps> = ({ headCells, onSortPackList }) => {
   const [order, setOrder] = useState<Order>('asc')
   const [orderBy, setOrderBy] = useState<string>(headCells[0].id)
 
@@ -30,17 +28,14 @@ export const EnhancedTableHead = (props: EnhancedTableProps) => {
 
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
-    onSortPackTable((isAsc ? '0' : '1') + property)
+    onSortPackList((isAsc ? '0' : '1') + property)
   }
 
   return (
     <TableHead>
       <TableRow>
         {headCells?.map(headCell => (
-          <TableCell
-            key={headCell.id as string}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
+          <TableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
             {headCell.id === 'empty' ? (
               headCell.label
             ) : (
