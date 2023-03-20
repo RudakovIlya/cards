@@ -2,6 +2,7 @@ import { MyPackTable } from './my-pack-table/MyPackTable'
 
 import { NavigationToBack, SubHeader } from 'common'
 import { FilterPanels, useFetchPack, usePackCards } from 'features/pack'
+import { Modals } from 'features/pack/modals/Modals'
 
 export const Pack = () => {
   const { isMe, packName, learnCard, addNewCard, status } = usePackCards()
@@ -20,6 +21,7 @@ export const Pack = () => {
       />
       <FilterPanels />
       <MyPackTable />
+      <Modals />
     </>
   )
 }

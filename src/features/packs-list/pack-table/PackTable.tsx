@@ -5,9 +5,7 @@ import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { HeadCellType } from 'common'
-import { EnhancedTableContent } from 'common/components/table-content/EnhancedTableContent'
-import { styleForIcons } from 'common/components/table-content/tableStyles'
+import { HeadCellType, EnhancedTableContent, styleForIcons } from 'common'
 import { useModals } from 'features/modals'
 import { useFilters, usePackList } from 'features/packs-list'
 import { useProfile } from 'features/profile'
@@ -50,10 +48,16 @@ export const PackTable = () => {
 
         {userProfileData._id === p.user_id && (
           <span>
-            <IconButton sx={styleForIcons} onClick={showModal('edit', p)}>
+            <IconButton
+              sx={styleForIcons}
+              onClick={showModal('edit', { name: p.name, _id: p._id })}
+            >
               <BorderColorOutlinedIcon />
             </IconButton>
-            <IconButton sx={styleForIcons} onClick={showModal('delete', p)}>
+            <IconButton
+              sx={styleForIcons}
+              onClick={showModal('delete', { name: p.name, _id: p._id })}
+            >
               <DeleteOutlinedIcon />
             </IconButton>
           </span>

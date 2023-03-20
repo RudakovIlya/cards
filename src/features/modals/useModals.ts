@@ -22,19 +22,22 @@ export const useModals = () => {
     return () => {
       switch (type) {
         case 'add': {
+          dispatch(modalActions.setModalData({ ...data, name: '' }))
           dispatch(modalActions.toggleModal({ isShowAddedModal: true }))
-          dispatch(modalActions.setModalData(data))
-          break
+
+          return
         }
         case 'delete': {
-          dispatch(modalActions.toggleModal({ isShowDeleteModal: true }))
           dispatch(modalActions.setModalData(data))
-          break
+          dispatch(modalActions.toggleModal({ isShowDeleteModal: true }))
+
+          return
         }
         case 'edit': {
-          dispatch(modalActions.toggleModal({ isShowEditModal: true }))
           dispatch(modalActions.setModalData(data))
-          break
+          dispatch(modalActions.toggleModal({ isShowEditModal: true }))
+
+          return
         }
       }
     }
@@ -46,6 +49,15 @@ export const useModals = () => {
         isShowAddedModal: false,
         isShowDeleteModal: false,
         isShowEditModal: false,
+      })
+    )
+    dispatch(
+      modalActions.setModalData({
+        name: '',
+        answer: '',
+        _id: '',
+        packName: '',
+        question: '',
       })
     )
   }

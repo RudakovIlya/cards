@@ -6,9 +6,8 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
 
-import { EnhancedTableHead, HeadCellType } from 'common/components/table-header/EnhancedTableHead'
-import { TableSkeleton } from 'common/components/table-skeleton/TableSkeleton'
-import { StatusType } from 'features/packs-list/types'
+import { EnhancedTableHead, HeadCellType, TableSkeleton } from 'common'
+import { StatusType } from 'common/types'
 
 type TableContentPropsType = {
   headCells: HeadCellType[]

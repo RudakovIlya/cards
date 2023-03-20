@@ -7,7 +7,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 
-import { errorUtils, ThunkAPIType } from 'common'
+import { errorUtils, StatusType, ThunkAPIType } from 'common'
 import {
   AddPackRequestType,
   packListAPI,
@@ -15,7 +15,6 @@ import {
   QueryParams,
   UpdatePackRequestType,
 } from 'features/packs-list'
-import { StatusType } from 'features/packs-list/types'
 
 type InitialStateType = {
   packList: PackListResponseType

@@ -22,8 +22,6 @@ import {
   AddPackRequestType,
   AddPackType,
   DeleteResponseType,
-  ModalDataType,
-  ModalStateType,
   PackListResponseType,
   PackType,
   QueryParams,
@@ -73,6 +71,4 @@ export type {
   UpdatePackRequestType,
   DeleteResponseType,
   UpdateResponseType,
-  ModalDataType,
-  ModalStateType,
 }

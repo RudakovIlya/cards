@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
 
-import { StatusType } from 'features/packs-list/types'
+import { StatusType } from 'common/types'
 
 type Order = 'asc' | 'desc'
 

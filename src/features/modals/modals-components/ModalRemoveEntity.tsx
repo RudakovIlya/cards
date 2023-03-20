@@ -16,9 +16,10 @@ export const ModalRemoveEntity: FC<ModalRemoveEntityType> = ({ onRemove, title }
 
   return (
     <DeleteModal
+      modalTitle={'Do you really want to remove'}
       open={isShowDeleteModal}
       handleClose={closeModal}
-      onDeleteEntity={onRemove}
+      callBack={onRemove}
       entityName={name || question}
       entityTitle={title}
     />

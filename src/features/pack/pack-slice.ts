@@ -9,14 +9,14 @@ import {
 
 import { AddCardRequestType, UpdateCardRequestType } from './types'
 
-import { errorUtils, ThunkAPIType } from 'common'
+import { errorUtils, StatusType, ThunkAPIType } from 'common'
 import { packAPI, PackResponse, QueryPackParams } from 'features/pack'
 
 type InitialStateType = {
   pack: PackResponse
   queryParams: QueryPackParams
   isLoading: boolean
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: StatusType
 }
 
 const initialState: InitialStateType = {
@@ -111,7 +111,7 @@ export const deleteCard = createAsyncThunk<void, string, ThunkAPIType>(
 )
 
 const pending = isPending(getPack, addCard, updateCard, deleteCard)
-const fulfilled = isFulfilled(getPack, addCard, updateCard, deleteCard)
+const fulfilled = isFulfilled(getPack)
 const rejected = isRejected(getPack, addCard, updateCard, deleteCard)
 
 const packSlice = createSlice({

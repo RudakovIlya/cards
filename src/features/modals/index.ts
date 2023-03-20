@@ -1,4 +1,3 @@
-import { Modals } from './Modals'
 import { modalActions, modalsReducer } from './modalsSlice'
 import { modalData, showAddedModal, showDeleteModal, showEditModal } from './selectors'
 import { ModalDataType, ModalStateType } from './types'
@@ -12,6 +11,6 @@ export { showAddedModal, showDeleteModal, showEditModal, modalData }
 
 export { useModals }
 
-export { ModalRemoveEntity, Modals }
+export { ModalRemoveEntity }
 
 export type { ModalStateType, ModalDataType }

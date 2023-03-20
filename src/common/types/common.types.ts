@@ -11,4 +11,7 @@ export type FormValidateType = {
   confPassword?: string
   rememberMe?: boolean
   name: string
+  private?: boolean
 }
+
+export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'

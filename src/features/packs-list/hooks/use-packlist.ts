@@ -1,7 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
-import { packListCardPacks, packListStatus, pageCountParams } from 'features/packs-list'
+import {
+  AddPackType,
+  packListCardPacks,
+  packListStatus,
+  pageCountParams,
+  UpdatePackType,
+} from 'features/packs-list'
 import { addPack, deletePack, updatePack } from 'features/packs-list/pack-listSlice'
 
 export const usePackList = () => {
@@ -17,24 +23,24 @@ export const usePackList = () => {
   }
 
   const editPack = (id: string) => {
-    return () =>
+    return (data: Omit<UpdatePackType, '_id'>) => {
       dispatch(
         updatePack({
-          cardsPack: { name: `New Name(Жоские) New TestModal`, _id: id, deckCover: '' },
+          cardsPack: { ...data, _id: id },
         })
       )
+    }
   }
 
   const addNewPack = () => {
-    dispatch(
-      addPack({
-        cardsPack: {
-          name: 'New Pack (Жоские) ' + (Math.random() + 10),
-          deckCover: '',
-          private: false,
-        },
-      })
-    )
+    return (data: AddPackType) => {
+      console.log(data)
+      dispatch(
+        addPack({
+          cardsPack: data,
+        })
+      )
+    }
   }
 
   const removePack = (id: string) => {

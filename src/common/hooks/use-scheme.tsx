@@ -8,6 +8,7 @@ export const useScheme = (keys: string[]) => {
     register,
     handleSubmit,
     reset,
+
     formState: { errors },
   } = useForm<FormValidateType>({
     resolver: yupResolver(createValidationSchema(keys)),

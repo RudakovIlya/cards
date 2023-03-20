@@ -27,7 +27,7 @@ const initialState: InitialStateType = {
 const fulfilled = isFulfilled(getPack, getPackList)
 
 const modalsSlice = createSlice({
-  name: 'modalsSlice',
+  name: 'modals',
   initialState,
   reducers: {
     setModalData: (state, action: PayloadAction<Partial<ModalDataType>>) => {
