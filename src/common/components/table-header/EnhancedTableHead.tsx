@@ -43,7 +43,11 @@ export const EnhancedTableHead: FC<EnhancedTableProps> = ({
       <TableRow>
         {headCells?.map(headCell => (
           <TableCell
-            sx={{ '&:first-of-type': { width: '350px' } }} // Фанур я тут поменял, что бы не было warning-ов
+            sx={{
+              width: '220px',
+              '&:first-of-type': { width: '350px' },
+              '&:last-of-type': { width: '150px' },
+            }}
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
           >
