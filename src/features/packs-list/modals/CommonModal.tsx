@@ -46,7 +46,7 @@ export const CommonModal: FC<EditModalType> = ({ callback, open, title }) => {
           {...register('name', { value: name })}
           value={state}
           variant={'standard'}
-          label={name || question}
+          label={'Pack name'}
           placeholder={name || question}
           sx={{ width: '100%', marginBottom: '30px' }}
           onChange={e => setState(e.currentTarget.value)}

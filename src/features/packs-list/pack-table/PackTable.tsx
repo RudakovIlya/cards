@@ -1,6 +1,7 @@
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
+import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
@@ -27,12 +28,22 @@ export const PackTable = () => {
   const packItems = cardPacks.map(p => (
     <TableRow hover key={p._id}>
       <TableCell component="th" scope="row">
-        <div style={{ display: 'flex' }}>
-          <button onClick={navigateToCards(p._id)}>{p.name}</button>
+        <Box>
+          <button
+            style={{
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: ' ellipsis',
+              maxWidth: 320,
+            }}
+            onClick={navigateToCards(p._id)}
+          >
+            {p.name}
+          </button>
           {p.deckCover && (
             <img style={{ height: '35px', marginLeft: '20px' }} alt="img" src={p.deckCover} />
           )}
-        </div>
+        </Box>
       </TableCell>
       <TableCell onClick={() => {}} align="left">
         {p.cardsCount}
