@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import { FC, memo, PropsWithChildren } from 'react'
 
 import CloseIcon from '@mui/icons-material/Close'
 import Box from '@mui/material/Box'
@@ -22,35 +22,32 @@ type BasicModalType = {
   onClose: () => void
 }
 
-export const BasicModal: FC<PropsWithChildren & BasicModalType> = ({
-  open,
-  title,
-  onClose,
-  children,
-}) => {
-  return (
-    <div>
-      <Modal open={open} onClose={onClose}>
-        <Box sx={style}>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: 3,
-              borderBottom: '1px solid #D9D9D9',
-            }}
-          >
-            <Typography fontWeight={500} fontSize={22}>
-              {title}
-            </Typography>
-            <IconButton onClick={onClose}>
-              <CloseIcon />
-            </IconButton>
+export const BasicModal: FC<PropsWithChildren & BasicModalType> = memo(
+  ({ open, title, onClose, children }) => {
+    return (
+      <div>
+        <Modal open={open} onClose={onClose}>
+          <Box sx={style}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: 3,
+                borderBottom: '1px solid #D9D9D9',
+              }}
+            >
+              <Typography fontWeight={500} fontSize={22}>
+                {title}
+              </Typography>
+              <IconButton onClick={onClose}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+            {children}
           </Box>
-          {children}
-        </Box>
-      </Modal>
-    </div>
-  )
-}
+        </Modal>
+      </div>
+    )
+  }
+)

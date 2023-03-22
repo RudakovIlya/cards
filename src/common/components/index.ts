@@ -3,6 +3,7 @@ import { BasicModal } from './basic-modal/BasicModal'
 import { ButtonsGroup } from './button-group/ButtonsGroup'
 import { useSwitch } from './button-group/use-switch'
 import { ContentPreloader } from './content-preloader/ContentPreloader'
+import { CustomSelect } from './custom-select/CustomSelect'
 import { ErrorPage } from './error-page/ErrorPage'
 import { ErrorImage } from './error-page-svg/ErrorIcon'
 import { Eye } from './eye/Eye'
@@ -13,6 +14,7 @@ import { InputSearch } from './input-search/InputSearch'
 import { Layout } from './layout/Layout'
 import { LinkWrapper } from './link/CustomLink'
 import { MainPreloader } from './main-preloader/MainPreloader'
+import { ModalsButtons } from './modals-buttons/ModalsButtons'
 import { NavigationToBack } from './navigation-to-back/NavigationToBack'
 import { Pagination } from './pagination/Pagination'
 import { PasswordInput } from './password/PasswordInput'
@@ -59,6 +61,8 @@ export {
   BasicModal,
   EnhancedTableHead,
   EnhancedTableContent,
+  CustomSelect,
+  ModalsButtons,
 }
 
 export { styleForIcons }

@@ -34,7 +34,6 @@ export const usePackList = () => {
 
   const addNewPack = () => {
     return (data: AddPackType) => {
-      console.log(data)
       dispatch(
         addPack({
           cardsPack: data,

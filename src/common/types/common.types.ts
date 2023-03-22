@@ -12,6 +12,8 @@ export type FormValidateType = {
   rememberMe?: boolean
   name: string
   private?: boolean
+  question: string
+  answer: string
 }
 
 export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'

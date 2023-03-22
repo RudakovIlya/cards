@@ -22,7 +22,7 @@ export const useModals = () => {
     return () => {
       switch (type) {
         case 'add': {
-          dispatch(modalActions.setModalData({ ...data, name: '' }))
+          dispatch(modalActions.setModalData(data))
           dispatch(modalActions.toggleModal({ isShowAddedModal: true }))
 
           return
@@ -45,19 +45,19 @@ export const useModals = () => {
 
   const closeModal = () => {
     dispatch(
+      modalActions.setModalData({
+        _id: '',
+        name: '',
+        answer: '',
+        packName: '',
+        question: '',
+      })
+    )
+    dispatch(
       modalActions.toggleModal({
         isShowAddedModal: false,
         isShowDeleteModal: false,
         isShowEditModal: false,
-      })
-    )
-    dispatch(
-      modalActions.setModalData({
-        name: '',
-        answer: '',
-        _id: '',
-        packName: '',
-        question: '',
       })
     )
   }

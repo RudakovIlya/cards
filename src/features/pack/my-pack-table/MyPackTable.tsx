@@ -36,7 +36,10 @@ export const MyPackTable = () => {
         <Rating sx={styleForIcons} name="read-only" value={p.grade} readOnly />
         {isMe && (
           <span>
-            <IconButton sx={styleForIcons} onClick={showModal('edit', p)}>
+            <IconButton
+              sx={styleForIcons}
+              onClick={showModal('edit', { _id: p._id, answer: p.answer, question: p.question })}
+            >
               <BorderColorOutlinedIcon />
             </IconButton>
             <IconButton onClick={showModal('delete', p)}>
