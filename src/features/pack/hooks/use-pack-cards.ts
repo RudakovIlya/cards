@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
@@ -26,7 +28,7 @@ export const usePackCards = () => {
 
   const isMe = packUserId === _id
 
-  const addNewCard = () => {
+  const addNewCard = useCallback(() => {
     return (data: any) => {
       dispatch(
         addCard({
@@ -34,20 +36,20 @@ export const usePackCards = () => {
         })
       )
     }
-  }
+  }, [])
 
-  const removeCard = (id: string) => {
+  const removeCard = useCallback((id: string) => {
     return () => dispatch(deleteCard(id))
-  }
+  }, [])
 
-  const updateCurrentCard = (id: string) => {
+  const updateCurrentCard = useCallback((id: string) => {
     return (data: any) =>
       dispatch(
         updateCard({
           card: { _id: id, ...data },
         })
       )
-  }
+  }, [])
 
   const learnCard = () => {
     console.log('learnCard')
