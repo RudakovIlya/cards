@@ -1,10 +1,8 @@
 import { FC } from 'react'
 
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
-import { BasicModal } from 'common'
+import { BasicModal, ModalsButtons } from 'common'
 
 type DeleteModalType = {
   modalTitle: string
@@ -28,14 +26,7 @@ export const DeleteModal: FC<DeleteModalType> = ({
       <Typography padding={'0 0 30px 0'}>
         {modalTitle} <b>{entityName}</b>?
       </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Button color={'primary'} size={'small'} onClick={handleClose} variant={'radius'}>
-          Cancel
-        </Button>
-        <Button color={'error'} size={'small'} onClick={callBack} variant={'radius'}>
-          Delete
-        </Button>
-      </Box>
+      <ModalsButtons title={'Delete'} cancelCallback={handleClose} saveCallback={callBack} />
     </BasicModal>
   )
 }

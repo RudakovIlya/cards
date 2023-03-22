@@ -27,11 +27,13 @@ export const usePackCards = () => {
   const isMe = packUserId === _id
 
   const addNewCard = () => {
-    dispatch(
-      addCard({
-        card: { cardsPack_id: packId as string, question: 'Жоский вопрос ' + (Math.random() + 13) },
-      })
-    )
+    return (data: any) => {
+      dispatch(
+        addCard({
+          card: { cardsPack_id: packId as string, ...data },
+        })
+      )
+    }
   }
 
   const removeCard = (id: string) => {
@@ -39,10 +41,10 @@ export const usePackCards = () => {
   }
 
   const updateCurrentCard = (id: string) => {
-    return () =>
+    return (data: any) =>
       dispatch(
         updateCard({
-          card: { _id: id, question: 'Новый вопрос от жостких ' + (Math.random() + 15) },
+          card: { _id: id, ...data },
         })
       )
   }

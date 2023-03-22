@@ -6,9 +6,9 @@ import { Modals } from 'features/packs-list/modals/Modals'
 export const PackList = () => {
   const { status } = usePackList()
 
-  useFetchPackList()
-
   const { showModal } = useModals()
+
+  useFetchPackList()
 
   return (
     <div>
