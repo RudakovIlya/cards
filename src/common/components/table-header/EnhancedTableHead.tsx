@@ -28,7 +28,7 @@ export const EnhancedTableHead: FC<EnhancedTableProps> = ({
   status,
 }) => {
   const [order, setOrder] = useState<Order>('asc')
-  const [orderBy, setOrderBy] = useState<string>(headCells[0].id)
+  const [orderBy, setOrderBy] = useState<string>(headCells[2].id)
 
   const onClickSortHandler = (property: string) => {
     const isAsc = orderBy === property && order === 'asc'

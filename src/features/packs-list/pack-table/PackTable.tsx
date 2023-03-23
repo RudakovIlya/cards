@@ -7,6 +7,7 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
 import { HeadCellType, EnhancedTableContent, styleForIcons } from 'common'
+import { NotFindAnything } from 'common/components/table-content/NotFindAnything'
 import { useModals } from 'features/modals'
 import { useFilters, usePackList } from 'features/packs-list'
 import { useProfile } from 'features/profile'
@@ -22,9 +23,8 @@ export const PackTable = () => {
 
   const { showModal } = useModals()
   const userProfileData = useProfile()
-  const { status, cardPacks, pageCount, editPack, removePack, navigateToCards, navigateToLearn } =
-    usePackList()
-  const { onSortPackTable } = useFilters()
+  const { status, cardPacks, pageCount, navigateToCards, navigateToLearn } = usePackList()
+  const { onSortPackTable, packName } = useFilters()
 
   const packItems = cardPacks.map(p => (
     <TableRow hover key={p._id}>
@@ -79,13 +79,16 @@ export const PackTable = () => {
   ))
 
   return (
-    <EnhancedTableContent
-      sortTableHandler={onSortPackTable}
-      status={status}
-      headCells={headCells}
-      pageCount={pageCount}
-    >
-      {packItems}
-    </EnhancedTableContent>
+    <div>
+      <EnhancedTableContent
+        sortTableHandler={onSortPackTable}
+        status={status}
+        headCells={headCells}
+        pageCount={pageCount}
+      >
+        {packItems}
+      </EnhancedTableContent>
+      {!cardPacks.length && <NotFindAnything status={status} value={packName} />}
+    </div>
   )
 }

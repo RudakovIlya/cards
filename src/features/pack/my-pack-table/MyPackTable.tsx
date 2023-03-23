@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
 import { EnhancedTableContent, HeadCellType, styleForIcons } from 'common'
+import { NotFindAnything } from 'common/components/table-content/NotFindAnything'
 import { useModals } from 'features/modals'
 import { usePackCards, usePackFilters } from 'features/pack'
 
@@ -17,7 +18,7 @@ export const MyPackTable = () => {
     { id: 'updated', label: 'Last updated' },
     { id: 'grade', label: 'Grade' },
   ]
-  const { onSortCardsTable } = usePackFilters()
+  const { onSortCardsTable, searchValue } = usePackFilters()
 
   const { showModal } = useModals()
 
@@ -52,13 +53,16 @@ export const MyPackTable = () => {
   ))
 
   return (
-    <EnhancedTableContent
-      sortTableHandler={onSortCardsTable}
-      status={status}
-      headCells={headCells}
-      pageCount={pageCount}
-    >
-      {packItems}
-    </EnhancedTableContent>
+    <div>
+      <EnhancedTableContent
+        sortTableHandler={onSortCardsTable}
+        status={status}
+        headCells={headCells}
+        pageCount={pageCount}
+      >
+        {packItems}
+      </EnhancedTableContent>
+      {!packCards.length && <NotFindAnything status={status} value={searchValue} />}
+    </div>
   )
 }
