@@ -1,7 +1,7 @@
 export const paths = {
   PACK_LIST: '/',
   PACK: 'pack/:packId',
-  LEARN_PACK: 'pack/:packId/learn',
+  LEARN_PACK: 'pack/learn/:packId/',
   USER_PROFILE: '/user-profile',
   AUTH: 'auth',
   LOGIN: '/auth/login',

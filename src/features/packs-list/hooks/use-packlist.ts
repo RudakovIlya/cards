@@ -16,6 +16,8 @@ export const usePackList = () => {
     return () => navigate(`/pack/${id}`)
   }
 
+  const navigateToLearn = (packId: string) => navigate(`/pack/learn/${packId}`)
+
   const editPack = (id: string) => {
     return () =>
       dispatch(
@@ -49,5 +51,6 @@ export const usePackList = () => {
     addNewPack,
     removePack,
     navigateToCards,
+    navigateToLearn,
   }
 }

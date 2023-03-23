@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { useForm } from 'react-hook-form'
 
 type AnswerPropsType = {
   answer: string
@@ -9,6 +10,12 @@ type AnswerPropsType = {
 
 export const Answer: FC<AnswerPropsType> = ({ answer, onNext }) => {
   const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал']
+
+  const { handleSubmit } = useForm()
+
+  const onSubmitHandler = (data: any) => {
+    console.log(data)
+  }
 
   return (
     <>
@@ -19,7 +26,7 @@ export const Answer: FC<AnswerPropsType> = ({ answer, onNext }) => {
         </span>
         <br />
 
-        <FormControl style={{ paddingBottom: 20 }}>
+        <FormControl onSubmit={handleSubmit(onSubmitHandler)} style={{ paddingBottom: 20 }}>
           <FormLabel>Оправдывайся, пес:</FormLabel>
           <RadioGroup>
             {grades.map((grade, index) => (
@@ -36,7 +43,7 @@ export const Answer: FC<AnswerPropsType> = ({ answer, onNext }) => {
               margin: '10 auto',
               maxWidth: 373,
             }}
-            // onClick={() => onNext()}
+            onClick={() => onNext()}
           >
             Next
           </Button>

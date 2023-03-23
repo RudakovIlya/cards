@@ -25,8 +25,8 @@ const headCells: HeadCellType[] = [
 
 export const PackTable = () => {
   const userProfileData = useProfile()
-  const { status, cardPacks, pageCount, editPack, removePack, navigateToCards } = usePackList()
-
+  const { status, cardPacks, pageCount, editPack, removePack, navigateToCards, navigateToLearn } =
+    usePackList()
   const { onSortPackTable } = useFilters()
 
   const packItems = cardPacks.map(p => (
@@ -45,7 +45,7 @@ export const PackTable = () => {
       </TableCell>
       <TableCell align="left">{p.user_name}</TableCell>
       <TableCell align="left">
-        <IconButton onClick={() => {}}>
+        <IconButton onClick={() => navigateToLearn(p._id)}>
           <SchoolOutlinedIcon />
         </IconButton>
 

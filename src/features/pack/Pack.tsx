@@ -4,7 +4,7 @@ import { NavigationToBack, SubHeader } from 'common'
 import { useFetchPack, usePackCards, FilterPanels } from 'features/pack'
 
 export const Pack = () => {
-  const { isMe, packName, learnCard, addNewCard, status } = usePackCards()
+  const { isMe, packName, learnToPack, addNewCard, status } = usePackCards()
 
   useFetchPack()
 
@@ -16,7 +16,7 @@ export const Pack = () => {
         isLoading={status === 'loading'}
         title={packName}
         titleButton={isMe ? 'Add new card' : 'Learn to pack'}
-        onClick={isMe ? addNewCard : learnCard}
+        onClick={isMe ? addNewCard : learnToPack}
       />
       <FilterPanels />
       <MyPackTable />

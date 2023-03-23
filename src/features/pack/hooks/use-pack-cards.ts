@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
 import { addCard, deleteCard, updateCard } from 'features/pack/pack-slice'
@@ -25,6 +25,9 @@ export const usePackCards = () => {
   const pageCount = useAppSelector(pageCountParams)
 
   const isMe = packUserId === _id
+  const navigate = useNavigate()
+
+  const navigateToLearn = (packId: string | undefined) => navigate(`/pack/learn/${packId}`)
 
   const addNewCard = () => {
     dispatch(
@@ -47,8 +50,8 @@ export const usePackCards = () => {
       )
   }
 
-  const learnCard = () => {
-    console.log('learnCard')
+  const learnToPack = () => {
+    navigateToLearn(packId)
   }
 
   return {
@@ -58,7 +61,7 @@ export const usePackCards = () => {
     isLoading,
     packCards,
     pageCount,
-    learnCard,
+    learnToPack,
     addNewCard,
     removeCard,
     updateCurrentCard,
