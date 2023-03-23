@@ -36,33 +36,39 @@ export const MyPackTable = () => {
       <TableCell
         align="left"
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+          display: 'table-cell',
         }}
       >
-        <Rating sx={styleForIcons} name="read-only" value={p.grade} readOnly />
-        {isMe && (
-          <span
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <IconButton
-              sx={styleForIcons}
-              onClick={showModal('edit', { _id: p._id, answer: p.answer, question: p.question })}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}
+        >
+          <Rating sx={styleForIcons} name="read-only" value={p.grade} readOnly />
+          {isMe && (
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}
             >
-              <BorderColorOutlinedIcon />
-            </IconButton>
-            <IconButton onClick={showModal('delete', p)}>
-              <DeleteOutlinedIcon />
-            </IconButton>
-          </span>
-        )}
+              <IconButton
+                sx={styleForIcons}
+                onClick={showModal('edit', { _id: p._id, answer: p.answer, question: p.question })}
+              >
+                <BorderColorOutlinedIcon />
+              </IconButton>
+              <IconButton onClick={showModal('delete', p)}>
+                <DeleteOutlinedIcon />
+              </IconButton>
+            </span>
+          )}
+        </div>
       </TableCell>
     </TableRow>
   ))
