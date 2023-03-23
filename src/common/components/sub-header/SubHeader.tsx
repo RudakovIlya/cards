@@ -22,8 +22,19 @@ export const SubHeader: FC<SubHeaderType> = ({
 }) => {
   return (
     <Grid container justifyContent={'space-between'} alignItems={'center'} sx={{ paddingTop: 3 }}>
-      <Typography sx={{ flex: '0 0 25%' }} variant={'h2'} fontSize={22} fontWeight={600}>
-        {isLoading ? <Skeleton sx={{ fontSize: '3rem' }} variant={'text'} /> : title}
+      <Typography
+        sx={{
+          flex: '0 0 25%',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: ' ellipsis',
+          maxWidth: 320,
+        }}
+        variant={'h2'}
+        fontSize={22}
+        fontWeight={600}
+      >
+        {isLoading ? <Skeleton variant={'text'} /> : title}
       </Typography>
 
       <Button onClick={onClick} variant={'radius'} disabled={disabled}>

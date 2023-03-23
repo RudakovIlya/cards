@@ -1,10 +1,13 @@
 import { MyPackTable } from './my-pack-table/MyPackTable'
 
 import { NavigationToBack, SubHeader } from 'common'
-import { useFetchPack, usePackCards, FilterPanels } from 'features/pack'
+import { useModals } from 'features/modals'
+import { FilterPanels, useFetchPack, usePackCards } from 'features/pack'
+import { Modals } from 'features/pack/modals/Modals'
 
 export const Pack = () => {
-  const { isMe, packName, learnToPack, addNewCard, status } = usePackCards()
+  const { isMe, packName, learnToPack, learnCard, status, addNewCard } = usePackCards()
+  const { showModal } = useModals()
 
   useFetchPack()
 
@@ -16,10 +19,12 @@ export const Pack = () => {
         isLoading={status === 'loading'}
         title={packName}
         titleButton={isMe ? 'Add new card' : 'Learn to pack'}
-        onClick={isMe ? addNewCard : learnToPack}
+        // onClick={isMe ? addNewCard : learnToPack}
+        onClick={isMe ? showModal('add', {}) : learnCard}
       />
       <FilterPanels />
       <MyPackTable />
+      <Modals />
     </>
   )
 }

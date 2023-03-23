@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Tooltip from '@mui/material/Tooltip'
 import { useNavigate } from 'react-router-dom'
 
-import { ProfileAvatar, paths, useAppSelector } from 'common'
+import { paths, ProfileAvatar, useAppSelector } from 'common'
 import { useAuth } from 'features/auth'
 
 export const AccountMenu = () => {

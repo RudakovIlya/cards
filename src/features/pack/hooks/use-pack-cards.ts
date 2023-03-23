@@ -1,4 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
+import { useCallback } from 'react'
+
+import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
 import { addCard, deleteCard, updateCard } from 'features/pack/pack-slice'
@@ -29,26 +32,28 @@ export const usePackCards = () => {
 
   const navigateToLearn = (packId: string | undefined) => navigate(`/pack/learn/${packId}`)
 
-  const addNewCard = () => {
-    dispatch(
-      addCard({
-        card: { cardsPack_id: packId as string, question: 'Жоский вопрос ' + (Math.random() + 13) },
-      })
-    )
-  }
-
-  const removeCard = (id: string) => {
-    return () => dispatch(deleteCard(id))
-  }
-
-  const updateCurrentCard = (id: string) => {
-    return () =>
+  const addNewCard = useCallback(() => {
+    return (data: any) => {
       dispatch(
-        updateCard({
-          card: { _id: id, question: 'Новый вопрос от жостких ' + (Math.random() + 15) },
+        addCard({
+          card: { cardsPack_id: packId as string, ...data },
         })
       )
-  }
+    }
+  }, [])
+
+  const removeCard = useCallback((id: string) => {
+    return () => dispatch(deleteCard(id))
+  }, [])
+
+  const updateCurrentCard = useCallback((id: string) => {
+    return (data: any) =>
+      dispatch(
+        updateCard({
+          card: { _id: id, ...data },
+        })
+      )
+  }, [])
 
   const learnToPack = () => {
     navigateToLearn(packId)

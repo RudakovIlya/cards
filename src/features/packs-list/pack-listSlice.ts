@@ -7,20 +7,19 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 
-import { RootState } from 'app/store'
-import { errorUtils } from 'common'
+import { errorUtils, StatusType, ThunkAPIType } from 'common'
 import {
+  AddPackRequestType,
   packListAPI,
   PackListResponseType,
   QueryParams,
-  AddPackRequestType,
   UpdatePackRequestType,
 } from 'features/packs-list'
 
 type InitialStateType = {
   packList: PackListResponseType
   queryParams: QueryParams
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: StatusType
 }
 
 const initialState: InitialStateType = {
@@ -43,11 +42,6 @@ const initialState: InitialStateType = {
     sortPacks: '0updated',
   },
   status: 'idle',
-}
-
-export type ThunkAPIType = {
-  rejectValue: string
-  state: RootState
 }
 
 export const getPackList = createAsyncThunk<PackListResponseType, void, ThunkAPIType>(

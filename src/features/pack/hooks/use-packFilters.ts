@@ -3,10 +3,10 @@ import { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from 'common'
 import { packActions } from 'features/pack/pack-slice'
 import {
-  packQuestionParams,
   packCardPacksTotalCount,
-  pageParams,
+  packQuestionParams,
   pageCountParams,
+  pageParams,
 } from 'features/pack/selectors'
 
 export const usePackFilters = () => {
@@ -29,6 +29,10 @@ export const usePackFilters = () => {
     dispatch(packActions.setQueryParams({ pageCount }))
   }, [])
 
+  const onSortCardsTable = useCallback((TableHeaderData: string) => {
+    dispatch(packActions.setQueryParams({ sortCards: TableHeaderData }))
+  }, [])
+
   return {
     pageParam,
     pageCountParam,
@@ -37,5 +41,6 @@ export const usePackFilters = () => {
     onSearchChange,
     onChangePageCount,
     onChangePagination,
+    onSortCardsTable,
   }
 }

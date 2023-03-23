@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import { appReducer } from 'app/app-slice'
 import { authReducer } from 'features/auth'
-import { PackReducer } from 'features/pack'
+import { modalsReducer } from 'features/modals'
+import { packReducer } from 'features/pack'
 import { packListReducer } from 'features/packs-list'
 import { userProfileReducer } from 'features/profile'
 
@@ -10,7 +11,8 @@ export const store = configureStore({
   reducer: {
     app: appReducer,
     auth: authReducer,
-    pack: PackReducer,
+    pack: packReducer,
+    modals: modalsReducer,
     profile: userProfileReducer,
     packList: packListReducer,
   },
@@ -18,7 +20,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-  devTools: true,
+  devTools: process.env.NODE_ENV === 'development',
 })
 
 export type RootState = ReturnType<typeof store.getState>

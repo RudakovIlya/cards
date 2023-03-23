@@ -1,3 +1,3 @@
-import { ThunkAPIType, FormValidateType } from './common.types'
+import { FormValidateType, StatusType, ThunkAPIType } from './common.types'
 
-export type { ThunkAPIType, FormValidateType }
+export type { ThunkAPIType, FormValidateType, StatusType }

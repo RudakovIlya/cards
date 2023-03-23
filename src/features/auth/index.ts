@@ -1,14 +1,14 @@
 import {
-  login,
-  logOut,
-  forgot,
+  authActions,
   authMe,
   authReducer,
-  authActions,
-  setNewPassword,
+  forgot,
+  login,
+  logOut,
   registerMe,
+  setNewPassword,
 } from './auth-slice'
-import { authRegistered, authMailSent, authPasswordSent, authLoggedIn } from './selectors'
+import { authLoggedIn, authMailSent, authPasswordSent, authRegistered } from './selectors'
 
 import { Auth } from 'features/auth/Auth'
 import { authAPI } from 'features/auth/auth-api'
