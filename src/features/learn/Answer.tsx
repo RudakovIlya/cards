@@ -1,20 +1,27 @@
 import React, { FC } from 'react'
 
-import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { Button, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
+import { useAppDispatch } from 'common'
+import { updateGrade } from 'features/learn/learn-slice'
+import { UpdateGradeRequestType } from 'features/pack/types'
+
 type AnswerPropsType = {
+  id: string
   answer: string
   onNext: () => void
 }
 
-export const Answer: FC<AnswerPropsType> = ({ answer, onNext }) => {
+export const Answer: FC<AnswerPropsType> = ({ answer, onNext, id }) => {
   const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал']
 
-  const { handleSubmit } = useForm()
+  const { handleSubmit, register } = useForm<UpdateGradeRequestType>()
 
-  const onSubmitHandler = (data: any) => {
-    console.log(data)
+  const dispatch = useAppDispatch()
+
+  const onSubmitHandler = (data: UpdateGradeRequestType) => {
+    dispatch(updateGrade({ grade: Number(data.grade), card_id: id }))
   }
 
   return (
@@ -26,15 +33,21 @@ export const Answer: FC<AnswerPropsType> = ({ answer, onNext }) => {
         </span>
         <br />
 
-        <FormControl onSubmit={handleSubmit(onSubmitHandler)} style={{ paddingBottom: 20 }}>
+        <form onSubmit={handleSubmit(onSubmitHandler)} style={{ paddingBottom: 20 }}>
           <FormLabel>Оправдывайся, пес:</FormLabel>
-          <RadioGroup>
+          <RadioGroup defaultValue="1">
             {grades.map((grade, index) => (
-              <FormControlLabel key={index} value={grade} control={<Radio />} label={grade} />
+              <FormControlLabel
+                key={index}
+                value={index + 1}
+                control={<Radio {...register('grade')} />}
+                label={grade}
+              />
             ))}
           </RadioGroup>
           <Button
             variant="contained"
+            type={'submit'}
             sx={{
               marginTop: 2,
               backgroundColor: '#366EFF',
@@ -47,7 +60,7 @@ export const Answer: FC<AnswerPropsType> = ({ answer, onNext }) => {
           >
             Next
           </Button>
-        </FormControl>
+        </form>
       </div>
     </>
   )
