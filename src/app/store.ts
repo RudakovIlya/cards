@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import { appReducer } from 'app/app-slice'
 import { authReducer } from 'features/auth'
+import { learnReducer } from 'features/learn/learn-slice'
 import { modalsReducer } from 'features/modals'
 import { packReducer } from 'features/pack'
 import { packListReducer } from 'features/packs-list'
@@ -12,6 +13,7 @@ export const store = configureStore({
     app: appReducer,
     auth: authReducer,
     pack: packReducer,
+    learn: learnReducer,
     modals: modalsReducer,
     profile: userProfileReducer,
     packList: packListReducer,
