@@ -46,7 +46,7 @@ export const EnhancedTableHead: FC<EnhancedTableProps> = ({
             sx={{
               width: '220px',
               '&:first-of-type': { width: '350px' },
-              '&:last-of-type': { width: '180px' },
+              '&:last-of-type': { width: '280px' },
             }}
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}

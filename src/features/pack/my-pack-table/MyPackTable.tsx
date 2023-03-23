@@ -33,10 +33,25 @@ export const MyPackTable = () => {
       <TableCell onClick={() => {}} align="left">
         {p.updated?.slice(0, 10)}
       </TableCell>
-      <TableCell align="left">
+      <TableCell
+        align="left"
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <Rating sx={styleForIcons} name="read-only" value={p.grade} readOnly />
         {isMe && (
-          <span>
+          <span
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <IconButton
               sx={styleForIcons}
               onClick={showModal('edit', { _id: p._id, answer: p.answer, question: p.question })}
