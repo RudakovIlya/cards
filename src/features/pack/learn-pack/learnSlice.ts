@@ -4,9 +4,8 @@ import { UpdateGradeRequestType } from '../types'
 
 import { learnApi } from './learn-api'
 
-import { errorUtils } from 'common'
+import { errorUtils, ThunkAPIType } from 'common'
 import { PackType } from 'features/pack'
-import { ThunkAPIType } from 'features/packs-list/pack-listSlice'
 
 type InitialStateType = {
   card: PackType

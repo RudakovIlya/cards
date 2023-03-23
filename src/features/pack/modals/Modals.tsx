@@ -1,6 +1,7 @@
-import { ModalRemoveEntity, useModals } from 'features/modals'
-import { usePackCards } from 'features/pack/hooks/use-pack-cards'
-import { CommonModal } from 'features/pack/modals/CommonModal'
+import { ModalRemoveEntity, useModals } from '../../modals'
+import { usePackCards } from '../hooks/use-pack-cards'
+
+import { CommonModal } from './CommonModal'
 
 export const Modals = () => {
   const {

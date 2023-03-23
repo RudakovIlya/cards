@@ -6,7 +6,7 @@ import { FilterPanels, useFetchPack, usePackCards } from 'features/pack'
 import { Modals } from 'features/pack/modals/Modals'
 
 export const Pack = () => {
-  const { isMe, packName, learnToPack, learnCard, status, addNewCard } = usePackCards()
+  const { isMe, packName, learnToPack, status, addNewCard } = usePackCards()
   const { showModal } = useModals()
 
   useFetchPack()
@@ -20,7 +20,7 @@ export const Pack = () => {
         title={packName}
         titleButton={isMe ? 'Add new card' : 'Learn to pack'}
         // onClick={isMe ? addNewCard : learnToPack}
-        onClick={isMe ? showModal('add', {}) : learnCard}
+        onClick={isMe ? showModal('add', {}) : learnToPack}
       />
       <FilterPanels />
       <MyPackTable />

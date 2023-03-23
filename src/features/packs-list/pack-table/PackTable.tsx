@@ -12,9 +12,6 @@ import { useFilters, usePackList } from 'features/packs-list'
 import { useProfile } from 'features/profile'
 
 export const PackTable = () => {
-  const userProfileData = useProfile()
-  const { status, cardPacks, pageCount, navigateToCards } = usePackList()
-  const { onSortPackTable } = useFilters()
   const headCells: HeadCellType[] = [
     { id: 'name', label: 'Name' },
     { id: 'cardsCount', label: 'Cards' },
@@ -24,7 +21,6 @@ export const PackTable = () => {
   ]
 
   const { showModal } = useModals()
-export const PackTable = () => {
   const userProfileData = useProfile()
   const { status, cardPacks, pageCount, editPack, removePack, navigateToCards, navigateToLearn } =
     usePackList()
@@ -54,7 +50,11 @@ export const PackTable = () => {
       <TableCell align="left">{p.updated?.slice(0, 10)}</TableCell>
       <TableCell align="left">{p.user_name}</TableCell>
       <TableCell align="left">
-        <IconButton sx={styleForIcons} disabled={p.cardsCount === 0} onClick={() => navigateToLearn(p._id)}>
+        <IconButton
+          sx={styleForIcons}
+          disabled={p.cardsCount === 0}
+          onClick={() => navigateToLearn(p._id)}
+        >
           <SchoolOutlinedIcon />
         </IconButton>
 

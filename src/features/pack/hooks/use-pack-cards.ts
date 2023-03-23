@@ -1,7 +1,6 @@
-import { useNavigate, useParams } from 'react-router-dom'
 import { useCallback } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from 'common'
 import { addCard, deleteCard, updateCard } from 'features/pack/pack-slice'
