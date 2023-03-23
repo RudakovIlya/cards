@@ -62,7 +62,7 @@ export const MyPackTable = () => {
       >
         {packItems}
       </EnhancedTableContent>
-      {!packCards.length && <NotFindAnything status={status} value={searchValue} />}
+      {!packCards.length && searchValue && <NotFindAnything status={status} value={searchValue} />}
     </div>
   )
 }
