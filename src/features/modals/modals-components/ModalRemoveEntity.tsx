@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { DeleteModal } from 'common/components/basic-modal/DeleteModal'
+import { DeleteModal } from 'common'
 import { useModals } from 'features/modals'
 
 type ModalRemoveEntityType = {

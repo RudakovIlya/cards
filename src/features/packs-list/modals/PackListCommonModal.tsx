@@ -1,7 +1,6 @@
 import { FC, memo } from 'react'
 
-import { BasicModal } from 'common'
-import { ModalsForms } from 'common/components/forms/ModalsForms'
+import { BasicModal, ModalsForms } from 'common'
 import { useModals } from 'features/modals'
 
 type EditModalType = {

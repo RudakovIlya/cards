@@ -13,10 +13,10 @@ type InputWithValueType = {
 export const InputWithValue: FC<InputWithValueType> = memo(({ name, value, label, register }) => {
   return (
     <TextField
+      {...register(name, { value: value })}
       variant={'standard'}
       label={label}
       sx={{ width: '100%', marginBottom: '30px' }}
-      {...register(name, { value: value })}
     />
   )
 })

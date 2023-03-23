@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { fulfilled, infoFulfilled, initApp, pending, rejected } from 'app/constants'
+import { StatusType } from 'common'
 
 type AppInitialType = {
   isInit: boolean
   error: string | null
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: StatusType
   infoMessage: string | null
 }
 

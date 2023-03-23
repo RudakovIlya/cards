@@ -6,15 +6,7 @@ import IconButton from '@mui/material/IconButton'
 import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 395,
-  padding: '20px 24px',
-  bgcolor: 'background.paper',
-}
+import { backgroundModalStyle, modalStyles } from 'common'
 
 type BasicModalType = {
   open: boolean
@@ -27,16 +19,8 @@ export const BasicModal: FC<PropsWithChildren & BasicModalType> = memo(
     return (
       <div>
         <Modal open={open} onClose={onClose}>
-          <Box sx={style}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginBottom: 3,
-                borderBottom: '1px solid #D9D9D9',
-              }}
-            >
+          <Box sx={backgroundModalStyle}>
+            <Box sx={modalStyles}>
               <Typography fontWeight={500} fontSize={22}>
                 {title}
               </Typography>

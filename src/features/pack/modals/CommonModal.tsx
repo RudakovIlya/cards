@@ -2,8 +2,7 @@ import { FC, memo, useEffect } from 'react'
 
 import { useForm } from 'react-hook-form'
 
-import { BasicModal, CustomSelect, ModalsButtons } from 'common'
-import { InputWithValue } from 'common/components/input-with-value/InputWithValue'
+import { BasicModal, CustomSelect, ModalsButtons, InputWithValue } from 'common'
 import { useModals } from 'features/modals'
 
 type ModalsFormsType = {

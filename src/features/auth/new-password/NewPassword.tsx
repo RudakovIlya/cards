@@ -19,14 +19,12 @@ export const NewPassword = () => {
       titleButton={'Create new password'}
       onSubmit={handleSubmit(onNewPasswordSent)}
     >
-      <>
-        <PasswordInput
-          register={register}
-          label={'Password'}
-          name={'password'}
-          errorMessage={passwordError}
-        />
-      </>
+      <PasswordInput
+        register={register}
+        label={'Password'}
+        name={'password'}
+        errorMessage={passwordError}
+      />
       <Typography sx={{ maxWidth: '347px', opacity: 0.5 }} component={'span'}>
         Create new password and we will send you further instructions to email
       </Typography>

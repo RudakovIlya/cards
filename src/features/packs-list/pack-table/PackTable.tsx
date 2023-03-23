@@ -45,12 +45,8 @@ export const PackTable = () => {
           )}
         </Box>
       </TableCell>
-      <TableCell onClick={() => {}} align="left">
-        {p.cardsCount}
-      </TableCell>
-      <TableCell onClick={() => {}} align="left">
-        {p.updated?.slice(0, 10)}
-      </TableCell>
+      <TableCell align="left">{p.cardsCount}</TableCell>
+      <TableCell align="left">{p.updated?.slice(0, 10)}</TableCell>
       <TableCell align="left">{p.user_name}</TableCell>
       <TableCell align="left">
         <IconButton sx={styleForIcons} disabled={p.cardsCount === 0} onClick={() => {}}>

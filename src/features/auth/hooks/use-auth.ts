@@ -2,18 +2,18 @@ import { useParams } from 'react-router-dom'
 
 import { developers, useAppDispatch, useAppSelector } from 'common'
 import {
+  login,
+  forgot,
+  logOut,
+  registerMe,
   authLoggedIn,
   authMailSent,
-  authPasswordSent,
   authRegistered,
-  forgot,
-  login,
-  LoginDataType,
-  logOut,
-  RegisterDataType,
-  registerMe,
   setNewPassword,
-} from 'features/auth/index'
+  authPasswordSent,
+  LoginDataType,
+  RegisterDataType,
+} from 'features/auth'
 
 export const useAuth = () => {
   const isLoggedIn = useAppSelector(authLoggedIn)

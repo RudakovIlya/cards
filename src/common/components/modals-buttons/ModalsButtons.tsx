@@ -3,6 +3,8 @@ import { FC } from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
+import { modalsButtonsStyles } from 'common'
+
 type ModalsButtonsType = {
   title: string
   disabled?: boolean
@@ -17,7 +19,7 @@ export const ModalsButtons: FC<ModalsButtonsType> = ({
   saveCallback,
 }) => {
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    <Box sx={modalsButtonsStyles}>
       <Button onClick={cancelCallback} color={'error'} size={'small'} variant={'radius'}>
         Cancel
       </Button>

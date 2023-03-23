@@ -1,39 +1,20 @@
 import { RootState } from 'app/store'
 
 // query-params
-const minParams = (state: RootState) => state.packList.queryParams.min
-const maxParams = (state: RootState) => state.packList.queryParams.max
-const pageParams = (state: RootState) => state.packList.queryParams.page
-const pageCountParams = (state: RootState) => state.packList.queryParams.pageCount
-const sortPacksParams = (state: RootState) => state.packList.queryParams.sortPacks
-const packNameParams = (state: RootState) => state.packList.queryParams.packName
-const user_idParams = (state: RootState) => state.packList.queryParams.user_id
+export const minParams = (state: RootState) => state.packList.queryParams.min
+export const maxParams = (state: RootState) => state.packList.queryParams.max
+export const pageParams = (state: RootState) => state.packList.queryParams.page
+export const pageCountParams = (state: RootState) => state.packList.queryParams.pageCount
+export const sortPacksParams = (state: RootState) => state.packList.queryParams.sortPacks
+export const packNameParams = (state: RootState) => state.packList.queryParams.packName
+export const user_idParams = (state: RootState) => state.packList.queryParams.user_id
 
 // packList data
-const packListPage = (state: RootState) => state.packList.packList.page
-const packListPageCount = (state: RootState) => state.packList.packList.pageCount
-const packListMinCardsCount = (state: RootState) => state.packList.packList.minCardsCount
-const packListMaxCardsCount = (state: RootState) => state.packList.packList.maxCardsCount
-const packListCardPacksTotalCount = (state: RootState) =>
+export const packListPage = (state: RootState) => state.packList.packList.page
+export const packListPageCount = (state: RootState) => state.packList.packList.pageCount
+export const packListMinCardsCount = (state: RootState) => state.packList.packList.minCardsCount
+export const packListMaxCardsCount = (state: RootState) => state.packList.packList.maxCardsCount
+export const packListCardPacksTotalCount = (state: RootState) =>
   state.packList.packList.cardPacksTotalCount
-const packListCardPacks = (state: RootState) => state.packList.packList.cardPacks
-const packListStatus = (state: RootState) => state.packList.status
-
-export {
-  // Params
-  minParams,
-  maxParams,
-  pageParams,
-  pageCountParams,
-  sortPacksParams,
-  packNameParams,
-  user_idParams,
-  packListStatus,
-  // Data
-  packListPage,
-  packListPageCount,
-  packListMinCardsCount,
-  packListMaxCardsCount,
-  packListCardPacksTotalCount,
-  packListCardPacks,
-}
+export const packListCardPacks = (state: RootState) => state.packList.packList.cardPacks
+export const packListStatus = (state: RootState) => state.packList.status

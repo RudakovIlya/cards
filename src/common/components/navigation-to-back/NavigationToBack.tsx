@@ -2,7 +2,7 @@ import KeyboardBackspaceTwoToneIcon from '@mui/icons-material/KeyboardBackspaceT
 import IconButton from '@mui/material/IconButton'
 import { useNavigate } from 'react-router-dom'
 
-import { paths } from 'common/constants'
+import { paths } from 'common'
 
 export const NavigationToBack = () => {
   const navigate = useNavigate()
