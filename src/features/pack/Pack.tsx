@@ -15,7 +15,7 @@ export const Pack = () => {
     <>
       <NavigationToBack />
       <SubHeader
-        disabled={status === 'loading' || !totalCount}
+        disabled={status === 'loading' || (!isMe && !totalCount)}
         isLoading={status === 'loading'}
         title={packName}
         titleButton={isMe ? 'Add new card' : 'Learn to pack'}
