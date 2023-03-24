@@ -8,6 +8,7 @@ import { CardSkeleton } from './card-skeleton/CardSkeleton'
 import { contentPreloaderStyles } from './content-preloader/content-preloade.styles'
 import { ContentPreloader } from './content-preloader/ContentPreloader'
 import { CustomSelect } from './custom-select/CustomSelect'
+import { Empty } from './empty/Empty'
 import { ErrorPage } from './error-page/ErrorPage'
 import { ErrorImage } from './error-page-svg/ErrorIcon'
 import { Eye } from './eye/Eye'
@@ -55,6 +56,7 @@ export {
   Portal,
   PasswordInput,
   Eye,
+  Empty,
   Layout,
   UserName,
   SubHeader,
