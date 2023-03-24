@@ -1,11 +1,12 @@
-import { Button, Card, Container } from '@mui/material'
+import { memo } from 'react'
 
-import { Answer } from 'features/learn/Answer'
+import { Card, Container } from '@mui/material'
+
 import { useRandomCard } from 'features/learn/hooks/use-random-card'
-import { Question } from 'features/learn/Question'
+import { TestComponent } from 'features/learn/TestComponent'
 
-export const LearnCard = () => {
-  const { card, showButton, onNext, isVisible } = useRandomCard()
+export const LearnCard = memo(() => {
+  const { onNext } = useRandomCard()
 
   return (
     <Container>
@@ -20,14 +21,8 @@ export const LearnCard = () => {
           padding: 5,
         }}
       >
-        <Question question={card.question} totalAttempts={card.shots} />
-        {!isVisible && (
-          <Button color={'primary'} size={'large'} variant={'radius'} onClick={showButton}>
-            Показать ответ
-          </Button>
-        )}
-        {isVisible && <Answer id={card._id} answer={card.answer} onNext={onNext} />}
+        <TestComponent onNext={onNext} />
       </Card>
     </Container>
   )
-}
+})

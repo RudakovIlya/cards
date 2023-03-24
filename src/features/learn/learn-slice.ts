@@ -14,12 +14,14 @@ import { UpdateGradeRequestType, UpdateGradeResponseType } from 'features/pack/t
 
 type InitialStateType = {
   card: PackType
+  cards: PackType[]
   status: StatusType
   isFirst: boolean
 }
 
 const initialState: InitialStateType = {
   card: {} as PackType,
+  cards: [],
   status: 'idle',
   isFirst: true,
 }
@@ -28,11 +30,9 @@ export const updateGrade = createAsyncThunk<
   UpdateGradeResponseType,
   UpdateGradeRequestType,
   ThunkAPIType
->('learn/update-grade', async (data, { rejectWithValue, getState }) => {
+>('learn/update-grade', async (data, { rejectWithValue }) => {
   try {
     const response = await learnApi.updateGrade(data)
-
-    console.log(getState().learn.card)
 
     return response.data
   } catch (e) {
@@ -53,17 +53,15 @@ const learnSlice = createSlice({
     setCard: (state, action: PayloadAction<PackType>) => {
       state.card = action.payload
     },
+    setLearnCards: (state, action: PayloadAction<{ cards: PackType[] }>) => {
+      state.cards = action.payload.cards
+    },
     setFirst: (state, action: PayloadAction<{ isFirst: boolean }>) => {
       state.isFirst = action.payload.isFirst
     },
   },
   extraReducers: builder => {
     builder
-      .addCase(updateGrade.fulfilled, (state, action) => {
-        const { grade, cardsPack_id, user_id, _id, shots } = action.payload.updatedGrade
-
-        state.card = { ...state.card, grade, cardsPack_id, user_id, _id, shots }
-      })
       .addMatcher(pending, state => {
         state.status = 'loading'
       })

@@ -4,6 +4,7 @@ import { DeleteModal } from './basic-modal/DeleteModal'
 import { backgroundModalStyle, modalStyles } from './basic-modal/modal.styles'
 import { ButtonsGroup } from './button-group/ButtonsGroup'
 import { useSwitch } from './button-group/use-switch'
+import { CardSkeleton } from './card-skeleton/CardSkeleton'
 import { contentPreloaderStyles } from './content-preloader/content-preloade.styles'
 import { ContentPreloader } from './content-preloader/ContentPreloader'
 import { CustomSelect } from './custom-select/CustomSelect'
@@ -73,6 +74,7 @@ export {
   DeleteModal,
   InputWithValue,
   ModalsForms,
+  CardSkeleton,
 }
 
 export {

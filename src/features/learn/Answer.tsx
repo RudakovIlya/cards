@@ -14,7 +14,7 @@ type AnswerPropsType = {
 }
 
 export const Answer: FC<AnswerPropsType> = ({ answer, onNext, id }) => {
-  const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал']
+  const grades = ['Did not know', 'Forgot', 'A lot of thought', 'Confused', 'Knew the answer']
 
   const { handleSubmit, register } = useForm<UpdateGradeRequestType>()
 
@@ -28,14 +28,14 @@ export const Answer: FC<AnswerPropsType> = ({ answer, onNext, id }) => {
     <>
       <div style={{ paddingTop: 20, display: 'flex', flexDirection: 'column' }}>
         <span style={{ paddingBottom: 20 }}>
-          <b>Ответ: </b>
+          <b>Answer: </b>
           {answer}
         </span>
         <br />
 
         <form onSubmit={handleSubmit(onSubmitHandler)} style={{ paddingBottom: 20 }}>
-          <FormLabel>Оправдывайся, пес:</FormLabel>
-          <RadioGroup defaultValue="1">
+          <FormLabel>Rate yourself:</FormLabel>
+          <RadioGroup sx={{ m: '0 0 42px 0' }} defaultValue="1">
             {grades.map((grade, index) => (
               <FormControlLabel
                 key={index}
@@ -46,16 +46,10 @@ export const Answer: FC<AnswerPropsType> = ({ answer, onNext, id }) => {
             ))}
           </RadioGroup>
           <Button
-            variant="contained"
+            sx={{ width: '100%' }}
+            size={'large'}
+            variant={'radius'}
             type={'submit'}
-            sx={{
-              marginTop: 2,
-              backgroundColor: '#366EFF',
-              borderRadius: 30,
-              height: 36,
-              margin: '10 auto',
-              maxWidth: 373,
-            }}
             onClick={() => onNext()}
           >
             Next

@@ -5,9 +5,8 @@ import { contentPreloaderStyles, MainPreloader, Portal, useAppSelector } from 'c
 
 export const ContentPreloader = () => {
   const status = useAppSelector(appStatus)
-  const learnStatus = useAppSelector(state => state.learn.status)
 
-  if (status !== 'loading' && learnStatus !== 'loading') {
+  if (status !== 'loading') {
     return null
   }
 

@@ -10,6 +10,7 @@ import {
 import { AddCardRequestType, UpdateCardRequestType } from './types'
 
 import { errorUtils, StatusType, ThunkAPIType } from 'common'
+import { learnActions } from 'features/learn/learn-slice'
 import { packAPI, PackResponse, QueryPackParams } from 'features/pack'
 
 type InitialStateType = {
@@ -46,11 +47,14 @@ const initialState: InitialStateType = {
 
 export const getPack = createAsyncThunk<PackResponse, { cardsPack_id: string }, ThunkAPIType>(
   'pack/get-pack',
-  async (id, { rejectWithValue, getState }) => {
+  async (id, { rejectWithValue, getState, dispatch }) => {
     const params = getState().pack.queryParams
 
     try {
       const response = await packAPI.getPack({ ...params, ...id })
+      const cards = response.data.cards
+
+      dispatch(learnActions.setLearnCards({ cards }))
 
       return response.data
     } catch (e) {

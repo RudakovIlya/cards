@@ -3,7 +3,7 @@ import { createHashRouter } from 'react-router-dom'
 import { App } from 'app/App'
 import { AuthRedirect, ErrorPage, paths } from 'common'
 import { Auth, CheckEmail, ForgotPassword, Login, NewPassword, Registration } from 'features/auth'
-import { LearnPack } from 'features/learn/LearnPack'
+import { Learn } from 'features/learn/Learn'
 import { Pack } from 'features/pack'
 import { PackList } from 'features/packs-list'
 import { UserProfile } from 'features/profile'
@@ -32,7 +32,7 @@ export const router = createHashRouter([
           },
           {
             path: paths.LEARN_PACK,
-            element: <LearnPack />,
+            element: <Learn />,
           },
         ],
       },
