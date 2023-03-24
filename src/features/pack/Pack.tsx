@@ -6,7 +6,7 @@ import { FilterPanels, useFetchPack, usePackCards } from 'features/pack'
 import { Modals } from 'features/pack/modals/Modals'
 
 export const Pack = () => {
-  const { isMe, packName, learnToPack, status } = usePackCards()
+  const { isMe, packName, learnToPack, status, totalCount } = usePackCards()
   const { showModal } = useModals()
 
   useFetchPack()
@@ -15,7 +15,7 @@ export const Pack = () => {
     <>
       <NavigationToBack />
       <SubHeader
-        disabled={status === 'loading'}
+        disabled={status === 'loading' || !totalCount}
         isLoading={status === 'loading'}
         title={packName}
         titleButton={isMe ? 'Add new card' : 'Learn to pack'}

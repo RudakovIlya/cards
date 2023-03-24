@@ -7,6 +7,7 @@ import { addCard, deleteCard, updateCard } from 'features/pack/pack-slice'
 import {
   packCardPacks,
   packCardPacksName,
+  packCardPacksTotalCount,
   packCardUserId,
   packLoading,
   packStatus,
@@ -25,7 +26,7 @@ export const usePackCards = () => {
   const packCards = useAppSelector(packCardPacks)
   const status = useAppSelector(packStatus)
   const pageCount = useAppSelector(pageCountParams)
-
+  const totalCount = useAppSelector(packCardPacksTotalCount)
   const isMe = packUserId === _id
   const navigate = useNavigate()
 
@@ -65,6 +66,7 @@ export const usePackCards = () => {
     isLoading,
     packCards,
     pageCount,
+    totalCount,
     learnToPack,
     addNewCard,
     removeCard,

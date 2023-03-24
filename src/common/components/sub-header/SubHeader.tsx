@@ -37,9 +37,11 @@ export const SubHeader: FC<SubHeaderType> = ({
         {isLoading ? <Skeleton variant={'text'} /> : title}
       </Typography>
 
-      <Button onClick={onClick} variant={'radius'} disabled={disabled}>
-        {titleButton}
-      </Button>
+      {titleButton && (
+        <Button onClick={onClick} variant={'radius'} disabled={disabled}>
+          {titleButton}
+        </Button>
+      )}
     </Grid>
   )
 }
