@@ -1,5 +1,5 @@
 // styles for EnhancedTableContent component
-export const styleForIcons = { paddingTop: '0', paddingBottom: '0' }
+export const styleForIcons = { padding: '6px' }
 
 // styles for NotFindAnything component
 export const styleContainerForNotFind = {

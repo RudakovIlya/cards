@@ -49,7 +49,7 @@ export const PackTable = () => {
       <TableCell align="left">{p.cardsCount}</TableCell>
       <TableCell align="left">{p.updated?.slice(0, 10)}</TableCell>
       <TableCell align="left">{p.user_name}</TableCell>
-      <TableCell align="left">
+      <TableCell align="left" sx={{ padding: '10px 16px' }}>
         <IconButton
           sx={styleForIcons}
           disabled={p.cardsCount === 0}

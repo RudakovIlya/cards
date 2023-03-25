@@ -40,7 +40,7 @@ export const EnhancedTableHead: FC<EnhancedTableProps> = ({
 
   return (
     <TableHead>
-      <TableRow>
+      <TableRow sx={{ backgroundColor: 'rgb(239, 239, 239)' }}>
         {headCells?.map(headCell => (
           <TableCell
             sx={{
