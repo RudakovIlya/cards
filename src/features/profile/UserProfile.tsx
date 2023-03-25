@@ -1,21 +1,15 @@
+import React from 'react'
+
 import LogoutIcon from '@mui/icons-material/Logout'
-import Avatar from '@mui/material/Avatar'
-import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
 
-import edit_photo from 'assets/img/edit_photo.svg'
+import { ReactComponent as Camera } from 'assets/img/edit_photo.svg'
 import { NavigationToBack, paths, ProfileAvatar, useRedirect, UserName } from 'common'
 import { useAuth } from 'features/auth'
 import { useProfile } from 'features/profile'
-
-const SmallAvatar = styled(Avatar)(({ theme }) => ({
-  width: 22,
-  height: 22,
-  border: `2px solid ${theme.palette.background.paper}`,
-}))
 
 export const UserProfile = () => {
   const { name, avatar, email } = useProfile()
@@ -45,13 +39,29 @@ export const UserProfile = () => {
           }}
         >
           <div>Personal Information</div>
-          <Badge
-            overlap="circular"
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            badgeContent={<SmallAvatar alt="Name" src={edit_photo} />}
+          <div
+            style={{
+              width: '100px',
+              height: '100px',
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'flex-end',
+            }}
           >
-            <ProfileAvatar imageSize={{ width: '96px', height: '96px' }} />
-          </Badge>
+            <ProfileAvatar imageSize={{ width: '100px', height: '100px' }} />
+            <IconButton
+              sx={{
+                padding: '0',
+                width: '30px',
+                height: '30px',
+              }}
+              component="label"
+            >
+              <input hidden accept="image/png, image/jpeg" type="file" />
+              <Camera />
+            </IconButton>
+          </div>
+
           <div style={{ height: '20px', marginBottom: '10px' }}>
             <UserName name={name} avatar={avatar} />
           </div>
