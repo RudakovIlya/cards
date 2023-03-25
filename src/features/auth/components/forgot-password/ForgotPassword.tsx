@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
 import { Form, paths, useRedirect, useScheme, ValidError } from 'common'
-import { useAuth } from 'features/auth'
+import { useAuth } from 'features/auth/index'
 
 export const ForgotPassword = () => {
   const {

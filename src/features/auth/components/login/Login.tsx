@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField'
 import { Link, useLocation } from 'react-router-dom'
 
 import { Form, LinkWrapper, PasswordInput, paths, useRedirect, useScheme, ValidError } from 'common'
-import { useAuth } from 'features/auth'
+import { useAuth } from 'features/auth/index'
 
 export const Login = () => {
   const {

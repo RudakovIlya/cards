@@ -6,7 +6,7 @@ import {
   showAddedModal,
   showDeleteModal,
   showEditModal,
-} from 'features/modals'
+} from 'features/modals/index'
 
 type ShowModalType = 'add' | 'edit' | 'delete'
 

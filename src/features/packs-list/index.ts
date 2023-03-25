@@ -1,6 +1,6 @@
-import { FilterPanels } from './filter-panels/FilterPanels'
+import { FilterPanels } from './components/filter-panels/FilterPanels'
+import { PackTable } from './components/pack-table/PackTable'
 import { useFetchPackList } from './hooks/use-fetch-packList'
-import { PackTable } from './pack-table/PackTable'
 import { PackList } from './PackList'
 import {
   maxParams,

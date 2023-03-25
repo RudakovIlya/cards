@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography'
 import { BasicModal, ModalsButtons } from 'common'
 
 type DeleteModalType = {
-  modalTitle: string
   open: boolean
+  modalTitle: string
   entityName?: string
   entityTitle?: string
   callBack?: () => void
@@ -14,12 +14,12 @@ type DeleteModalType = {
 }
 
 export const DeleteModal: FC<DeleteModalType> = ({
+  open,
   modalTitle,
   entityName,
   entityTitle,
-  open,
-  handleClose,
   callBack,
+  handleClose,
 }) => {
   return (
     <BasicModal open={open} onClose={handleClose} title={`Delete ${entityTitle}`}>

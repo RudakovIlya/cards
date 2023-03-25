@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField'
 
 import { Form, PasswordInput, paths, useRedirect, useScheme } from 'common'
-import { useAuth } from 'features/auth'
+import { useAuth } from 'features/auth/index'
 
 export const Registration = () => {
   const {

@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow'
 import { HeadCellType, EnhancedTableContent, styleForIcons } from 'common'
 import { NotFindAnything } from 'common/components/table-content/NotFindAnything'
 import { useModals } from 'features/modals'
-import { useFilters, usePackList } from 'features/packs-list'
+import { useFilters, usePackList } from 'features/packs-list/index'
 import { useProfile } from 'features/profile'
 
 export const PackTable = () => {

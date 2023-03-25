@@ -1,4 +1,4 @@
-import { FilterPanels } from './filter-panels/FilterPanels'
+import { FilterPanels } from './components/filter-panels/FilterPanels'
 import { useFetchPack } from './hooks/use-fetch-pack'
 import { usePackFilters } from './hooks/use-packFilters'
 import { Pack } from './Pack'

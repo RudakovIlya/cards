@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow'
 import { Empty, EnhancedTableContent, HeadCellType, styleForIcons } from 'common'
 import { NotFindAnything } from 'common/components/table-content/NotFindAnything'
 import { useModals } from 'features/modals'
-import { usePackCards, usePackFilters } from 'features/pack'
+import { usePackCards, usePackFilters } from 'features/pack/index'
 
 export const MyPackTable = () => {
   const { packCards, isMe, status, pageCount } = usePackCards()

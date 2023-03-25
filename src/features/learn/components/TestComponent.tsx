@@ -3,8 +3,8 @@ import { FC, useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 
 import { useAppSelector } from 'common'
-import { Answer } from 'features/learn/Answer'
-import { Question } from 'features/learn/Question'
+import { Answer } from 'features/learn/components/Answer'
+import { Question } from 'features/learn/components/Question'
 
 type TestComponentType = {
   onNext: () => void
