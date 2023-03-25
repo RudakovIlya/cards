@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button } from '@mui/material'
 
@@ -6,10 +6,7 @@ import { useAppSelector } from 'common'
 import { Answer } from 'features/learn/components/Answer'
 import { Question } from 'features/learn/components/Question'
 
-type TestComponentType = {
-  onNext: () => void
-}
-export const TestComponent: FC<TestComponentType> = ({ onNext }) => {
+export const TestComponent = () => {
   const [isVisible, setIsVisible] = useState(false)
   const card = useAppSelector(state => state.learn.card)
 
@@ -31,7 +28,7 @@ export const TestComponent: FC<TestComponentType> = ({ onNext }) => {
           Show answer
         </Button>
       )}
-      {isVisible && <Answer id={card._id} answer={card.answer} onNext={onNext} />}
+      {isVisible && <Answer id={card._id} answer={card.answer} />}
     </>
   )
 }

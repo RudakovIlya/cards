@@ -3,6 +3,8 @@ import Typography from '@mui/material/Typography'
 
 import { CardSkeleton, NavigationToBack, useAppSelector } from 'common'
 import { LearnCard } from 'features/learn/components/LearnCard'
+import { useRandomCard } from 'features/learn/hooks/use-random-card'
+import { learnPageStatus } from 'features/learn/selectors'
 import { useFetchPack, usePackCards } from 'features/pack'
 
 export const Learn = () => {
@@ -10,7 +12,9 @@ export const Learn = () => {
 
   const { packName, status } = usePackCards()
 
-  const learnStatus = useAppSelector(state => state.learn.status)
+  const learnStatus = useAppSelector(learnPageStatus)
+
+  useRandomCard()
 
   return (
     <>

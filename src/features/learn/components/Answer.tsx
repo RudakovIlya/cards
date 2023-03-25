@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { Button, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 import { useForm } from 'react-hook-form'
@@ -10,10 +10,9 @@ import { UpdateGradeRequestType } from 'features/pack/types'
 type AnswerPropsType = {
   id: string
   answer: string
-  onNext: () => void
 }
 
-export const Answer: FC<AnswerPropsType> = ({ answer, onNext, id }) => {
+export const Answer: FC<AnswerPropsType> = ({ answer, id }) => {
   const grades = ['Did not know', 'Forgot', 'A lot of thought', 'Confused', 'Knew the answer']
 
   const { handleSubmit, register } = useForm<UpdateGradeRequestType>()
@@ -45,13 +44,7 @@ export const Answer: FC<AnswerPropsType> = ({ answer, onNext, id }) => {
               />
             ))}
           </RadioGroup>
-          <Button
-            sx={{ width: '100%' }}
-            size={'large'}
-            variant={'radius'}
-            type={'submit'}
-            onClick={() => onNext()}
-          >
+          <Button sx={{ width: '100%' }} size={'large'} variant={'radius'} type={'submit'}>
             Next
           </Button>
         </form>

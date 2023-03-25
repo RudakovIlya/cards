@@ -3,11 +3,8 @@ import { memo } from 'react'
 import { Card, Container } from '@mui/material'
 
 import { TestComponent } from 'features/learn/components/TestComponent'
-import { useRandomCard } from 'features/learn/hooks/use-random-card'
 
 export const LearnCard = memo(() => {
-  const { onNext } = useRandomCard()
-
   return (
     <Container>
       <Card
@@ -21,7 +18,7 @@ export const LearnCard = memo(() => {
           padding: 5,
         }}
       >
-        <TestComponent onNext={onNext} />
+        <TestComponent />
       </Card>
     </Container>
   )
