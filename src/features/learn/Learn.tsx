@@ -2,7 +2,7 @@ import Skeleton from '@mui/material/Skeleton'
 import Typography from '@mui/material/Typography'
 
 import { CardSkeleton, NavigationToBack, useAppSelector } from 'common'
-import { LearnCard } from 'features/learn/LearnCard'
+import { LearnCard } from 'features/learn/components/LearnCard'
 import { useFetchPack, usePackCards } from 'features/pack'
 
 export const Learn = () => {

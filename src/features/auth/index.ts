@@ -12,12 +12,12 @@ import { authLoggedIn, authMailSent, authPasswordSent, authRegistered } from './
 
 import { Auth } from 'features/auth/Auth'
 import { authAPI } from 'features/auth/auth-api'
-import { CheckEmail } from 'features/auth/forgot-password/CheckEmail'
-import { ForgotPassword } from 'features/auth/forgot-password/ForgotPassword'
+import { CheckEmail } from 'features/auth/components/forgot-password/CheckEmail'
+import { ForgotPassword } from 'features/auth/components/forgot-password/ForgotPassword'
+import { Login } from 'features/auth/components/login/Login'
+import { NewPassword } from 'features/auth/components/new-password/NewPassword'
+import { Registration } from 'features/auth/components/registration/Registration'
 import { useAuth } from 'features/auth/hooks/use-auth'
-import { Login } from 'features/auth/login/Login'
-import { NewPassword } from 'features/auth/new-password/NewPassword'
-import { Registration } from 'features/auth/registration/Registration'
 import {
   ForgotEmailDataType,
   LoginDataType,
