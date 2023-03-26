@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import Skeleton from '@mui/material/Skeleton'
-import Typography from '@mui/material/Typography'
+
+import { subHeaderTitleStyles, Title } from 'common'
 
 type SubHeaderType = {
   title: string
@@ -22,21 +22,9 @@ export const SubHeader: FC<SubHeaderType> = ({
 }) => {
   return (
     <Grid container justifyContent={'space-between'} alignItems={'center'} sx={{ paddingTop: 3 }}>
-      <Typography
-        sx={{
-          flex: '0 0 25%',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: ' ellipsis',
-          maxWidth: 320,
-        }}
-        variant={'h2'}
-        fontSize={22}
-        fontWeight={600}
-      >
-        {isLoading ? <Skeleton variant={'text'} /> : title}
-      </Typography>
-
+      <Title sx={subHeaderTitleStyles} isLoading={isLoading} align={'left'}>
+        {title}
+      </Title>
       {titleButton && (
         <Button onClick={onClick} variant={'radius'} disabled={disabled}>
           {titleButton}

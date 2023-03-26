@@ -17,21 +17,19 @@ type BasicModalType = {
 export const BasicModal: FC<PropsWithChildren & BasicModalType> = memo(
   ({ open, title, onClose, children }) => {
     return (
-      <div>
-        <Modal open={open} onClose={onClose}>
-          <Box sx={backgroundModalStyle}>
-            <Box sx={modalStyles}>
-              <Typography fontWeight={500} fontSize={22}>
-                {title}
-              </Typography>
-              <IconButton onClick={onClose}>
-                <CloseIcon />
-              </IconButton>
-            </Box>
-            {children}
+      <Modal open={open} onClose={onClose}>
+        <Box sx={backgroundModalStyle}>
+          <Box sx={modalStyles}>
+            <Typography fontWeight={500} fontSize={22}>
+              {title}
+            </Typography>
+            <IconButton onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
           </Box>
-        </Modal>
-      </div>
+          {children}
+        </Box>
+      </Modal>
     )
   }
 )

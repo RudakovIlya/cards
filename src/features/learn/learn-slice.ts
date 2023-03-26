@@ -16,14 +16,12 @@ type InitialStateType = {
   card: PackType
   cards: PackType[]
   status: StatusType
-  isFirst: boolean
 }
 
 const initialState: InitialStateType = {
   card: {} as PackType,
   cards: [],
   status: 'idle',
-  isFirst: true,
 }
 
 export const updateGrade = createAsyncThunk<
@@ -70,22 +68,9 @@ const learnSlice = createSlice({
     setLearnCards: (state, action: PayloadAction<{ cards: PackType[] }>) => {
       state.cards = action.payload.cards
     },
-    setFirst: (state, action: PayloadAction<{ isFirst: boolean }>) => {
-      state.isFirst = action.payload.isFirst
-    },
   },
   extraReducers: builder => {
     builder
-      .addCase(updateGrade.fulfilled, (state, action) => {
-        const { shots, grade, card_id } = action.payload.updatedGrade
-
-        state.cards.forEach(card => {
-          if (card_id === card._id) {
-            card.shots = shots
-            card.grade = grade
-          }
-        })
-      })
       .addMatcher(pending, state => {
         state.status = 'loading'
       })

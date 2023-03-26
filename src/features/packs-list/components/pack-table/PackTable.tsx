@@ -6,8 +6,7 @@ import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { HeadCellType, EnhancedTableContent, styleForIcons } from 'common'
-import { NotFindAnything } from 'common/components/table-content/NotFindAnything'
+import { HeadCellType, EnhancedTableContent, styleForIcons, NotFindAnything } from 'common'
 import { useModals } from 'features/modals'
 import { useFilters, usePackList } from 'features/packs-list/index'
 import { useProfile } from 'features/profile'
@@ -59,7 +58,7 @@ export const PackTable = () => {
         </IconButton>
 
         {userProfileData._id === p.user_id && (
-          <span>
+          <>
             <IconButton
               sx={styleForIcons}
               onClick={showModal('edit', { name: p.name, _id: p._id })}
@@ -72,14 +71,14 @@ export const PackTable = () => {
             >
               <DeleteOutlinedIcon />
             </IconButton>
-          </span>
+          </>
         )}
       </TableCell>
     </TableRow>
   ))
 
   return (
-    <div>
+    <>
       <EnhancedTableContent
         sortTableHandler={onSortPackTable}
         status={status}
@@ -89,6 +88,6 @@ export const PackTable = () => {
         {packItems}
       </EnhancedTableContent>
       {!cardPacks.length && <NotFindAnything status={status} value={packName} />}
-    </div>
+    </>
   )
 }
