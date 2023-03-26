@@ -48,12 +48,13 @@ export const UserProfile = () => {
               justifyContent: 'flex-end',
             }}
           >
-            <ProfileAvatar imageSize={{ width: '100px', height: '100px' }} />
+            <ProfileAvatar imageSize={{ width: '96px', height: '96px' }} />
             <IconButton
               sx={{
                 padding: '0',
                 width: '30px',
                 height: '30px',
+                position: 'absolute',
               }}
               component="label"
             >

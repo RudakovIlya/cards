@@ -12,7 +12,5 @@ type ProfileAvatarPropsType = {
 }
 
 export const ProfileAvatar = (props: ProfileAvatarPropsType) => {
-  return (
-    <Avatar sx={{ position: 'absolute' }} alt="UserName" style={props.imageSize} src={test_ava} />
-  )
+  return <Avatar alt="UserName" style={props.imageSize} src={test_ava} />
 }
