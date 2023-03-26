@@ -1,6 +1,7 @@
 import React from 'react'
 
 import LogoutIcon from '@mui/icons-material/Logout'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
@@ -8,7 +9,7 @@ import Paper from '@mui/material/Paper'
 import { NavigationToBack, paths, ProfileAvatar, useRedirect, UserName } from 'common'
 import { useAuth } from 'features/auth'
 import { useProfile } from 'features/profile'
-import { ChangeAvaButton } from 'features/profile/changeAvaButton/ChangeAvaButton'
+import { ChangeAvaButton } from 'features/profile/components/changeAvaButton/ChangeAvaButton'
 
 export const UserProfile = () => {
   const { name, avatar, email } = useProfile()
@@ -37,9 +38,9 @@ export const UserProfile = () => {
             flexDirection: 'column',
           }}
         >
-          <div>Personal Information</div>
-          <div
-            style={{
+          <Box sx={{ fontWeight: 'bold' }}>Personal Information</Box>
+          <Box
+            sx={{
               width: '100px',
               height: '100px',
               display: 'flex',
@@ -47,9 +48,13 @@ export const UserProfile = () => {
               justifyContent: 'flex-end',
             }}
           >
-            <ProfileAvatar imageSize={{ width: '96px', height: '96px' }} />
+            <ProfileAvatar
+              name={name}
+              avatar={avatar}
+              imageSize={{ width: '96px', height: '96px', fontSize: '40px' }}
+            />
             <ChangeAvaButton />
-          </div>
+          </Box>
           <div style={{ height: '20px', marginBottom: '10px' }}>
             <UserName name={name} avatar={avatar} />
           </div>

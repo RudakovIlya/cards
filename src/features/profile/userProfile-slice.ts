@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { ThunkAPIType } from 'common'
+import { errorUtils, ThunkAPIType } from 'common'
 import { authMe, login } from 'features/auth'
 import {
   ProfileStateType,
@@ -21,7 +21,9 @@ export const changeUserData = createAsyncThunk<UpdatedProfileType, UserDataType,
 
       return response.data
     } catch (e) {
-      return rejectWithValue('Failed to update profile, please try later')
+      const error = errorUtils(e)
+
+      return rejectWithValue(error ? error : `File larger than 100 kB`)
     }
   }
 )

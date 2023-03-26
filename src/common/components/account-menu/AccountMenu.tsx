@@ -9,13 +9,14 @@ import MenuItem from '@mui/material/MenuItem'
 import Tooltip from '@mui/material/Tooltip'
 import { useNavigate } from 'react-router-dom'
 
-import { paths, ProfileAvatar, useAppSelector } from 'common'
+import { paths, ProfileAvatar } from 'common'
 import { useAuth } from 'features/auth'
+import { useProfile } from 'features/profile'
 
 export const AccountMenu = () => {
   const { onLogout } = useAuth()
   const navigate = useNavigate()
-  const userProfileData = useAppSelector(state => state.profile.profile)
+  const { name, avatar } = useProfile()
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -34,7 +35,7 @@ export const AccountMenu = () => {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <span style={{ marginRight: '10px' }}>{userProfileData.name}</span>
+      <span style={{ marginRight: '10px' }}>{name}</span>
 
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', width: '80px' }}>
         <Tooltip title="Account settings">
@@ -46,7 +47,11 @@ export const AccountMenu = () => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <ProfileAvatar imageSize={{ width: '45px', height: '45px' }} />
+            <ProfileAvatar
+              name={name}
+              avatar={avatar}
+              imageSize={{ width: '45px', height: '45px' }}
+            />
           </IconButton>
         </Tooltip>
       </Box>
@@ -90,7 +95,12 @@ export const AccountMenu = () => {
           onClick={redirectToProfileHandler}
           sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          <ProfileAvatar imageSize={{ width: '25px', height: '25px' }} /> Profile
+          <ProfileAvatar
+            name={name}
+            avatar={avatar}
+            imageSize={{ width: '25px', height: '25px', fontSize: '13px' }}
+          />{' '}
+          Profile
         </MenuItem>
         <Divider />
         <MenuItem onClick={onLogout} sx={{ display: 'flex', alignItems: 'center', columnGap: 2 }}>
