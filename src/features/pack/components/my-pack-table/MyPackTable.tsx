@@ -5,10 +5,9 @@ import Rating from '@mui/material/Rating'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { Empty, EnhancedTableContent, HeadCellType, styleForIcons } from 'common'
-import { NotFindAnything } from 'common/components/table-content/NotFindAnything'
+import { Empty, EnhancedTableContent, HeadCellType, styleForIcons, NotFindAnything } from 'common'
 import { useModals } from 'features/modals'
-import { usePackCards, usePackFilters } from 'features/pack/index'
+import { usePackCards, usePackFilters } from 'features/pack'
 
 export const MyPackTable = () => {
   const { packCards, isMe, status, pageCount } = usePackCards()
@@ -74,7 +73,7 @@ export const MyPackTable = () => {
   ))
 
   return (
-    <div>
+    <>
       <EnhancedTableContent
         sortTableHandler={onSortCardsTable}
         status={status}
@@ -85,6 +84,6 @@ export const MyPackTable = () => {
       </EnhancedTableContent>
       {!packCards.length && searchValue && <NotFindAnything status={status} value={searchValue} />}
       {status === 'succeeded' && !packCards.length && <Empty />}
-    </div>
+    </>
   )
 }

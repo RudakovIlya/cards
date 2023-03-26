@@ -11,7 +11,7 @@ export const PackList = () => {
   useFetchPackList()
 
   return (
-    <div>
+    <>
       <SubHeader
         isLoading={false}
         title={'Pack list'}
@@ -22,6 +22,6 @@ export const PackList = () => {
       <FilterPanels />
       <PackTable />
       <Modals />
-    </div>
+    </>
   )
 }
