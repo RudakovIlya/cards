@@ -1,4 +1,8 @@
-import { Button, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import Button from '@mui/material/Button'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormLabel from '@mui/material/FormLabel'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
 import { useForm } from 'react-hook-form'
 
 import { useLearn } from 'features/learn/hooks/use-learn'
