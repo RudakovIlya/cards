@@ -3,13 +3,12 @@ import React from 'react'
 import LogoutIcon from '@mui/icons-material/Logout'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 
-import { ReactComponent as Camera } from 'assets/img/edit_photo.svg'
 import { NavigationToBack, paths, ProfileAvatar, useRedirect, UserName } from 'common'
 import { useAuth } from 'features/auth'
 import { useProfile } from 'features/profile'
+import { ChangeAvaButton } from 'features/profile/changeAvaButton/ChangeAvaButton'
 
 export const UserProfile = () => {
   const { name, avatar, email } = useProfile()
@@ -49,20 +48,8 @@ export const UserProfile = () => {
             }}
           >
             <ProfileAvatar imageSize={{ width: '96px', height: '96px' }} />
-            <IconButton
-              sx={{
-                padding: '0',
-                width: '30px',
-                height: '30px',
-                position: 'absolute',
-              }}
-              component="label"
-            >
-              <input hidden accept="image/png, image/jpeg" type="file" />
-              <Camera />
-            </IconButton>
+            <ChangeAvaButton />
           </div>
-
           <div style={{ height: '20px', marginBottom: '10px' }}>
             <UserName name={name} avatar={avatar} />
           </div>
