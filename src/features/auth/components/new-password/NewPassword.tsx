@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography'
 
 import { Form, PasswordInput, paths, useRedirect, useScheme } from 'common'
-import { useAuth } from 'features/auth/index'
+import { useAuth } from 'features/auth'
 
 export const NewPassword = () => {
   const {

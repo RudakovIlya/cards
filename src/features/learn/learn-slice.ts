@@ -8,9 +8,8 @@ import {
 } from '@reduxjs/toolkit'
 
 import { errorUtils, getRandomCard, StatusType, ThunkAPIType } from 'common'
-import { learnApi } from 'features/learn/learn-api'
-import { PackType } from 'features/pack'
-import { UpdateGradeRequestType, UpdateGradeResponseType } from 'features/pack/types'
+import { learnAPI } from 'features/learn'
+import { PackType, UpdateGradeRequestType, UpdateGradeResponseType } from 'features/pack'
 
 type InitialStateType = {
   card: PackType
@@ -32,7 +31,7 @@ export const updateGrade = createAsyncThunk<
   const packCards = getState().learn.cards
 
   try {
-    const response = await learnApi.updateGrade(data)
+    const response = await learnAPI.updateGrade(data)
 
     dispatch(
       learnActions.setCard(

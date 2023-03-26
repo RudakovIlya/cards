@@ -5,8 +5,8 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import { useForm } from 'react-hook-form'
 
-import { useLearn } from 'features/learn/hooks/use-learn'
-import { UpdateGradeRequestType } from 'features/pack/types'
+import { useLearn } from 'features/learn'
+import { UpdateGradeRequestType } from 'features/pack'
 
 const grades = ['Did not know', 'Forgot', 'A lot of thought', 'Confused', 'Knew the answer']
 

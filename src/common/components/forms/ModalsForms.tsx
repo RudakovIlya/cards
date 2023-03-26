@@ -3,8 +3,7 @@ import { FC, memo } from 'react'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
-import { ValidError, useScheme, ModalsButtons } from 'common'
-import { InputWithValue } from 'common/components/input-with-value/InputWithValue'
+import { ValidError, useScheme, ModalsButtons, InputWithValue } from 'common'
 
 type ModalsFormsType = {
   name: string

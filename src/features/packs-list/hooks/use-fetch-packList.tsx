@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'common'
-import { getPackList } from 'features/packs-list/pack-listSlice'
 import {
   maxParams,
   minParams,
@@ -10,7 +9,8 @@ import {
   pageParams,
   sortPacksParams,
   user_idParams,
-} from 'features/packs-list/selectors'
+  getPackList,
+} from 'features/packs-list'
 
 export const useFetchPackList = () => {
   const dispatch = useAppDispatch()

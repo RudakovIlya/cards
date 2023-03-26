@@ -1,7 +1,7 @@
 import Card from '@mui/material/Card'
 
 import { cardStyles } from 'common'
-import { CardContent } from 'features/learn/components/Card/CardContent'
+import { CardContent } from 'features/learn'
 
 export const LearnCard = () => {
   return (

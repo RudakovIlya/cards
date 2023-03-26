@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper'
 import { NavigationToBack, paths, ProfileAvatar, useRedirect, UserName } from 'common'
 import { useAuth } from 'features/auth'
 import { useProfile } from 'features/profile'
-import { ChangeAvaButton } from 'features/profile/components/changeAvaButton/ChangeAvaButton'
+import { ChangeAvaButton } from 'features/profile/components/change-ava-button/ChangeAvaButton'
 
 export const UserProfile = () => {
   const { name, avatar, email } = useProfile()

@@ -1,9 +1,6 @@
-import { MyPackTable } from './components/my-pack-table/MyPackTable'
-
 import { NavigationToBack, SubHeader } from 'common'
 import { useModals } from 'features/modals'
-import { FilterPanels, useFetchPack, usePackCards } from 'features/pack'
-import { Modals } from 'features/pack/components/modals/Modals'
+import { FilterPanels, useFetchPack, usePackCards, Modals, MyPackTable } from 'features/pack'
 
 export const Pack = () => {
   const { isMe, packName, learnToPack, status, totalCount } = usePackCards()

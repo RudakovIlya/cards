@@ -1,4 +1,6 @@
 import { FilterPanels } from './components/filter-panels/FilterPanels'
+import { Modals } from './components/modals/Modals'
+import { PackListCommonModal } from './components/modals/PackListCommonModal'
 import { PackTable } from './components/pack-table/PackTable'
 import { useFetchPackList } from './hooks/use-fetch-packList'
 import { PackList } from './PackList'
@@ -36,6 +38,7 @@ import { packListAPI } from 'features/packs-list/pack-listAPI'
 import { getPackList, packListReducer } from 'features/packs-list/pack-listSlice'
 
 export {
+  Modals,
   PackList,
   getPackList,
   useFilters,
@@ -47,6 +50,7 @@ export {
   packListReducer,
   maxParams,
   minParams,
+  PackListCommonModal,
   packListCardPacksTotalCount,
   packListMaxCardsCount,
   packListMinCardsCount,

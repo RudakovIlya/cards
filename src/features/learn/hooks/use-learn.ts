@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from 'common'
 import { updateGrade } from 'features/learn/learn-slice'
 import { learnCard } from 'features/learn/selectors'
-import { UpdateGradeRequestType } from 'features/pack/types'
+import { UpdateGradeRequestType } from 'features/pack'
 
 export const useLearn = () => {
   const card = useAppSelector(learnCard)

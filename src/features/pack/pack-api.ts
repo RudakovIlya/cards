@@ -1,7 +1,10 @@
-import { AddCardRequestType, UpdateCardRequestType } from './types'
-
 import { instance } from 'common'
-import { PackResponse, QueryPackParams } from 'features/pack'
+import {
+  AddCardRequestType,
+  PackResponse,
+  QueryPackParams,
+  UpdateCardRequestType,
+} from 'features/pack'
 
 export const packAPI = {
   getPack(params: Partial<QueryPackParams> = {}) {

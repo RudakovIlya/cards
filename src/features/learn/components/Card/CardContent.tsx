@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Button } from '@mui/material'
 
-import { Answer } from 'features/learn/components/Answer/Answer'
-import { Question } from 'features/learn/components/Question/Question'
+import { Question, Answer } from 'features/learn'
 
 export const CardContent = () => {
   const [isVisible, setIsVisible] = useState(false)

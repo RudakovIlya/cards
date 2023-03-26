@@ -1,6 +1,5 @@
 import { CardSkeleton, NavigationToBack, useAppSelector, Title } from 'common'
-import { LearnCard } from 'features/learn/components/Card/LearnCard'
-import { useRandomCard } from 'features/learn/hooks/use-random-card'
+import { useRandomCard, LearnCard } from 'features/learn'
 import { learnPageStatus } from 'features/learn/selectors'
 import { useFetchPack, usePackCards } from 'features/pack'
 

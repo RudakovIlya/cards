@@ -1,8 +1,7 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-import { AnswerForm } from 'features/learn/components/Answer/AnswerForm'
-import { useLearn } from 'features/learn/hooks/use-learn'
+import { useLearn, AnswerForm } from 'features/learn'
 
 export const Answer = () => {
   const { card } = useLearn()

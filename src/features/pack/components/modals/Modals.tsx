@@ -1,7 +1,6 @@
 import { DeleteModal } from 'common'
 import { useModals } from 'features/modals'
-import { CommonModal } from 'features/pack/components/modals/CommonModal'
-import { usePackCards } from 'features/pack/index'
+import { CommonModal, usePackCards } from 'features/pack'
 
 export const Modals = () => {
   const {

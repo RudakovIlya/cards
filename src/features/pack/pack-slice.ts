@@ -7,11 +7,15 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 
-import { AddCardRequestType, UpdateCardRequestType } from './types'
-
 import { errorUtils, StatusType, ThunkAPIType } from 'common'
 import { learnActions } from 'features/learn/learn-slice'
-import { packAPI, PackResponse, QueryPackParams } from 'features/pack'
+import {
+  AddCardRequestType,
+  packAPI,
+  PackResponse,
+  QueryPackParams,
+  UpdateCardRequestType,
+} from 'features/pack'
 
 type InitialStateType = {
   pack: PackResponse
