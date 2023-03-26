@@ -11,6 +11,7 @@ type DeleteModalType = {
   entityTitle?: string
   callBack?: () => void
   handleClose: () => void
+  disabled: boolean
 }
 
 export const DeleteModal: FC<DeleteModalType> = ({
@@ -18,6 +19,7 @@ export const DeleteModal: FC<DeleteModalType> = ({
   modalTitle,
   entityName,
   entityTitle,
+  disabled,
   callBack,
   handleClose,
 }) => {
@@ -26,7 +28,12 @@ export const DeleteModal: FC<DeleteModalType> = ({
       <Typography padding={'0 0 30px 0'}>
         {modalTitle} <b>{entityName}</b>?
       </Typography>
-      <ModalsButtons title={'Delete'} cancelCallback={handleClose} saveCallback={callBack} />
+      <ModalsButtons
+        disabled={disabled}
+        title={'Delete'}
+        cancelCallback={handleClose}
+        saveCallback={callBack}
+      />
     </BasicModal>
   )
 }

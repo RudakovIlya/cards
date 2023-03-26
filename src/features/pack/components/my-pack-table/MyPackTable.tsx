@@ -24,14 +24,19 @@ export const MyPackTable = () => {
   const packItems = packCards.map(p => (
     <TableRow hover key={p._id}>
       <TableCell component="th" scope="row">
-        <div style={{ display: 'flex', width: '300px' }}>{p.question}</div>
+        <div
+          style={{
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: ' ellipsis',
+            maxWidth: 320,
+          }}
+        >
+          {p.question}
+        </div>
       </TableCell>
-      <TableCell onClick={() => {}} align="left">
-        {p.answer}
-      </TableCell>
-      <TableCell onClick={() => {}} align="left">
-        {p.updated?.slice(0, 10)}
-      </TableCell>
+      <TableCell align="left">{p.answer}</TableCell>
+      <TableCell align="left">{p.updated?.slice(0, 10)}</TableCell>
       <TableCell
         align="left"
         sx={{
