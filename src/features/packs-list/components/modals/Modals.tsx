@@ -16,10 +16,11 @@ export const Modals = () => {
   return (
     <>
       <DeleteModal
-        modalTitle={'Do you really want to remove'}
-        entityTitle={'Pack'}
-        entityName={name || question}
         open={isShowDeleteModal}
+        entityTitle={'Pack'}
+        disabled={status === 'loading'}
+        modalTitle={'Do you really want to remove'}
+        entityName={name || question}
         callBack={removePack(_id)}
         handleClose={closeModal}
       />

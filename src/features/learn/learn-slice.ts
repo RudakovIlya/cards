@@ -71,6 +71,16 @@ const learnSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(updateGrade.fulfilled, (state, action) => {
+        const { shots, grade, card_id } = action.payload.updatedGrade
+
+        state.cards.forEach(card => {
+          if (card_id === card._id) {
+            card.shots = shots
+            card.grade = grade
+          }
+        })
+      })
       .addMatcher(pending, state => {
         state.status = 'loading'
       })

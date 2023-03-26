@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { HeadCellType, EnhancedTableContent, styleForIcons, NotFindAnything } from 'common'
+import { HeadCellType, EnhancedTableContent, styleForIcons, NotFindAnything, Empty } from 'common'
 import { useModals } from 'features/modals'
 import { useFilters, usePackList } from 'features/packs-list/index'
 import { useProfile } from 'features/profile'
@@ -87,7 +87,8 @@ export const PackTable = () => {
       >
         {packItems}
       </EnhancedTableContent>
-      {!cardPacks.length && <NotFindAnything status={status} value={packName} />}
+      {!cardPacks.length && packName && <NotFindAnything status={status} value={packName} />}
+      {status === 'succeeded' && !cardPacks.length && <Empty />}
     </>
   )
 }

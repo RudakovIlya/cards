@@ -16,6 +16,7 @@ export const Modals = () => {
   return (
     <>
       <DeleteModal
+        disabled={status === 'loading'}
         modalTitle={'Do you really want to remove'}
         entityTitle={'Card'}
         entityName={question}
