@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useRef } from 'react'
+import { ChangeEvent, FC } from 'react'
 
 import { PhotoCamera } from '@mui/icons-material'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -41,8 +41,6 @@ export const ModalsForms: FC<ModalsFormsType> = ({
     errorsMessages: { nameError },
   } = useScheme(['name'])
 
-  const ref = useRef<HTMLInputElement>(null)
-
   const onChangeCover = (event: ChangeEvent<HTMLInputElement>) => {
     uploadImageHandler(event, setDeckCover)
   }
@@ -57,7 +55,6 @@ export const ModalsForms: FC<ModalsFormsType> = ({
           component="label"
         >
           <input
-            ref={ref}
             hidden
             value={''}
             accept="image/png, image/jpeg"
