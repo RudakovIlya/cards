@@ -47,8 +47,6 @@ export const ModalsForms: FC<ModalsFormsType> = ({
     uploadImageHandler(event, setDeckCover)
   }
 
-  const reset = () => {}
-
   return (
     <form onSubmit={handleSubmit(callback)}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -61,14 +59,19 @@ export const ModalsForms: FC<ModalsFormsType> = ({
           <input
             ref={ref}
             hidden
+            value={''}
             accept="image/png, image/jpeg"
             type="file"
-            onChange={onChangeCover}
+            onChange={e => onChangeCover(e)}
           />
           <PhotoCamera />
         </IconButton>
         {deckCover && (
-          <IconButton color="primary" disabled={disabled} onClick={reset}>
+          <IconButton
+            color="primary"
+            disabled={disabled}
+            onClick={removeCover({ isDeckCover: true })}
+          >
             <DeleteIcon />
           </IconButton>
         )}
