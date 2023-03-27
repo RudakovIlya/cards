@@ -19,6 +19,8 @@ export type PackType = {
   created: string
   updated: string
   _id: string
+  questionImg: string
+  answerImg: string
 }
 
 export type PackResponse = {
