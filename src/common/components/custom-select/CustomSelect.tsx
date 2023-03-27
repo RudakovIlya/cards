@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import { FC } from 'react'
 
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Typography from '@mui/material/Typography'
 
-export const CustomSelect = () => {
-  const [type, setType] = useState('Text')
+type VariantType = 'text' | 'picture'
 
+type CustomSelectType = {
+  type: VariantType
+  setType: (type: VariantType) => void
+}
+
+export const CustomSelect: FC<CustomSelectType> = ({ type, setType }) => {
   const handleChange = (event: SelectChangeEvent) => {
-    setType(event.target.value as string)
+    setType(event.target.value as VariantType)
   }
 
   return (
@@ -22,8 +27,8 @@ export const CustomSelect = () => {
         value={type}
         onChange={handleChange}
       >
-        <MenuItem value={'Text'}>Text</MenuItem>
-        <MenuItem value={'Picture'}>Picture</MenuItem>
+        <MenuItem value={'text'}>Text</MenuItem>
+        <MenuItem value={'picture'}>Picture</MenuItem>
       </Select>
     </>
   )

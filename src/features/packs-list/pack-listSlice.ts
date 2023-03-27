@@ -20,6 +20,7 @@ type InitialStateType = {
   packList: PackListResponseType
   queryParams: QueryParams
   status: StatusType
+  error: string | null
 }
 
 const initialState: InitialStateType = {
@@ -42,6 +43,7 @@ const initialState: InitialStateType = {
     sortPacks: '0updated',
   },
   status: 'idle',
+  error: null,
 }
 
 export const getPackList = createAsyncThunk<PackListResponseType, void, ThunkAPIType>(
@@ -70,7 +72,9 @@ export const addPack = createAsyncThunk<void, AddPackRequestType, ThunkAPIType>(
     } catch (e) {
       const error = errorUtils(e)
 
-      return rejectWithValue(error)
+      console.log(error)
+
+      return rejectWithValue(error ? error : `File larger than 100 kB`)
     }
   }
 )
@@ -85,7 +89,9 @@ export const updatePack = createAsyncThunk<void, UpdatePackRequestType, ThunkAPI
     } catch (e) {
       const error = errorUtils(e)
 
-      return rejectWithValue(error)
+      console.log(error)
+
+      return rejectWithValue(error ? error : `File larger than 100 kB`)
     }
   }
 )

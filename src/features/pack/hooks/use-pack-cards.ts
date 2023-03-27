@@ -9,6 +9,7 @@ import {
   packCardPacksName,
   packCardPacksTotalCount,
   packCardUserId,
+  packDeckCover,
   packLoading,
   packStatus,
   pageCountParams,
@@ -27,16 +28,23 @@ export const usePackCards = () => {
   const status = useAppSelector(packStatus)
   const pageCount = useAppSelector(pageCountParams)
   const totalCount = useAppSelector(packCardPacksTotalCount)
+  const cover = useAppSelector(packDeckCover)
   const isMe = packUserId === _id
   const navigate = useNavigate()
 
   const navigateToLearn = (packId: string | undefined) => navigate(`/pack/learn/${packId}`)
 
-  const addNewCard = useCallback(() => {
+  const addNewCard = useCallback((questionImg?: string, answerImg?: string) => {
     return (data: any) => {
       dispatch(
         addCard({
-          card: { cardsPack_id: packId as string, ...data },
+          card: {
+            cardsPack_id: packId as string,
+            answerImg,
+            questionImg,
+            answer: data.answer || undefined,
+            question: data.question || undefined,
+          },
         })
       )
     }
@@ -46,11 +54,17 @@ export const usePackCards = () => {
     return () => dispatch(deleteCard(id))
   }, [])
 
-  const updateCurrentCard = useCallback((id: string) => {
+  const updateCurrentCard = useCallback((id: string, answerImg?: string, questionImg?: string) => {
     return (data: any) =>
       dispatch(
         updateCard({
-          card: { _id: id, ...data },
+          card: {
+            _id: id,
+            answerImg,
+            questionImg,
+            answer: data.answer || undefined,
+            question: data.question || undefined,
+          },
         })
       )
   }, [])
@@ -61,6 +75,7 @@ export const usePackCards = () => {
 
   return {
     isMe,
+    cover,
     status,
     packName,
     isLoading,

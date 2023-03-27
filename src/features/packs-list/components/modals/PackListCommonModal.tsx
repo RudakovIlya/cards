@@ -13,12 +13,22 @@ type EditModalType = {
 export const PackListCommonModal: FC<EditModalType> = memo(({ callback, open, title, status }) => {
   const {
     closeModal,
-    data: { name },
+    setDeckCover,
+    removeImages,
+    data: { name, deckCover },
   } = useModals()
 
   return (
     <BasicModal open={open} onClose={closeModal} title={title}>
-      <ModalsForms closeModal={closeModal} callback={callback} name={name} disabled={status} />
+      <ModalsForms
+        name={name}
+        disabled={status}
+        deckCover={deckCover}
+        callback={callback}
+        closeModal={closeModal}
+        setDeckCover={setDeckCover}
+        removeCover={removeImages}
+      />
     </BasicModal>
   )
 })

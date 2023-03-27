@@ -16,6 +16,9 @@ const initialState: InitialStateType = {
     answer: '',
     question: '',
     packName: '',
+    deckCover: '',
+    answerImg: '',
+    questionImg: '',
   },
   modalState: {
     isShowDeleteModal: false,
@@ -35,6 +38,10 @@ const modalsSlice = createSlice({
     },
     toggleModal: (state, action: PayloadAction<Partial<ModalStateType>>) => {
       state.modalState = { ...state.modalState, ...action.payload }
+    },
+    resetModalData: state => {
+      state.modalData = initialState.modalData
+      state.modalState = initialState.modalState
     },
   },
 

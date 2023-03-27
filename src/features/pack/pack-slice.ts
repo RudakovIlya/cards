@@ -34,6 +34,7 @@ const initialState: InitialStateType = {
     maxGrade: 0,
     cardsTotalCount: 100,
     packName: '',
+    packDeckCover: '',
   },
   queryParams: {
     min: 0,

@@ -24,21 +24,21 @@ export const usePackList = () => {
 
   const navigateToLearn = (packId: string) => navigate(`/pack/learn/${packId}`)
 
-  const editPack = (id: string) => {
+  const editPack = (id: string, deckCover: string) => {
     return (data: Omit<UpdatePackType, '_id'>) => {
       dispatch(
         updatePack({
-          cardsPack: { ...data, _id: id },
+          cardsPack: { ...data, _id: id, deckCover: deckCover },
         })
       )
     }
   }
 
-  const addNewPack = () => {
+  const addNewPack = (deckCover: string) => {
     return (data: AddPackType) => {
       dispatch(
         addPack({
-          cardsPack: data,
+          cardsPack: { ...data, deckCover },
         })
       )
     }

@@ -36,7 +36,7 @@ export const EnhancedTableContent: FC<TableContentPropsType> = ({
             {status === 'loading' && (
               <TableSkeleton amountRow={pageCount} amountCell={headCells.length} />
             )}
-            {status === 'succeeded' && children}
+            {status !== 'loading' && children}
           </TableBody>
         </Table>
       </TableContainer>
