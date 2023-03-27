@@ -8,7 +8,7 @@ export const Modals = () => {
     isShowAddedModal,
     isShowDeleteModal,
     closeModal,
-    data: { _id, question },
+    data: { _id, question, questionImg, answerImg },
   } = useModals()
   const { removeCard, updateCurrentCard, addNewCard, status } = usePackCards()
 
@@ -26,14 +26,18 @@ export const Modals = () => {
       <CommonModal
         title={'Add new card'}
         open={isShowAddedModal}
-        callback={addNewCard()}
+        answerImg={answerImg}
+        questionImg={questionImg}
         disabled={status === 'loading'}
+        callback={addNewCard(questionImg, answerImg)}
       />
       <CommonModal
         title={'Edit card'}
         open={isShowEditModal}
-        callback={updateCurrentCard(_id)}
+        answerImg={answerImg}
+        questionImg={questionImg}
         disabled={status === 'loading'}
+        callback={updateCurrentCard(_id, questionImg, answerImg)}
       />
     </>
   )

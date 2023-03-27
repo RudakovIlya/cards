@@ -16,6 +16,7 @@ const packCardPacksTotalCount = (state: RootState) => state.pack.pack.cardsTotal
 const packCardPacksName = (state: RootState) => state.pack.pack.packName
 const packLoading = (state: RootState) => state.pack.isLoading
 const packStatus = (state: RootState) => state.pack.status
+const packDeckCover = (state: RootState) => state.pack.pack.packDeckCover
 
 export {
   minParams,
@@ -33,4 +34,5 @@ export {
   packCardPacksName,
   packLoading,
   packStatus,
+  packDeckCover,
 }

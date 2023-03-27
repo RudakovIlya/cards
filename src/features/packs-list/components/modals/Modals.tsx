@@ -8,7 +8,7 @@ export const Modals = () => {
     isShowAddedModal,
     isShowDeleteModal,
     closeModal,
-    data: { _id, name, question },
+    data: { _id, name, question, deckCover },
   } = useModals()
   const { removePack, editPack, addNewPack, status } = usePackList()
 
@@ -26,14 +26,14 @@ export const Modals = () => {
       <PackListCommonModal
         title={'Add new pack'}
         open={isShowAddedModal}
-        callback={addNewPack()}
+        callback={addNewPack(deckCover)}
         status={status === 'loading'}
       />
 
       <PackListCommonModal
         title={'Edit pack'}
         open={isShowEditModal}
-        callback={editPack(_id)}
+        callback={editPack(_id, deckCover)}
         status={status === 'loading'}
       />
     </>

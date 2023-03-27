@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+
 import { useAppDispatch, useAppSelector } from 'common'
 import {
   modalActions,
@@ -18,7 +20,7 @@ export const useModals = () => {
 
   const dispatch = useAppDispatch()
 
-  const showModal = (type: ShowModalType, data: Partial<ModalDataType>) => {
+  const showModal = useCallback((type: ShowModalType, data: Partial<ModalDataType>) => {
     return () => {
       switch (type) {
         case 'add': {
@@ -41,26 +43,37 @@ export const useModals = () => {
         }
       }
     }
+  }, [])
+
+  const setDeckCover = (file64: string) => {
+    console.log('setDeckCover')
+    dispatch(modalActions.setModalData({ deckCover: file64 }))
   }
 
-  const closeModal = () => {
-    dispatch(
-      modalActions.setModalData({
-        _id: '',
-        name: '',
-        answer: '',
-        packName: '',
-        question: '',
-      })
-    )
-    dispatch(
-      modalActions.toggleModal({
-        isShowAddedModal: false,
-        isShowDeleteModal: false,
-        isShowEditModal: false,
-      })
-    )
-  }
+  const setQuestionImg = useCallback((file64: string) => {
+    dispatch(modalActions.setModalData({ questionImg: file64 }))
+  }, [])
+
+  const setAnswerImg = useCallback((file64: string) => {
+    dispatch(modalActions.setModalData({ answerImg: file64 }))
+  }, [])
+
+  const closeModal = useCallback(() => {
+    dispatch(modalActions.resetModalData())
+  }, [])
+
+  const removeImages = useCallback(
+    (data: { isAnswer?: boolean; isQuestion?: boolean; isDeckCover?: boolean }) => {
+      return () => {
+        data.isAnswer && dispatch(modalActions.setModalData({ answerImg: '' }))
+
+        data.isQuestion && dispatch(modalActions.setModalData({ questionImg: '' }))
+
+        data.isDeckCover && dispatch(modalActions.setModalData({ deckCover: '' }))
+      }
+    },
+    [data.deckCover]
+  )
 
   return {
     data,
@@ -69,5 +82,9 @@ export const useModals = () => {
     isShowAddedModal,
     closeModal,
     showModal,
+    setAnswerImg,
+    setDeckCover,
+    setQuestionImg,
+    removeImages,
   }
 }

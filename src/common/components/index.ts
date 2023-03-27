@@ -18,6 +18,7 @@ import { Filters } from './filters/Filters'
 import { Form } from './forms/Form'
 import { ModalsForms } from './forms/ModalsForms'
 import { Header } from './header/Header'
+import { ImageCover } from './image-cover/ImageCover'
 import { InputSearch } from './input-search/InputSearch'
 import { InputWithValue } from './input-with-value/InputWithValue'
 import { Layout } from './layout/Layout'
@@ -49,6 +50,7 @@ export {
   LinkWrapper,
   Form,
   MainPreloader,
+  ImageCover,
   ValidError,
   Header,
   AccountMenu,

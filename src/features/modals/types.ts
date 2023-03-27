@@ -10,4 +10,7 @@ export type ModalDataType = {
   packName: string
   question: string
   answer: string
+  deckCover: string
+  answerImg: string
+  questionImg: string
 }

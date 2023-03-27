@@ -14,6 +14,7 @@ export type FormValidateType = {
   private?: boolean
   question: string
   answer: string
+  deckCover?: string
 }
 
 export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'

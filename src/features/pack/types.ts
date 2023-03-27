@@ -10,17 +10,17 @@ export type QueryPackParams = {
 }
 
 export type PackType = {
+  _id: string
   answer: string
   question: string
-  cardsPack_id: string
+  questionImg: string
+  answerImg: string
   grade: number
   shots: number
   user_id: string
   created: string
   updated: string
-  _id: string
-  questionImg: string
-  answerImg: string
+  cardsPack_id: string
 }
 
 export type PackResponse = {
@@ -32,6 +32,7 @@ export type PackResponse = {
   page: number
   pageCount: number
   packUserId: string
+  packDeckCover: string
 }
 
 export type AddCardRequestType = {
@@ -51,14 +52,13 @@ export type AddCardType = {
 }
 
 export type UpdateCardType = {
-  // cardsPack_id: string
-  // answer?: string
-  // grade?: number
-  // shots?: number
-  // answerImg?: string
-  // questionImg?: string
-  // questionVideo?: string
-  // answerVideo?: string
+  answer?: string
+  grade?: number
+  shots?: number
+  answerImg?: string
+  questionImg?: string
+  questionVideo?: string
+  answerVideo?: string
   _id: string
   question: string
 }

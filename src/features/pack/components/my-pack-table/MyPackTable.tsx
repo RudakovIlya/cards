@@ -63,7 +63,13 @@ export const MyPackTable = () => {
             >
               <IconButton
                 sx={styleForIcons}
-                onClick={showModal('edit', { _id: p._id, answer: p.answer, question: p.question })}
+                onClick={showModal('edit', {
+                  _id: p._id,
+                  answer: p.answer,
+                  question: p.question,
+                  questionImg: p.questionImg,
+                  answerImg: p.answerImg,
+                })}
               >
                 <BorderColorOutlinedIcon />
               </IconButton>

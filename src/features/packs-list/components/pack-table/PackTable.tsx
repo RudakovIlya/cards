@@ -61,7 +61,7 @@ export const PackTable = () => {
           <>
             <IconButton
               sx={styleForIcons}
-              onClick={showModal('edit', { name: p.name, _id: p._id })}
+              onClick={showModal('edit', { name: p.name, _id: p._id, deckCover: p.deckCover })}
             >
               <BorderColorOutlinedIcon />
             </IconButton>

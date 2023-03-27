@@ -8,7 +8,8 @@ import { changeUserData } from 'features/profile/userProfile-slice'
 
 export const ChangeAvaButton = () => {
   const dispatch = useAppDispatch()
-  const onChangeAvaHandler = (file64: string) => {
+
+  const onChangeAva = (file64: string) => {
     dispatch(changeUserData({ avatar: file64 }))
   }
 
@@ -26,7 +27,7 @@ export const ChangeAvaButton = () => {
         hidden
         accept="image/png, image/jpeg"
         type="file"
-        onChange={e => uploadImageHandler(e, onChangeAvaHandler)}
+        onChange={e => uploadImageHandler(e, onChangeAva)}
       />
       <Camera />
     </IconButton>
