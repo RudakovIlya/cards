@@ -54,13 +54,7 @@ export const ModalsForms: FC<ModalsFormsType> = ({
           aria-label="upload picture"
           component="label"
         >
-          <input
-            hidden
-            value={''}
-            accept="image/png, image/jpeg"
-            type="file"
-            onChange={e => onChangeCover(e)}
-          />
+          <input hidden accept="image/png, image/jpeg" type="file" onChange={onChangeCover} />
           <PhotoCamera />
         </IconButton>
         {deckCover && (
