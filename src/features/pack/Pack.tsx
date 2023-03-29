@@ -1,6 +1,6 @@
 import { ImageCover, NavigationToBack, SubHeader } from 'common'
 import { useModals } from 'features/modals'
-import { FilterPanels, useFetchPack, usePackCards, Modals, MyPackTable } from 'features/pack'
+import { FilterPanels, Modals, MyPackTable, useFetchPack, usePackCards } from 'features/pack'
 
 export const Pack = () => {
   const { isMe, packName, learnToPack, status, totalCount, cover } = usePackCards()

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import Box from '@mui/material/Box'
+
 type ImageCoverType = {
   deckCover?: string
   width?: string

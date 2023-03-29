@@ -2,17 +2,17 @@ import { useParams } from 'react-router-dom'
 
 import { developers, useAppDispatch, useAppSelector } from 'common'
 import {
-  login,
-  forgot,
-  logOut,
-  registerMe,
   authLoggedIn,
   authMailSent,
-  authRegistered,
-  setNewPassword,
   authPasswordSent,
+  authRegistered,
+  forgot,
+  login,
   LoginDataType,
+  logOut,
   RegisterDataType,
+  registerMe,
+  setNewPassword,
 } from 'features/auth'
 
 export const useAuth = () => {

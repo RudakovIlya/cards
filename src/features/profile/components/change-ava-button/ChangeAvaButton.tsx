@@ -3,7 +3,7 @@ import React from 'react'
 import IconButton from '@mui/material/IconButton'
 
 import { ReactComponent as Camera } from 'assets/img/edit_photo.svg'
-import { useAppDispatch, uploadImageHandler } from 'common'
+import { uploadImageHandler, useAppDispatch } from 'common'
 import { changeUserData } from 'features/profile/userProfile-slice'
 
 export const ChangeAvaButton = () => {

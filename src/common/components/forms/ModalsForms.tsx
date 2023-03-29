@@ -8,12 +8,12 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import IconButton from '@mui/material/IconButton'
 
 import {
-  ValidError,
-  useScheme,
-  ModalsButtons,
-  InputWithValue,
-  uploadImageHandler,
   ImageCover,
+  InputWithValue,
+  ModalsButtons,
+  uploadImageHandler,
+  useScheme,
+  ValidError,
 } from 'common'
 
 type ModalsFormsType = {

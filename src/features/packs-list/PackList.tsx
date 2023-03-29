@@ -1,6 +1,6 @@
 import { SubHeader } from 'common'
 import { useModals } from 'features/modals'
-import { FilterPanels, PackTable, useFetchPackList, usePackList, Modals } from 'features/packs-list'
+import { FilterPanels, Modals, PackTable, useFetchPackList, usePackList } from 'features/packs-list'
 
 export const PackList = () => {
   const { status } = usePackList()

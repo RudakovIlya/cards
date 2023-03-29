@@ -1,5 +1,5 @@
-import { CardSkeleton, NavigationToBack, useAppSelector, Title } from 'common'
-import { useRandomCard, LearnCard } from 'features/learn'
+import { CardSkeleton, NavigationToBack, Title, useAppSelector } from 'common'
+import { LearnCard, useRandomCard } from 'features/learn'
 import { learnPageStatus } from 'features/learn/selectors'
 import { useFetchPack, usePackCards } from 'features/pack'
 

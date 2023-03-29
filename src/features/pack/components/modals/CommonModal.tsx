@@ -7,10 +7,10 @@ import { useForm } from 'react-hook-form'
 import {
   BasicModal,
   CustomSelect,
-  ModalsButtons,
-  InputWithValue,
-  uploadImageHandler,
   ImageCover,
+  InputWithValue,
+  ModalsButtons,
+  uploadImageHandler,
 } from 'common'
 import { useModals } from 'features/modals'
 
