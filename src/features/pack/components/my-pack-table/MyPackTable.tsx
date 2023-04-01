@@ -32,10 +32,20 @@ export const MyPackTable = () => {
             maxWidth: 320,
           }}
         >
-          {p.questionImg ? p.questionImg : p.question}
+          {p.questionImg ? (
+            <img style={{ height: '35px', marginLeft: '20px' }} alt="img" src={p.questionImg} />
+          ) : (
+            p.question
+          )}
         </div>
       </TableCell>
-      <TableCell align="left">{p.answerImg ? p.answerImg : p.answer}</TableCell>
+      <TableCell align="left">
+        {p.answerImg ? (
+          <img style={{ height: '35px', marginLeft: '20px' }} alt="img" src={p.answerImg} />
+        ) : (
+          p.answer
+        )}
+      </TableCell>
       <TableCell align="left">{p.updated?.slice(0, 10)}</TableCell>
       <TableCell
         align="left"
