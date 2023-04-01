@@ -9,9 +9,16 @@ export const Answer = () => {
   return (
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Typography component={'span'} sx={{ paddingBottom: 2 }}>
+        <Typography
+          component={'span'}
+          sx={{ paddingBottom: 2, display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+        >
           <b>Answer: </b>
-          {card.answer}
+          {card.answerImg ? (
+            <img style={{ height: '35px', marginLeft: '20px' }} alt="img" src={card.answerImg} />
+          ) : (
+            card.answer
+          )}
         </Typography>
         <AnswerForm />
       </Box>
