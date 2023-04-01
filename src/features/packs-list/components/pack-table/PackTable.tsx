@@ -28,7 +28,7 @@ export const PackTable = () => {
   const packItems = cardPacks.map(p => (
     <TableRow hover key={p._id}>
       <TableCell component="th" scope="row">
-        <Box>
+        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <button
             style={{
               whiteSpace: 'nowrap',

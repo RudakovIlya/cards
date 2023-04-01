@@ -29,7 +29,6 @@ export const MyPackTable = () => {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: ' ellipsis',
-            maxWidth: 320,
           }}
         >
           {p.questionImg ? (
