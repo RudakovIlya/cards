@@ -8,3 +8,4 @@ import { useProfile } from 'features/profile/hooks/use-profile'
 
 export { useProfile, UserProfile, profileData, changeUserData, userProfileAPI, userProfileReducer }
 export type { UpdatedProfileType, ProfileDataType, UserDataType, ProfileStateType }
+export { ChangeAvaButton } from './components/change-ava-button/ChangeAvaButton'
