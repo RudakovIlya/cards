@@ -29,8 +29,8 @@ export const Login = () => {
       description={`Don't have an account?`}
       link={{ title: 'Sign Up', to: paths.REGISTRATION }}
     >
-      {emailError && <ValidError sx={{ maxWidth: '347px' }}>{emailError}</ValidError>}
       <TextField {...register('email')} variant={'standard'} label={'Email'} type={'email'} />
+      {emailError && <ValidError sx={{ maxWidth: '347px' }}>{emailError}</ValidError>}
       <PasswordInput
         register={register}
         label={'Password'}
