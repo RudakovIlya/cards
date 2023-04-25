@@ -13,7 +13,7 @@ export const Answer = () => {
           component={'span'}
           sx={{ paddingBottom: 2, display: 'flex', flexDirection: 'row', alignItems: 'center' }}
         >
-          <b>Answer: </b>
+          <b>Answer:&nbsp;</b>
           {card.answerImg ? (
             <img style={{ height: '35px', marginLeft: '20px' }} alt="img" src={card.answerImg} />
           ) : (

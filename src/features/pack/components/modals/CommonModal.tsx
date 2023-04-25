@@ -33,7 +33,7 @@ export const CommonModal: FC<ModalsFormsType> = memo(
       data: { answer, question },
     } = useModals()
 
-    const { handleSubmit, register, reset, getValues } = useForm<{
+    const { handleSubmit, register, reset } = useForm<{
       question: string
       answer: string
     }>()
@@ -51,8 +51,6 @@ export const CommonModal: FC<ModalsFormsType> = memo(
         uploadImageHandler(event, setAnswerImg)
       }
     }
-
-    console.log(getValues())
 
     useEffect(() => {
       if (answer || question) return

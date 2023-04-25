@@ -11,7 +11,7 @@ export const Question = () => {
       <Typography
         sx={{ marginBottom: 1.5, display: 'flex', flexDirection: 'row', alignItems: 'center' }}
       >
-        <b>Question: </b>{' '}
+        <b>Question:&nbsp;</b>
         {card.questionImg ? (
           <img style={{ height: '35px', marginLeft: '20px' }} alt="img" src={card.questionImg} />
         ) : (
