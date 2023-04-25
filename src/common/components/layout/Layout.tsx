@@ -7,7 +7,7 @@ export const Layout = () => {
   return (
     <>
       <Header />
-      <Container sx={{ height: '100%' }}>
+      <Container sx={{ height: 'calc(100vh - auto)' }}>
         <Outlet />
       </Container>
     </>
