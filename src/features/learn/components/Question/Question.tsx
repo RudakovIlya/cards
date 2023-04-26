@@ -19,7 +19,7 @@ export const Question = () => {
         )}
       </Typography>
       <Typography sx={{ opacity: 0.5, marginBottom: 3.7 }}>
-        Number of answers to the question: <b>{card.shots}</b>
+        Number of answers to the question:&nbsp;<b>{card.shots}</b>
       </Typography>
     </Box>
   )
