@@ -46,7 +46,6 @@ export const useModals = () => {
   }, [])
 
   const setDeckCover = (file64: string) => {
-    console.log('setDeckCover')
     dispatch(modalActions.setModalData({ deckCover: file64 }))
   }
 
