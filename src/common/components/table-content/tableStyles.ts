@@ -1,7 +1,5 @@
-// styles for EnhancedTableContent component
 export const styleForIcons = { padding: '6px' }
 
-// styles for NotFindAnything component
 export const styleContainerForNotFind = {
   maxWidth: '1150px',
   display: 'flex',
