@@ -19,7 +19,6 @@ export const Pagination: FC<PaginationType> = ({
   count,
   disabled,
 }) => {
-  
   const isDisabled = Math.ceil(count / rows) - 1 === page || page <= -1
 
   const handleChangePage = (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
