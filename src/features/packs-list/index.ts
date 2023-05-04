@@ -1,7 +1,3 @@
-import { FilterPanels } from './components/filter-panels/FilterPanels'
-import { Modals } from './components/modals/Modals'
-import { PackListCommonModal } from './components/modals/PackListCommonModal'
-import { PackTable } from './components/pack-table/PackTable'
 import { useFetchPackList } from './hooks/use-fetch-packList'
 import { PackList } from './PackList'
 import {
@@ -31,6 +27,10 @@ import {
   UpdatePackType,
   UpdateResponseType,
 } from './types'
+import { FilterPanels } from './ui/filter-panels/FilterPanels'
+import { Modals } from './ui/modals/Modals'
+import { PackListCommonModal } from './ui/modals/PackListCommonModal'
+import { PackTable } from './ui/pack-table/PackTable'
 
 import { useFilters } from 'features/packs-list/hooks/use-filters'
 import { usePackList } from 'features/packs-list/hooks/use-packlist'
