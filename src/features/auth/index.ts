@@ -12,11 +12,6 @@ import { authLoggedIn, authMailSent, authPasswordSent, authRegistered } from './
 
 import { Auth } from 'features/auth/Auth'
 import { authAPI } from 'features/auth/auth-api'
-import { CheckEmail } from 'features/auth/components/forgot-password/CheckEmail'
-import { ForgotPassword } from 'features/auth/components/forgot-password/ForgotPassword'
-import { Login } from 'features/auth/components/login/Login'
-import { NewPassword } from 'features/auth/components/new-password/NewPassword'
-import { Registration } from 'features/auth/components/registration/Registration'
 import { useAuth } from 'features/auth/hooks/use-auth'
 import {
   ForgotEmailDataType,
@@ -27,6 +22,11 @@ import {
   ResponseRegisterType,
   SetPasswordDataType,
 } from 'features/auth/types'
+import { CheckEmail } from 'features/auth/ui/forgot-password/CheckEmail'
+import { ForgotPassword } from 'features/auth/ui/forgot-password/ForgotPassword'
+import { Login } from 'features/auth/ui/login/Login'
+import { NewPassword } from 'features/auth/ui/new-password/NewPassword'
+import { Registration } from 'features/auth/ui/registration/Registration'
 
 export {
   logOut,

@@ -1,11 +1,11 @@
-import { Answer } from './components/Answer/Answer'
-import { AnswerForm } from './components/Answer/AnswerForm'
-import { CardContent } from './components/Card/CardContent'
-import { LearnCard } from './components/Card/LearnCard'
-import { Question } from './components/Question/Question'
 import { useLearn } from './hooks/use-learn'
 import { useRandomCard } from './hooks/use-random-card'
 import { learnAPI } from './learn-api'
+import { Answer } from './ui/Answer/Answer'
+import { AnswerForm } from './ui/Answer/AnswerForm'
+import { CardContent } from './ui/Card/CardContent'
+import { LearnCard } from './ui/Card/LearnCard'
+import { Question } from './ui/Question/Question'
 
 export { useLearn, useRandomCard }
 

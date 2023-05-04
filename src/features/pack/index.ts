@@ -1,7 +1,3 @@
-import { FilterPanels } from './components/filter-panels/FilterPanels'
-import { CommonModal } from './components/modals/CommonModal'
-import { Modals } from './components/modals/Modals'
-import { MyPackTable } from './components/my-pack-table/MyPackTable'
 import { useFetchPack } from './hooks/use-fetch-pack'
 import { usePackFilters } from './hooks/use-packFilters'
 import { Pack } from './Pack'
@@ -16,6 +12,10 @@ import {
   UpdateGradeRequestType,
   UpdateGradeResponseType,
 } from './types'
+import { FilterPanels } from './ui/filter-panels/FilterPanels'
+import { CommonModal } from './ui/modals/CommonModal'
+import { Modals } from './ui/modals/Modals'
+import { MyPackTable } from './ui/my-pack-table/MyPackTable'
 
 import { usePackCards } from 'features/pack/hooks/use-pack-cards'
 
