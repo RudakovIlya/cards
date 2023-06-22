@@ -1,10 +1,10 @@
+import StyleIcon from '@mui/icons-material/Style'
 import AppBar from '@mui/material/AppBar'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Toolbar from '@mui/material/Toolbar'
 import { Link, useNavigate } from 'react-router-dom'
 
-import logo from 'assets/img/incub-logo.svg'
 import { AccountMenu, ContentPreloader, DescriptionSnackbar, paths, useAppSelector } from 'common'
 import { authLoggedIn } from 'features/auth'
 
@@ -20,8 +20,12 @@ export const Header = () => {
       <Container>
         <Toolbar>
           <span style={{ flex: 1 }}>
-            <Link to={paths.PACK_LIST}>
-              <img src={logo} alt="incubator-logo" />
+            <Link
+              style={{ color: '#000', display: 'flex', alignItems: 'center' }}
+              to={paths.PACK_LIST}
+            >
+              <StyleIcon sx={{ color: '#366EFF', marginRight: '5px' }} />
+              <span>Learning Cards</span>
             </Link>
           </span>
           {!isLoggedIn ? (
