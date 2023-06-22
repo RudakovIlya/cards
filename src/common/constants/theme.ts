@@ -61,7 +61,7 @@ export const theme = createTheme({
           color: '#fff',
           textTransform: 'initial',
           boxShadow:
-            '0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3)',
+            '0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
           '&:hover': {
             backgroundColor: '#205eff',
           },
