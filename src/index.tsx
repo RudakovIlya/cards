@@ -15,9 +15,7 @@ const root = createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-
       <RouterProvider router={router} />
-
     </ThemeProvider>
   </Provider>
 )
